@@ -125,8 +125,8 @@ console.log(categoria)
         </section>
         <section className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 sm:p-10 lg:grid-cols-2 xl:grid-cols-3 gap-15 w-full">
         {categoria.map((produto) => ( 
-            <Link href={`/produtos/${produto.id}`}>
-            <div key={produto.id} className="flex flex-col h-100 w-full">
+            <Link key={produto.id} href={`/produtos/${produto.id}`}>
+            <div className="flex flex-col h-100 w-full">
                 <div className="flex bg-neutral-100 justify-center items-center h-7/10">
                     <img src={produto.imagem} alt={produto.nome} className="w-full h-10/10" />
                 </div>
