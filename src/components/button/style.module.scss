@@ -6,11 +6,10 @@
 }
 .btn {
     padding: 10px 30px;
-    border-radius: 5px;
     cursor: pointer;
 
     &[data-variant="primary"] {
-        background: linear-gradient(to bottom, #333, #222);
+        background: #000000;
         color: var(--primary-text-color);
     }
     &[data-variant="secondary"] {
