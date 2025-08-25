@@ -4,13 +4,21 @@ import { User } from "lucide-react";
 import InputForm from "@/components/Input/InputForm";
 import CustomizedBadges from "@/components/badge/Badge";
 import { useCart } from "@/components/CartContext/CartContext";
+import Image from "next/image";
 
 export default function Header() {
   const { cartValue } = useCart();
   return (
     <header className="flex justify-between border-b-2 border-neutral-200 gap-10 px-4 py-8 bg-[#ffffff]">
-      <div className="flex items-center">
-        <h1 className="lg:text-3xl xl:text-3xl md:text-xl font-bold text-[##002d18]">E-SHOPCASE</h1>
+      <div className="flex items-center h-10 w-100">
+        <h1 className="lg:text-3xl xl:text-3xl md:text-xl font-bold text-[##002d18]">
+          <Image
+            src="/images/image.png"
+            alt="logo"
+            width={200}
+            height={20}
+          />
+        </h1>
       </div>
       <div className="flex items-center">
         <ul className="flex gap-8 text-black font-normal text-xl">

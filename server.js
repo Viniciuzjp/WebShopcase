@@ -2,16 +2,19 @@ import axios from "axios";
 import fs from "fs";
 import cors from "cors";
 import express from "express";
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 const app = express();
 app.use(cors());
 
 const PORT = 3004;
 
-const CJ_EMAIL = "viniciusjuarez720@gmail.com";
-const CJ_API_KEY = "66e58b25788240ffae26fc548b263e61";
-const PRODUCTS_JSON = "products.json";
-const DETAILS_JSON = "details.json";
+const CJ_EMAIL = process.env.CJ_EMAIL;
+const CJ_API_KEY = process.env.CJ_API_KEY;
+const PRODUCTS_JSON = process.env.PRODUCTS_JSON;
+const DETAILS_JSON = process.env.DETAILS_JSON;
 
 let tokenData = {
   accessToken: null,
@@ -20,7 +23,6 @@ let tokenData = {
   refreshTokenExpiry: null,
 };
 
-// ---------------- TOKEN ----------------
 function saveToken(tokenData) {
   fs.writeFileSync("token.json", JSON.stringify(tokenData, null, 2));
 }
@@ -88,7 +90,6 @@ async function getValidAccessToken() {
   return tokenData.accessToken;
 }
 
-// ---------------- PRODUCTS ----------------
 function saveProductsToJSON(products) {
   const uniqueProducts = Array.from(
     new Map(products.map((p) => [p.pid, p])).values()
@@ -126,7 +127,6 @@ async function listAllProducts({ keyword, categoryId, maxPages = 5 } = {}) {
       const products = res.data.data?.list || [];
       if (products.length === 0) break;
 
-      // salva exatamente o que a API retorna, sem remover nada
       allProducts.push(...products);
 
       console.log(`Page ${pageNum} completed, total: ${allProducts.length}`);
@@ -151,7 +151,6 @@ async function listAllProducts({ keyword, categoryId, maxPages = 5 } = {}) {
   return allProducts;
 }
 
-// ---------------- DETAILS ----------------
 async function getProductDetail(pid, token) {
   try {
     const res = await axios.get(
@@ -163,7 +162,7 @@ async function getProductDetail(pid, token) {
     );
 
     if (res.data.code === 200) {
-      return res.data.data; // retorna todos os campos do detalhe
+      return res.data.data;
     } else {
       console.error("Erro no detalhe do produto:", res.data);
       return null;
@@ -174,7 +173,6 @@ async function getProductDetail(pid, token) {
   }
 }
 
-// ---------------- API ----------------
 app.get("/api/produtos", (req, res) => {
   if (!fs.existsSync(PRODUCTS_JSON)) {
     return res.status(404).json({ message: "Products file not found" });
@@ -218,7 +216,6 @@ app.get("/api/produtos/:id", async (req, res) => {
   res.json(product);
 });
 
-// ---------------- INIT ----------------
 (async () => {
   try {
     const categoryIds = ["491E5474-524C-4666-BDD7-4E35E38900EA"];

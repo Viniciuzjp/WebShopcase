@@ -2390,5 +2390,630 @@
     "customizationJson2": null,
     "customizationJson3": null,
     "customizationJson4": null
+  },
+  "2505031451061607000": {
+    "pid": "2505031451061607000",
+    "productName": "[\"折叠太阳能充电宝应急充电器充电板大容量便携光伏板户外移动电源\",\"折叠太阳能充电宝应急充电器\",\"充电板大容量便携\"]",
+    "productNameSet": [
+      "折叠太阳能充电宝应急充电器充电板大容量便携光伏板户外移动电源",
+      "折叠太阳能充电宝应急充电器",
+      "充电板大容量便携"
+    ],
+    "productNameEn": "Folding Solar Charging Device Emergency Charger",
+    "productSku": "CJYD2367916",
+    "productImage": "[\"https://oss-cf.cjdropshipping.com/product/2025/05/03/14/d133361b-b696-461b-a8af-7325b6ae2150_trans.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2025/05/03/14/82b10d2c-49c8-429e-aaa9-537bc90f577e_trans.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2025/05/03/14/54439dd2-e130-478f-841b-ec88cd4ef2cd_trans.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2025/05/03/14/2de0fb8f-d5d3-4d8b-b351-f626785d04d5_trans.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2025/05/03/14/db2b64f0-811c-4f83-9b57-a0ab990e4fc1_trans.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2025/05/05/01/9e82449c-dabb-41fe-ab7d-deeef6c21a6b.jpg\",\"https://oss-cf.cjdropshipping.com/product/2025/05/05/01/6dd4c333-3d1a-44e5-96df-7bb2853bed5d.jpg\",\"https://oss-cf.cjdropshipping.com/product/2025/05/05/01/c59f83b7-61fe-4375-ab6e-7f1abe7da2b1.jpg\",\"https://oss-cf.cjdropshipping.com/product/2025/05/05/01/36812923-c3c8-4296-a47d-0101bf7a620e.jpg\"]",
+    "productImageSet": [
+      "https://oss-cf.cjdropshipping.com/product/2025/05/03/14/db2b64f0-811c-4f83-9b57-a0ab990e4fc1_trans.jpeg",
+      "https://oss-cf.cjdropshipping.com/product/2025/05/03/14/54439dd2-e130-478f-841b-ec88cd4ef2cd_trans.jpeg",
+      "https://oss-cf.cjdropshipping.com/product/2025/05/05/01/6dd4c333-3d1a-44e5-96df-7bb2853bed5d.jpg",
+      "https://oss-cf.cjdropshipping.com/product/2025/05/03/14/82b10d2c-49c8-429e-aaa9-537bc90f577e_trans.jpeg",
+      "https://oss-cf.cjdropshipping.com/product/2025/05/05/01/9e82449c-dabb-41fe-ab7d-deeef6c21a6b.jpg",
+      "https://oss-cf.cjdropshipping.com/product/2025/05/03/14/2de0fb8f-d5d3-4d8b-b351-f626785d04d5_trans.jpeg",
+      "https://oss-cf.cjdropshipping.com/product/2025/05/05/01/c59f83b7-61fe-4375-ab6e-7f1abe7da2b1.jpg",
+      "https://oss-cf.cjdropshipping.com/product/2025/05/05/01/36812923-c3c8-4296-a47d-0101bf7a620e.jpg",
+      "https://oss-cf.cjdropshipping.com/product/2025/05/03/14/d133361b-b696-461b-a8af-7325b6ae2150_trans.jpeg"
+    ],
+    "productWeight": "400.00-2000.00",
+    "productUnit": null,
+    "productType": "ORDINARY_PRODUCT",
+    "categoryId": "491E5474-524C-4666-BDD7-4E35E38900EA",
+    "categoryName": "Phones & Accessories > Mobile Phone Accessories > Power Bank",
+    "entryCode": "8504409999",
+    "entryName": "塑料充电板",
+    "entryNameEn": "Plastic charging board",
+    "materialName": "[\"塑料\"]",
+    "materialNameSet": [
+      "塑料"
+    ],
+    "materialNameEn": "[\"Plastic\"]",
+    "materialNameEnSet": [
+      "Plastic"
+    ],
+    "materialKey": "[\"PLASTIC\"]",
+    "materialKeySet": [
+      "PLASTIC"
+    ],
+    "packingWeight": "420.00-2020.00",
+    "packingName": "[\"塑料袋\"]",
+    "packingNameSet": [
+      "塑料袋"
+    ],
+    "packingNameEn": "[\"Plastic bags\"]",
+    "packingNameEnSet": [
+      "Plastic bags"
+    ],
+    "packingKey": "[\"PLASTIC_BAG\"]",
+    "packingKeySet": [
+      "PLASTIC_BAG"
+    ],
+    "productKey": "[\"颜色\",\"电源容量\"]",
+    "productKeySet": [
+      "颜色",
+      "电源容量"
+    ],
+    "productKeyEn": "Color-Power Capacity",
+    "productPro": "[\"纯电池\"]",
+    "productProSet": [
+      "纯电池"
+    ],
+    "productProEn": "[\"Pure Battery\"]",
+    "productProEnSet": [
+      "Pure Battery"
+    ],
+    "sellPrice": "8.98-17.44",
+    "sourceFrom": 1,
+    "description": "<p><b>Product information:</b><br>Color: 3 solar panels (3.7W each), 4 solar panels (3.7W each), 5 solar panels (3.7W each), 6 solar panels (3.7W each), 7 solar panels (3.7W each)<br>Input voltage: 5<br>Function: Solar energy<br>Size: 198*98*30<br>Voltage: 5<br>Style: industrial style<br></p>\n<br>\n<b>Packing list: </b>\n<br> 1*\n<span style=\"font-size: 16px;\">portable power source</span>\n<p><br></p>\n<b>Product Image:</b>\n<br>\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/05/03/14/e741a302-8988-4035-8e9e-41b19fffc867_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/05/03/14/a68c54c6-f09c-4fa1-b95a-56d6d25d89ea_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/05/03/14/922b72dd-3f34-430b-aa11-3f8e0c16828d_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/05/03/14/988eed85-df48-445e-8d95-310e8407baed_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/05/03/14/2eab6302-e495-415a-af64-38edf9ee654a_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/05/03/14/3c6af81c-d493-4e34-a929-4cd40d9e55fa_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/05/03/14/8190fe0d-1849-4366-89f6-5d0bcf03f6ee_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/05/03/14/28f029fc-6ec1-4507-9875-360c870e05fd_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/05/03/14/0421fac2-71d7-4a6e-9ecb-492ed3c960ce_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/05/03/14/0b936c21-e95d-4d61-8fbf-df70421e1612_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/05/03/14/ede8ad81-9ce6-4eed-a9ca-3b886db29fb7_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/05/03/14/4475b988-0bc0-4075-9a70-a90f2406f809_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/05/03/14/fddd8237-61d0-4e3f-b7d7-36c914b883d9_trans.jpeg\">",
+    "variants": [
+      {
+        "vid": "2505031451061607700",
+        "pid": "2505031451061607000",
+        "variantName": null,
+        "variantNameEn": "Folding Solar Charging Device Emergency Charger 3Solar Panels 3.7W",
+        "variantImage": "https://oss-cf.cjdropshipping.com/product/2025/05/05/01/36812923-c3c8-4296-a47d-0101bf7a620e.jpg",
+        "variantSku": "CJYD236791601AZ",
+        "variantUnit": "件",
+        "variantProperty": "[]",
+        "variantKey": "3Solar Panels-3.7W",
+        "variantLength": 250,
+        "variantWidth": 150,
+        "variantHeight": 100,
+        "variantVolume": 3750000,
+        "variantWeight": 420,
+        "variantSellPrice": 8.98,
+        "createTime": 1746283867000,
+        "variantStandard": "long=250,width=150,height=100",
+        "variantSugSellPrice": 43.11,
+        "combineNum": null,
+        "inventoryNum": null,
+        "combineVariants": null
+      },
+      {
+        "vid": "2505031451061608100",
+        "pid": "2505031451061607000",
+        "variantName": null,
+        "variantNameEn": "Folding Solar Charging Device Emergency Charger 4Solar Panels 3.7W",
+        "variantImage": "https://oss-cf.cjdropshipping.com/product/2025/05/03/14/82b10d2c-49c8-429e-aaa9-537bc90f577e_trans.jpeg",
+        "variantSku": "CJYD236791602BY",
+        "variantUnit": "件",
+        "variantProperty": "[]",
+        "variantKey": "4Solar Panels-3.7W",
+        "variantLength": 250,
+        "variantWidth": 150,
+        "variantHeight": 100,
+        "variantVolume": 3750000,
+        "variantWeight": 820,
+        "variantSellPrice": 10.67,
+        "createTime": 1746283867000,
+        "variantStandard": "long=250,width=150,height=100",
+        "variantSugSellPrice": 51.22,
+        "combineNum": null,
+        "inventoryNum": null,
+        "combineVariants": null
+      },
+      {
+        "vid": "2505031451061608400",
+        "pid": "2505031451061607000",
+        "variantName": null,
+        "variantNameEn": "Folding Solar Charging Device Emergency Charger 5Solar Panel 3.7W",
+        "variantImage": "https://oss-cf.cjdropshipping.com/product/2025/05/05/01/9e82449c-dabb-41fe-ab7d-deeef6c21a6b.jpg",
+        "variantSku": "CJYD236791603CX",
+        "variantUnit": "件",
+        "variantProperty": "[]",
+        "variantKey": "5Solar Panel-3.7W",
+        "variantLength": 250,
+        "variantWidth": 150,
+        "variantHeight": 100,
+        "variantVolume": 3750000,
+        "variantWeight": 1220,
+        "variantSellPrice": 12.36,
+        "createTime": 1746283867000,
+        "variantStandard": "long=250,width=150,height=100",
+        "variantSugSellPrice": 59.33,
+        "combineNum": null,
+        "inventoryNum": null,
+        "combineVariants": null
+      },
+      {
+        "vid": "2505031451061608800",
+        "pid": "2505031451061607000",
+        "variantName": null,
+        "variantNameEn": "Folding Solar Charging Device Emergency Charger 6Solar Panel 3.7W",
+        "variantImage": "https://oss-cf.cjdropshipping.com/product/2025/05/05/01/6dd4c333-3d1a-44e5-96df-7bb2853bed5d.jpg",
+        "variantSku": "CJYD236791604DW",
+        "variantUnit": "件",
+        "variantProperty": "[]",
+        "variantKey": "6Solar Panel-3.7W",
+        "variantLength": 250,
+        "variantWidth": 150,
+        "variantHeight": 100,
+        "variantVolume": 3750000,
+        "variantWeight": 1620,
+        "variantSellPrice": 15.75,
+        "createTime": 1746283867000,
+        "variantStandard": "long=250,width=150,height=100",
+        "variantSugSellPrice": 75.6,
+        "combineNum": null,
+        "inventoryNum": null,
+        "combineVariants": null
+      },
+      {
+        "vid": "2505031451061609200",
+        "pid": "2505031451061607000",
+        "variantName": null,
+        "variantNameEn": "Folding Solar Charging Device Emergency Charger 7Solar Panels 3.7W",
+        "variantImage": "https://oss-cf.cjdropshipping.com/product/2025/05/05/01/c59f83b7-61fe-4375-ab6e-7f1abe7da2b1.jpg",
+        "variantSku": "CJYD236791605EV",
+        "variantUnit": "件",
+        "variantProperty": "[]",
+        "variantKey": "7Solar Panels-3.7W",
+        "variantLength": 250,
+        "variantWidth": 150,
+        "variantHeight": 100,
+        "variantVolume": 3750000,
+        "variantWeight": 2020,
+        "variantSellPrice": 17.44,
+        "createTime": 1746283867000,
+        "variantStandard": "long=250,width=150,height=100",
+        "variantSugSellPrice": 83.72,
+        "combineNum": null,
+        "inventoryNum": null,
+        "combineVariants": null
+      }
+    ],
+    "addMarkStatus": 0,
+    "createrTime": "2025-05-03T14:51:06+08:00",
+    "productVideo": "",
+    "status": "3",
+    "suggestSellPrice": "43.11 - 83.72",
+    "listedNum": 5,
+    "supplierName": null,
+    "supplierId": null,
+    "customizationVersion": null,
+    "customizationJson1": null,
+    "customizationJson2": null,
+    "customizationJson3": null,
+    "customizationJson4": null
+  },
+  "2412090713311615400": {
+    "pid": "2412090713311615400",
+    "productName": "[\"1W充电宝\",\"2W充电宝\",\"充电宝\"]",
+    "productNameSet": [
+      "1W充电宝",
+      "2W充电宝",
+      "充电宝"
+    ],
+    "productNameEn": "Graphene Heating Clothing Power Bank",
+    "productSku": "CJCD2238229",
+    "productImage": "[\"https://oss-cf.cjdropshipping.com/product/2024/12/09/07/92152db6-506c-4d84-92b9-e6cd818e0e97_fine.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2024/12/09/07/3f5b45c9-5f55-41ce-b989-1670ed6bce41.jpg\",\"https://oss-cf.cjdropshipping.com/product/2024/12/09/07/94100349-20bb-4897-926e-ff0c379bb128.jpg\",\"https://oss-cf.cjdropshipping.com/product/2024/12/09/07/81fe9dc9-522f-4bbe-852c-18e73c25b044.jpg\"]",
+    "productImageSet": [
+      "https://oss-cf.cjdropshipping.com/product/2024/12/09/07/94100349-20bb-4897-926e-ff0c379bb128.jpg",
+      "https://oss-cf.cjdropshipping.com/product/2024/12/09/07/92152db6-506c-4d84-92b9-e6cd818e0e97_fine.jpeg",
+      "https://oss-cf.cjdropshipping.com/product/2024/12/09/07/3f5b45c9-5f55-41ce-b989-1670ed6bce41.jpg",
+      "https://oss-cf.cjdropshipping.com/product/2024/12/09/07/81fe9dc9-522f-4bbe-852c-18e73c25b044.jpg"
+    ],
+    "productWeight": "260.00-420.00",
+    "productUnit": null,
+    "productType": "ORDINARY_PRODUCT",
+    "categoryId": "491E5474-524C-4666-BDD7-4E35E38900EA",
+    "categoryName": "Phones & Accessories > Mobile Phone Accessories > Power Bank",
+    "entryCode": "8504401990",
+    "entryName": "塑料充电宝",
+    "entryNameEn": "Plastic power bank",
+    "materialName": "[\"塑料\"]",
+    "materialNameSet": [
+      "塑料"
+    ],
+    "materialNameEn": "[\"Plastic\"]",
+    "materialNameEnSet": [
+      "Plastic"
+    ],
+    "materialKey": "[\"PLASTIC\"]",
+    "materialKeySet": [
+      "PLASTIC"
+    ],
+    "packingWeight": "280.00-440.00",
+    "packingName": "[\"塑料袋\"]",
+    "packingNameSet": [
+      "塑料袋"
+    ],
+    "packingNameEn": "[\"Plastic bags\"]",
+    "packingNameEnSet": [
+      "Plastic bags"
+    ],
+    "packingKey": "[\"PLASTIC_BAG\"]",
+    "packingKeySet": [
+      "PLASTIC_BAG"
+    ],
+    "productKey": "[\"款式\"]",
+    "productKeySet": [
+      "款式"
+    ],
+    "productKeyEn": "style",
+    "productPro": "[\"纯电池\"]",
+    "productProSet": [
+      "纯电池"
+    ],
+    "productProEn": "[\"Pure Battery\"]",
+    "productProEnSet": [
+      "Pure Battery"
+    ],
+    "sellPrice": "4.78-7.25",
+    "sourceFrom": 0,
+    "description": "<p><b>Product information:</b><br/></p><p>Size: Universal<br/>Style: New Chinese Style<br/>Motor type: brushless motor<br/>Shell technology: plastic<br/>Noise: 45-50dB (inclusive)<br/>Power supply mode: USB<br/>Operation method: Normal button</p><p><b>Packing list:</b></p><p>Power bankX1pcs</p><p><img src=\"https://oss-cf.cjdropshipping.com/product/2024/12/09/07/c9cab592-8287-4916-b605-6d1916e2b879.jpg\" style=\"max-width:100%;\" contenteditable=\"false\"/><img src=\"https://oss-cf.cjdropshipping.com/product/2024/12/09/07/f9c4a7a2-6a8f-4348-b585-c87a65bc5646.jpg\" style=\"max-width:100%;\" contenteditable=\"false\"/><img src=\"https://oss-cf.cjdropshipping.com/product/2024/12/09/07/07e1eaaf-5f73-4373-8beb-045aed6aeec6_fine.jpeg\" style=\"max-width:100%;\" contenteditable=\"false\"/><img src=\"https://oss-cf.cjdropshipping.com/product/2024/12/09/07/72151a38-c951-4774-a121-9574b8e4dc42.jpg\" style=\"max-width:100%;\" contenteditable=\"false\"/></p>",
+    "variants": [
+      {
+        "vid": "2412090713311615600",
+        "pid": "2412090713311615400",
+        "variantName": null,
+        "variantNameEn": "Graphene Heating Clothing Power Bank 1W power bank",
+        "variantImage": "https://oss-cf.cjdropshipping.com/product/2024/12/09/07/92152db6-506c-4d84-92b9-e6cd818e0e97_fine.jpeg",
+        "variantSku": "CJCD223822901AZ",
+        "variantUnit": "个",
+        "variantProperty": "[]",
+        "variantKey": "1W power bank",
+        "variantLength": 200,
+        "variantWidth": 100,
+        "variantHeight": 50,
+        "variantVolume": 1000000,
+        "variantWeight": 280,
+        "variantSellPrice": 4.78,
+        "createTime": 1733728411000,
+        "variantStandard": "long=200,width=100,height=50",
+        "variantSugSellPrice": 22.95,
+        "combineNum": null,
+        "inventoryNum": null,
+        "combineVariants": null
+      },
+      {
+        "vid": "2412090713311615800",
+        "pid": "2412090713311615400",
+        "variantName": null,
+        "variantNameEn": "Graphene Heating Clothing Power Bank 2W power bank",
+        "variantImage": "https://oss-cf.cjdropshipping.com/product/2024/12/09/07/3f5b45c9-5f55-41ce-b989-1670ed6bce41.jpg",
+        "variantSku": "CJCD223822902BY",
+        "variantUnit": "个",
+        "variantProperty": "[]",
+        "variantKey": "2W power bank",
+        "variantLength": 200,
+        "variantWidth": 100,
+        "variantHeight": 50,
+        "variantVolume": 1000000,
+        "variantWeight": 440,
+        "variantSellPrice": 7.25,
+        "createTime": 1733728411000,
+        "variantStandard": "long=200,width=100,height=50",
+        "variantSugSellPrice": 34.8,
+        "combineNum": null,
+        "inventoryNum": null,
+        "combineVariants": null
+      }
+    ],
+    "addMarkStatus": 0,
+    "createrTime": "2024-12-09T07:13:31+08:00",
+    "productVideo": "",
+    "status": "3",
+    "suggestSellPrice": "22.95 - 34.80",
+    "listedNum": 69,
+    "supplierName": null,
+    "supplierId": null,
+    "customizationVersion": null,
+    "customizationJson1": null,
+    "customizationJson2": null,
+    "customizationJson3": null,
+    "customizationJson4": null
+  },
+  "2502070734091613800": {
+    "pid": "2502070734091613800",
+    "productName": "[\"闪极140W银翼Pro X1i透明移动电20000mAh大容量充电宝\",\"透明移动大容量充电宝\",\"塑料充电宝\"]",
+    "productNameSet": [
+      "闪极140W银翼Pro X1i透明移动电20000mAh大容量充电宝",
+      "透明移动大容量充电宝",
+      "塑料充电宝"
+    ],
+    "productNameEn": "Transparent Mobile Large Capacity Portable Power",
+    "productSku": "CJYD2285554",
+    "productImage": "[\"https://oss-cf.cjdropshipping.com/product/2025/02/07/07/034bc9a2-19f7-4648-9bf9-d619387a512b_fine.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2025/02/07/07/639f2a73-a92f-4f95-bc72-09bdca7e2625_trans.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2025/02/07/07/88366058-05d0-47fb-b19f-d1c97f076dcf_trans.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2025/02/07/07/45e32724-75ee-401b-b2fa-f6041bed21b6_trans.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2025/02/07/07/3f1af78c-9494-4471-9cad-7433374528ef_trans.jpeg\",\"https://cf.cjdropshipping.com/quick/product/1af739d8-e7d2-4d2e-9bf9-d1c541d12afd.jpg\",\"https://cf.cjdropshipping.com/quick/product/c46e4e9d-605c-4e69-998f-431b9c6bc8a0.jpg\"]",
+    "productImageSet": [
+      "https://oss-cf.cjdropshipping.com/product/2025/02/07/07/639f2a73-a92f-4f95-bc72-09bdca7e2625_trans.jpeg",
+      "https://oss-cf.cjdropshipping.com/product/2025/02/07/07/45e32724-75ee-401b-b2fa-f6041bed21b6_trans.jpeg",
+      "https://oss-cf.cjdropshipping.com/product/2025/02/07/07/034bc9a2-19f7-4648-9bf9-d619387a512b_fine.jpeg",
+      "https://cf.cjdropshipping.com/quick/product/1af739d8-e7d2-4d2e-9bf9-d1c541d12afd.jpg",
+      "https://oss-cf.cjdropshipping.com/product/2025/02/07/07/88366058-05d0-47fb-b19f-d1c97f076dcf_trans.jpeg",
+      "https://oss-cf.cjdropshipping.com/product/2025/02/07/07/3f1af78c-9494-4471-9cad-7433374528ef_trans.jpeg",
+      "https://cf.cjdropshipping.com/quick/product/c46e4e9d-605c-4e69-998f-431b9c6bc8a0.jpg"
+    ],
+    "productWeight": "470.00",
+    "productUnit": null,
+    "productType": "ORDINARY_PRODUCT",
+    "categoryId": "491E5474-524C-4666-BDD7-4E35E38900EA",
+    "categoryName": "Phones & Accessories > Mobile Phone Accessories > Power Bank",
+    "entryCode": "8504401990",
+    "entryName": "塑料充电宝",
+    "entryNameEn": "Plastic Power Bank",
+    "materialName": "[\"塑料\",\"金属\"]",
+    "materialNameSet": [
+      "塑料",
+      "金属"
+    ],
+    "materialNameEn": "[\"Plastic\",\"Metal\"]",
+    "materialNameEnSet": [
+      "Plastic",
+      "Metal"
+    ],
+    "materialKey": "[\"PLASTIC\",\"METAL\"]",
+    "materialKeySet": [
+      "PLASTIC",
+      "METAL"
+    ],
+    "packingWeight": "490.00",
+    "packingName": "[\"塑料袋\"]",
+    "packingNameSet": [
+      "塑料袋"
+    ],
+    "packingNameEn": "[\"Plastic bags\"]",
+    "packingNameEnSet": [
+      "Plastic bags"
+    ],
+    "packingKey": "[\"PLASTIC_BAG\"]",
+    "packingKeySet": [
+      "PLASTIC_BAG"
+    ],
+    "productKey": "[\"颜色\",\"电源容量\"]",
+    "productKeySet": [
+      "颜色",
+      "电源容量"
+    ],
+    "productKeyEn": "Color-Power Capacity",
+    "productPro": "[\"纯电池\",\"含磁\"]",
+    "productProSet": [
+      "纯电池",
+      "含磁"
+    ],
+    "productProEn": "[\"Pure Battery\",\"Magnetic Contains\"]",
+    "productProEnSet": [
+      "Pure Battery",
+      "Magnetic Contains"
+    ],
+    "sellPrice": "108.21",
+    "sourceFrom": 1,
+    "description": "<p><b>Product information:</b><br>Color: white, black<br> Shell Material: Plastic<br> Function: supports fast charging<br> Size: 158*30.5*6.5<br> Voltage: 5<br> Style: industrial style<br> Details: pictures</p>\n<br>\n<b>Packing list: </b>\n<br>Power bank * 1pc \n<br>\n<b>Product Image:</b>\n<br>\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/02/07/07/2493c025-58ab-446c-9d41-40cc0af41ab1_fine.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/02/07/07/6fbbd2bf-0799-4226-b5ee-a940613561c3_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/02/07/07/f4b3209d-ccaa-4b7d-ba64-9f37f9001966_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/02/07/07/cd313288-6960-445d-8150-9fc814a49246_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/02/07/07/57052040-23e5-430e-8d96-70307d5145ac_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/02/07/07/58ff584a-fddb-4fce-b3f3-aaf03a86e84c_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/02/07/07/12a88738-444f-45a1-8f35-7546dfc31e38_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/02/07/07/52fd425c-cb71-4c55-850b-5e9ed9cf957e_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/02/07/07/1e077daf-26fb-413e-bebf-68b870bdde56_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/02/07/07/81ce8384-686b-4974-8b5a-3b4152726d4a_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/02/07/07/32ac356e-54e7-4436-8ecf-16c7309dc073_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/02/07/07/3fb742c5-312c-48cc-aa80-1581cdf1730e_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/02/07/07/4aca07eb-e0e0-4ecd-b054-6ae8436c9da8_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/02/07/07/5688ca86-92f3-4c27-a6b9-049904a0986c_fine.jpeg\">",
+    "variants": [
+      {
+        "vid": "2502070734091614000",
+        "pid": "2502070734091613800",
+        "variantName": null,
+        "variantNameEn": "Transparent Mobile Large Capacity Portable Power White 20000 MA",
+        "variantImage": "https://cf.cjdropshipping.com/quick/product/1af739d8-e7d2-4d2e-9bf9-d1c541d12afd.jpg",
+        "variantSku": "CJYD228555401AZ",
+        "variantUnit": "个",
+        "variantProperty": "[]",
+        "variantKey": "White-20000 MA",
+        "variantLength": 168,
+        "variantWidth": 75,
+        "variantHeight": 41,
+        "variantVolume": 516600,
+        "variantWeight": 490,
+        "variantSellPrice": 108.21,
+        "createTime": 1738913649000,
+        "variantStandard": "long=168,width=75,height=41",
+        "variantSugSellPrice": 519.41,
+        "combineNum": null,
+        "inventoryNum": null,
+        "combineVariants": null
+      },
+      {
+        "vid": "2502070734091614100",
+        "pid": "2502070734091613800",
+        "variantName": null,
+        "variantNameEn": "Transparent Mobile Large Capacity Portable Power Black 20000 MA",
+        "variantImage": "https://cf.cjdropshipping.com/quick/product/c46e4e9d-605c-4e69-998f-431b9c6bc8a0.jpg",
+        "variantSku": "CJYD228555402BY",
+        "variantUnit": "个",
+        "variantProperty": "[]",
+        "variantKey": "Black-20000 MA",
+        "variantLength": 168,
+        "variantWidth": 75,
+        "variantHeight": 41,
+        "variantVolume": 516600,
+        "variantWeight": 490,
+        "variantSellPrice": 108.21,
+        "createTime": 1738913649000,
+        "variantStandard": "long=168,width=75,height=41",
+        "variantSugSellPrice": 519.41,
+        "combineNum": null,
+        "inventoryNum": null,
+        "combineVariants": null
+      }
+    ],
+    "addMarkStatus": 0,
+    "createrTime": "2025-02-07T07:34:09+08:00",
+    "productVideo": "",
+    "status": "3",
+    "suggestSellPrice": "519.41",
+    "listedNum": 9,
+    "supplierName": null,
+    "supplierId": null,
+    "customizationVersion": null,
+    "customizationJson1": null,
+    "customizationJson2": null,
+    "customizationJson3": null,
+    "customizationJson4": null
+  },
+  "2504210519391627000": {
+    "pid": "2504210519391627000",
+    "productName": "[\"Qi2认证超薄\",\"anker安克qi2认证超薄magsafe\",\"磁吸充电宝30w快\"]",
+    "productNameSet": [
+      "Qi2认证超薄",
+      "anker安克qi2认证超薄magsafe",
+      "磁吸充电宝30w快"
+    ],
+    "productNameEn": "Ultra-thin Magsafe Magnetic Power Bank 30W Fast Charge 15W Wireless",
+    "productSku": "CJYD2358802",
+    "productImage": "[\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/d52c57f5-d4bd-440a-a310-66e131f7c8aa_fine.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/a59877b3-59e9-492a-a2f6-8b5323de1e60_trans.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/a3f505e4-9ee3-488c-bfc4-14b9219290e1_fine.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/01495594-daf5-4cdf-b12c-93e2edc4cdd0_trans.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/5dde8c81-741c-469d-8e31-9f52bc6becd9_fine.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/6a024b3a-ad1f-4831-9d0b-74966e821e43_fine.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/e0dc4b40-e958-4f50-bce2-3401f3cacba4_fine.jpeg\"]",
+    "productImageSet": [
+      "https://oss-cf.cjdropshipping.com/product/2025/04/21/05/e0dc4b40-e958-4f50-bce2-3401f3cacba4_fine.jpeg",
+      "https://oss-cf.cjdropshipping.com/product/2025/04/21/05/01495594-daf5-4cdf-b12c-93e2edc4cdd0_trans.jpeg",
+      "https://oss-cf.cjdropshipping.com/product/2025/04/21/05/6a024b3a-ad1f-4831-9d0b-74966e821e43_fine.jpeg",
+      "https://oss-cf.cjdropshipping.com/product/2025/04/21/05/d52c57f5-d4bd-440a-a310-66e131f7c8aa_fine.jpeg",
+      "https://oss-cf.cjdropshipping.com/product/2025/04/21/05/a59877b3-59e9-492a-a2f6-8b5323de1e60_trans.jpeg",
+      "https://oss-cf.cjdropshipping.com/product/2025/04/21/05/5dde8c81-741c-469d-8e31-9f52bc6becd9_fine.jpeg",
+      "https://oss-cf.cjdropshipping.com/product/2025/04/21/05/a3f505e4-9ee3-488c-bfc4-14b9219290e1_fine.jpeg"
+    ],
+    "productWeight": "400.00",
+    "productUnit": null,
+    "productType": "ORDINARY_PRODUCT",
+    "categoryId": "491E5474-524C-4666-BDD7-4E35E38900EA",
+    "categoryName": "Phones & Accessories > Mobile Phone Accessories > Power Bank",
+    "entryCode": "8506500000",
+    "entryName": "塑料移动电源",
+    "entryNameEn": "Plastic Mobile Power Supply",
+    "materialName": "[\"塑料\"]",
+    "materialNameSet": [
+      "塑料"
+    ],
+    "materialNameEn": "[\"Plastic\"]",
+    "materialNameEnSet": [
+      "Plastic"
+    ],
+    "materialKey": "[\"PLASTIC\"]",
+    "materialKeySet": [
+      "PLASTIC"
+    ],
+    "packingWeight": "420.00",
+    "packingName": "[\"塑料袋\"]",
+    "packingNameSet": [
+      "塑料袋"
+    ],
+    "packingNameEn": "[\"Plastic bags\"]",
+    "packingNameEnSet": [
+      "Plastic bags"
+    ],
+    "packingKey": "[\"PLASTIC_BAG\"]",
+    "packingKeySet": [
+      "PLASTIC_BAG"
+    ],
+    "productKey": "[\"颜色\",\"电源容量\"]",
+    "productKeySet": [
+      "颜色",
+      "电源容量"
+    ],
+    "productKeyEn": "Color-Power Capacity",
+    "productPro": "[\"纯电池\",\"含磁\"]",
+    "productProSet": [
+      "纯电池",
+      "含磁"
+    ],
+    "productProEn": "[\"Pure Battery\",\"Magnetic Contains\"]",
+    "productProEnSet": [
+      "Pure Battery",
+      "Magnetic Contains"
+    ],
+    "sellPrice": "61.19",
+    "sourceFrom": 10,
+    "description": "<p><b>Product information:</b><br>Color: Black A1664, white A1664, Green A1664<br>Input voltage: 5V<br>Shell material: Alloy<br>Function: supports fast charging<br>Size: 14.7*106 * 70.6mm<br>Voltage: 5<br>Style: Creative Design</p>\n<br>\n<b>Packing list: </b>\n<br>1*Power Bank \n<br>\n<b>Product Image:</b>\n<br>\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/98f0ff89-7a37-4f26-9399-18c41e070998_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/cce1ea55-538d-4c86-8967-3bb1bdad674f_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/4460a3a0-79c0-4232-be39-d66eaa9487b4_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/021525d5-3036-4a32-84d9-9c62f15f7d1f_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/a67d7af8-7128-4dc4-9d0b-eed8903c309d_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/55657a7b-c801-4867-adda-ed71adbf70b2_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/a25f5ceb-e33e-4ccc-8488-62a07c133d08_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/7b3e8e89-4ccf-4260-8154-7cd0f39b6119_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/af6e4336-e86b-487d-b992-e9aa8d38e83f_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/7b4ea04d-fa54-4e4d-92b4-21c796376fa1_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/a33cf2fd-4a61-40f5-b141-81ab49a0d3ac_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/39920399-37f6-47cf-85f3-ac834fc00be1_trans.jpeg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2025/04/21/05/6f400c3d-7756-464a-b7aa-205eb01236ce_trans.jpeg\">",
+    "variants": [
+      {
+        "vid": "2504210519391627600",
+        "pid": "2504210519391627000",
+        "variantName": null,
+        "variantNameEn": "Ultra-thin Magsafe Magnetic Power Bank 30W Fast Charge 15W Wireless Black A1664 10000 MA",
+        "variantImage": "https://oss-cf.cjdropshipping.com/product/2025/04/21/05/5dde8c81-741c-469d-8e31-9f52bc6becd9_fine.jpeg",
+        "variantSku": "CJYD235880201AZ",
+        "variantUnit": "pcs",
+        "variantProperty": "[]",
+        "variantKey": "Black A1664-10000 MA",
+        "variantLength": 160,
+        "variantWidth": 120,
+        "variantHeight": 80,
+        "variantVolume": 1536000,
+        "variantWeight": 420,
+        "variantSellPrice": 61.19,
+        "createTime": 1745212779000,
+        "variantStandard": "long=160,width=120,height=80",
+        "variantSugSellPrice": 295.55,
+        "combineNum": null,
+        "inventoryNum": null,
+        "combineVariants": null
+      },
+      {
+        "vid": "2504210519391627700",
+        "pid": "2504210519391627000",
+        "variantName": null,
+        "variantNameEn": "Ultra-thin Magsafe Magnetic Power Bank 30W Fast Charge 15W Wireless White A1664 10000 MA",
+        "variantImage": "https://oss-cf.cjdropshipping.com/product/2025/04/21/05/6a024b3a-ad1f-4831-9d0b-74966e821e43_fine.jpeg",
+        "variantSku": "CJYD235880202BY",
+        "variantUnit": "pcs",
+        "variantProperty": "[]",
+        "variantKey": "White A1664-10000 MA",
+        "variantLength": 160,
+        "variantWidth": 120,
+        "variantHeight": 80,
+        "variantVolume": 1536000,
+        "variantWeight": 420,
+        "variantSellPrice": 61.19,
+        "createTime": 1745212779000,
+        "variantStandard": "long=160,width=120,height=80",
+        "variantSugSellPrice": 295.55,
+        "combineNum": null,
+        "inventoryNum": null,
+        "combineVariants": null
+      },
+      {
+        "vid": "2504210519391628200",
+        "pid": "2504210519391627000",
+        "variantName": null,
+        "variantNameEn": "Ultra-thin Magsafe Magnetic Power Bank 30W Fast Charge 15W Wireless Green A1664 10000 MA",
+        "variantImage": "https://oss-cf.cjdropshipping.com/product/2025/04/21/05/a3f505e4-9ee3-488c-bfc4-14b9219290e1_fine.jpeg",
+        "variantSku": "CJYD235880203CX",
+        "variantUnit": "pcs",
+        "variantProperty": "[]",
+        "variantKey": "Green A1664-10000 MA",
+        "variantLength": 160,
+        "variantWidth": 120,
+        "variantHeight": 80,
+        "variantVolume": 1536000,
+        "variantWeight": 420,
+        "variantSellPrice": 61.19,
+        "createTime": 1745212779000,
+        "variantStandard": "long=160,width=120,height=80",
+        "variantSugSellPrice": 295.55,
+        "combineNum": null,
+        "inventoryNum": null,
+        "combineVariants": null
+      }
+    ],
+    "addMarkStatus": 0,
+    "createrTime": "2025-04-21T05:19:39+08:00",
+    "productVideo": "",
+    "status": "3",
+    "suggestSellPrice": "295.55",
+    "listedNum": 6,
+    "supplierName": null,
+    "supplierId": null,
+    "customizationVersion": null,
+    "customizationJson1": null,
+    "customizationJson2": null,
+    "customizationJson3": null,
+    "customizationJson4": null
   }
 }

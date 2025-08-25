@@ -170,7 +170,7 @@ const handleShowModal = () => {
                         </span>
                       </div>
                       <span className="text-lg font-normal text-gray-600">
-                        {produto.productType}
+                        {produto.categoryName}
                       </span>
                     </div>
                   </div>

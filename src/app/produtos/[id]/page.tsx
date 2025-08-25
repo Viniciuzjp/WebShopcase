@@ -58,38 +58,38 @@ export default function Page() {
   return (
     <main className="overflow-hidden">
       <section className="flex gap-6 p-5 md:flex-col sm:flex-col lg:flex-row xl:flex-row overflow-hidden">
-        <div className="flex flex-wrap justify-center items-center w-1/2 h-full ">
-        <div className="w-110 h-110">
-          <img
-            src={data?.details.productImageSet[0]}
-            className="w-full h-full object-cover"
-            alt={data?.productNameEn}
-          />
+        <div className="flex flex-wrap justify-center items-center md:w-full sm:w-full lg:w-1/2 xl:w-1/2 h-full ">
+          <div className="w-1/2 h-1/2">
+            <img
+              src={data?.details.productImageSet[0]}
+              className="w-full h-full object-cover"
+              alt={data?.productNameEn}
+            />
           </div>
-          <div className="w-110 h-110">
-          <img
-            src={data?.details.productImageSet[1]}
-            className="w-full h-full object-cover"
-            alt={data?.productNameEn}
-          />
+          <div className="w-1/2 h-1/2">
+            <img
+              src={data?.details.productImageSet[1]}
+              className="w-full h-full object-cover"
+              alt={data?.productNameEn}
+            />
           </div>
-          <div className="w-110 h-110">
-          <img
-            src={data?.details.productImageSet[2]}
-            className="w-full h-full object-cover"
-            alt={data?.productNameEn}
-          />
+          <div className="w-1/2 h-1/2">
+            <img
+              src={data?.details.productImageSet[2]}
+              className="w-full h-full object-cover"
+              alt={data?.productNameEn}
+            />
           </div>
-          <div className="w-110 h-110">
-          <img
-            src={data?.details.productImageSet[3]}
-            className="w-full h-full object-cover"
-            alt={data?.productNameEn}
-          />
+          <div className="w-1/2 h-1/2">
+            <img
+              src={data?.details.productImageSet[3]}
+              className="w-full h-full object-cover"
+              alt={data?.productNameEn}
+            />
           </div>
         </div>
 
-        <div className="flex w-1/2 flex-col pt-5 gap-5">
+        <div className="flex md:w-full sm:w-full lg:w-1/2 xl:w-1/2 flex-col pt-5 gap-5">
           <span className="text-3xl font-normal">{data?.productNameEn}</span>
 
           <span className="text-4xl font-semibold">
@@ -132,67 +132,60 @@ export default function Page() {
                 <tbody className="divide-y divide-gray-100">
                   <tr className="hover:bg-gray-50 transition-colors duration-150">
                     <th className="text-left py-4 px-6 font-medium text-gray-700 bg-gray-50 w-1/3">
-                      Cor
+                      Peso
                     </th>
                     <td className="py-4 px-6 text-gray-900 font-medium">
-                      Valor indefinido
+                      {data?.productWeight}
                     </td>
                   </tr>
                   <tr className="hover:bg-gray-50 transition-colors duration-150">
                     <th className="text-left py-4 px-6 font-medium text-gray-700 bg-gray-50">
-                      Controle
+                      Material
                     </th>
                     <td className="py-4 px-6 text-gray-900 font-medium">
-                      Valor indefinido
+                      {data?.details.materialNameEnSet}
                     </td>
                   </tr>
                   <tr className="hover:bg-gray-50 transition-colors duration-150">
                     <th className="text-left py-4 px-6 font-medium text-gray-700 bg-gray-50">
-                      Potência
+                      Descrição
                     </th>
                     <td className="py-4 px-6 text-gray-900 font-medium">
-                      Valor indefinido
+                      {data?.details.variants[0].variantNameEn}
                     </td>
                   </tr>
                   <tr className="hover:bg-gray-50 transition-colors duration-150">
                     <th className="text-left py-4 px-6 font-medium text-gray-700 bg-gray-50">
-                      Conectividade
+                      Altura
                     </th>
                     <td className="py-4 px-6 text-gray-900 font-medium">
-                      Valor indefinido
+                      {data?.details.variants[0].variantHeight} cm
                     </td>
                   </tr>
                   <tr className="hover:bg-gray-50 transition-colors duration-150">
                     <th className="text-left py-4 px-6 font-medium text-gray-700 bg-gray-50">
-                      Autonomia
+                      Largura
                     </th>
                     <td className="py-4 px-6 text-gray-900 font-medium">
-                      Valor indefinido
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-gray-50 transition-colors duration-150">
-                    <th className="text-left py-4 px-6 font-medium text-gray-700 bg-gray-50">
-                      Resistente à água
-                    </th>
-                    <td className="py-4 px-6 text-gray-900 font-medium">
-                      Valor indefinido
+                      {data?.details.variants[0].variantWidth} cm
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
-
-          <div className="flex flex-col gap-6 p-6">
-            <span className="font-bold text-2xl text-gray-900 border-b border-gray-200 pb-3">
-              Categoria
-            </span>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: data?.details.description || "",
-              }}
-            />
-          </div>
+        </div>
+      </section>
+      <section className="flex flex-col">
+        <div className="flex w-full justify-center items-center flex-col gap-6 p-6">
+          <span className="font-bold text-2xl text-gray-900 border-b border-gray-200 pb-3">
+            Categoria
+          </span>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: data?.details.description || "",
+            }}
+          />
         </div>
       </section>
     </main>
