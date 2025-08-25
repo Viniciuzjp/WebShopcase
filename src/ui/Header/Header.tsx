@@ -9,7 +9,7 @@ import Image from "next/image";
 export default function Header() {
   const { cartValue } = useCart();
   return (
-    <header className="flex justify-between border-b-2 border-neutral-200 gap-10 px-4 py-8 bg-[#ffffff]">
+    <header className="flex w-full justify-between border-b-2 border-neutral-200 gap-10 px-4 py-8 bg-[#ffffff]">
       <div className="flex items-center h-10 w-100">
         <h1 className="lg:text-3xl xl:text-3xl md:text-xl font-bold text-[##002d18]">
           <Image
@@ -21,7 +21,7 @@ export default function Header() {
         </h1>
       </div>
       <div className="flex items-center">
-        <ul className="flex gap-8 text-black font-normal text-xl">
+        <ul className="flex gap-8 text-black font-normal lg:text-xl xl:text-xl md:text-sm sm:text-sm max-md:hidden max-sm:hidden">
           <li>
             <a href="#">PÀGINA INICIAL</a>
           </li>
@@ -35,10 +35,10 @@ export default function Header() {
           </li>
         </ul>
       </div>
-      <div className="flex items-center gap-4 ms:overflow-hidden md:overflow-hidden">
+      <div className="flex items-center gap-4 md:hidden max-sm:hidden">
         <InputForm
           type="text"
-          className="lg:w-110 xl:w-110 md:w-100 md:hidden sm:hidden"
+          className="lg:w-110 xl:w-110 md:w-100"
           placeholder="Encontre Seu Produto"
           name="search"
           id="search"
