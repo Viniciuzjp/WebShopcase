@@ -1,78 +1,70 @@
-"use client";
+"use client"
 
-import Button from "@/components/button/Button";
-import InputForm from "@/components/Input/InputForm";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import Tag from "@/components/tag/tag";
-import { ProductProps } from "@/app/produtos/[id]/interface";
+import Button from "@/components/button/Button"
+import InputForm from "@/components/Input/InputForm"
+import Link from "next/link"
+import { useEffect, useState } from "react"
+import axios from "axios"
+import Tag from "@/components/tag/tag"
+import type { ProductProps } from "@/app/produtos/[id]/interface"
 
 export default function Products() {
-  const [categoria, setCategoria] = useState<ProductProps[]>([]);
-  const [search, setSearch] = useState<ProductProps[]>([]);
+  const [categoria, setCategoria] = useState<ProductProps[]>([])
+  const [search, setSearch] = useState<ProductProps[]>([])
 
   useEffect(() => {
     axios
       .get("http://localhost:3004/api/produtos")
       .then((res) => res.data)
       .then((data) => {
-        setCategoria(data);
-        setSearch(data);
-      });
-  }, []);
+        setCategoria(data)
+        setSearch(data)
+      })
+  }, [])
 
   function parsePrice(price: string) {
-    const [min, max] = price.split("--").map((v) => parseFloat(v.trim()));
-    return { min, max: max || min };
+    const [min, max] = price.split("--").map((v) => Number.parseFloat(v.trim()))
+    return { min, max: max || min }
   }
 
   function formatBRL(price: number) {
-    const exchangeRate = 5;
+    const exchangeRate = 5
     return (price * exchangeRate).toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",
-    });
+    })
   }
 
   const handleFilterMax = () => {
-    const sorted = [...categoria].sort(
-      (a, b) => parsePrice(b.sellPrice).max - parsePrice(a.sellPrice).max
-    );
-    setCategoria(sorted);
-  };
+    const sorted = [...categoria].sort((a, b) => parsePrice(b.sellPrice).max - parsePrice(a.sellPrice).max)
+    setCategoria(sorted)
+  }
 
   const handleFilterMin = () => {
-    const sorted = [...categoria].sort(
-      (a, b) => parsePrice(b.sellPrice).min - parsePrice(a.sellPrice).min
-    );
-    setCategoria(sorted);
-  };
-
-  const handleFilterAll = () => setCategoria(search);
-
-const handleShowModal = () => {
-  const modal = document.getElementById("modal");
-  const products = document.getElementById("products");
-
-  if (modal) {
-    modal.classList.toggle("hidden");
+    const sorted = [...categoria].sort((a, b) => parsePrice(b.sellPrice).min - parsePrice(a.sellPrice).min)
+    setCategoria(sorted)
   }
 
-  if (products) {
-    products.classList.toggle("xl:grid-cols-5");
+  const handleFilterAll = () => setCategoria(search)
+
+  const handleShowModal = () => {
+    const modal = document.getElementById("modal")
+    const products = document.getElementById("products")
+
+    if (modal) {
+      modal.classList.toggle("hidden")
+    }
+
+    if (products) {
+      products.classList.toggle("xl:grid-cols-5")
+    }
   }
-};
 
   return (
     <>
       <main>
         <div className="flex w-full h-20 items-center border-b border-neutral-200">
-          <Button
-            variant="primary"
-            className="xl:w-1/10 m-5 top-5 left-1"
-            onClick={handleShowModal}
-          >
+          <Button variant="primary" className="xl:w-1/10 m-5 top-5 left-1" onClick={handleShowModal}>
             FILTRAR
           </Button>
         </div>
@@ -133,26 +125,23 @@ const handleShowModal = () => {
                   </div>
                 </li>
               </ul>
-              <InputForm
-                className="w-full h-12"
-                type="text"
-                placeholder="Buscar..."
-                name="search"
-                id="search"
-              />
+              <InputForm className="w-full h-12" type="text" placeholder="Buscar..." name="search" id="search" />
             </div>
           </section>
 
-          <section id="products" className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 sm:p-10 lg:grid-cols-2 xl:grid-cols-3 w-full gap-4">
+          <section
+            id="products"
+            className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 sm:p-10 lg:grid-cols-2 xl:grid-cols-3 w-full gap-4"
+          >
             {categoria.map((produto) => {
-              const { min, max } = parsePrice(produto.sellPrice);
+              const { min, max } = parsePrice(produto.sellPrice)
 
               return (
                 <Link href={`/produtos/${produto.pid}`} key={produto.pid}>
-                  <div className="flex flex-col w-full p-2">
+                  <div className="flex flex-col w-full p-2" key={produto.pid}>
                     <div className="flex bg-neutral-100 justify-center items-center h-7/10">
                       <img
-                        src={produto.productImage.split(",")[0]}
+                        src={produto.productImage.split(",")[0] || "/placeholder.svg"}
                         alt={produto.productNameEn}
                         className="w-full h-full object-contain"
                       />
@@ -161,25 +150,21 @@ const handleShowModal = () => {
                       <span className="font-normal mt-3">{produto.productNameEn}</span>
                       <div className="flex justify-between">
                         <span className="font-medium">
-                          {min === max
-                            ? formatBRL(min)
-                            : `${formatBRL(min)} - ${formatBRL(max)}`}
+                          {min === max ? formatBRL(min) : `${formatBRL(min)} - ${formatBRL(max)}`}
                         </span>
                         <span className="text-lg text-gray-600 font-normal">
                           <Tag variant="primary">{produto.listingCount}</Tag>
                         </span>
                       </div>
-                      <span className="text-lg font-normal text-gray-600">
-                        {produto.categoryName}
-                      </span>
+                      <span className="text-lg font-normal text-gray-600">{produto.categoryName}</span>
                     </div>
                   </div>
                 </Link>
-              );
+              )
             })}
           </section>
         </div>
       </main>
     </>
-  );
+  )
 }

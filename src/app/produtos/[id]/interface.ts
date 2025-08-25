@@ -20,7 +20,7 @@ export interface CJVariant {
   variantSugSellPrice: number | string | null;
   combineNum: number | null;
   inventoryNum: number | null;
-  combineVariants: any | null;
+  combineVariants: string | null;
 }
 
 export interface CJProductDetails {
@@ -80,10 +80,10 @@ export interface CJProductDetails {
   supplierId: string | null;
   customizationVersion: string | null;
 
-  customizationJson1: any | null;
-  customizationJson2: any | null;
-  customizationJson3: any | null;
-  customizationJson4: any | null;
+  customizationJson1: string | null;
+  customizationJson2: string | null;
+  customizationJson3: string | null;
+  customizationJson4: string | null;
 }
 
 // ---------------- MAIN PRODUCT ----------------
