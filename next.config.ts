@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  reactStrictMode: true,
   images: {
+    domains: [
+      'oss-cf.cjdropshipping.com',
+      'cf.cjdropshipping.com'
+    ],
     remotePatterns: [
       {
         protocol: "https",
@@ -14,3 +19,4 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
