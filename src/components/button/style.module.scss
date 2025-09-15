@@ -1,6 +1,5 @@
 .root {
     --primary-text-color: #fff;
-    --secondary-color: #ffffff;
     --secondary-border-color: #e5e5e5;
     --secondary-text-color: #000
 }
@@ -9,11 +8,10 @@
     cursor: pointer;
 
     &[data-variant="primary"] {
-        background: #000000;
+        background: #141414;
         color: var(--primary-text-color);
     }
     &[data-variant="secondary"] {
-        background: var(--secondary-color);
         border: 2px solid var(--secondary-border-color);
         color: var(--secondary-text-color);
     }

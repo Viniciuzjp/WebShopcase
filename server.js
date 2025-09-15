@@ -150,6 +150,23 @@ async function listAllProducts({ keyword, categoryId, maxPages = 5 } = {}) {
 
   return allProducts;
 }
+async function listAllCategories() {
+  const token = await getValidAccessToken();
+  const res = await axios.get(
+    "https://developers.cjdropshipping.com/api2.0/v1/product/getCategory",
+    {
+      headers: { "CJ-Access-Token": token },
+    }
+  );
+
+  return res.data.data;
+}
+
+app.get("/api/categorias", async (req, res) => {
+  const categories = await listAllCategories();
+  res.json(categories);
+})
+
 
 async function getProductDetail(pid, token) {
   try {
@@ -218,7 +235,7 @@ app.get("/api/produtos/:id", async (req, res) => {
 
 (async () => {
   try {
-    const categoryIds = ["491E5474-524C-4666-BDD7-4E35E38900EA"];
+    const categoryIds = ["E3963C40-89BE-46AC-985D-A86FA417F6B8"];
     let allProducts = [];
 
     for (const id of categoryIds) {

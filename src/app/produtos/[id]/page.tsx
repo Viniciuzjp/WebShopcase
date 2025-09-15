@@ -102,7 +102,7 @@ export default function Page() {
           <div>
             <Button
               onClick={addToCart}
-              className="flex items-center sm:gap-5 justify-center md:w-full sm:w-full lg:w-5/10 xl:w-4/10 lg:text-xl xl:text-xl h-20 text-3xl"
+              className="flex items-center sm:gap-5 justify-center md:w-full sm:w-full lg:w-6/10 xl:w-5/10 lg:text-xl xl:text-xl h-20 text-3xl"
             >
               ADICIONAR AO CARRINHO
               <ShoppingCart className="w-8 h-8" />

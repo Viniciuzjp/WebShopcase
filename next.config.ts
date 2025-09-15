@@ -5,7 +5,8 @@ const nextConfig: NextConfig = {
   images: {
     domains: [
       'oss-cf.cjdropshipping.com',
-      'cf.cjdropshipping.com'
+      'cf.cjdropshipping.com',
+      "cbu01.alicdn.com"
     ],
     remotePatterns: [
       {

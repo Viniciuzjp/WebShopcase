@@ -1,62 +1,51 @@
 "use client";
 
-import { User } from "lucide-react";
+import { Heart, Menu, Search, ShoppingCart, User } from "lucide-react";
 import InputForm from "@/components/Input/InputForm";
-import CustomizedBadges from "@/components/badge/Badge";
 import { useCart } from "@/components/CartContext/CartContext";
 import Image from "next/image";
+import Button from "@/components/button/Button";
+import Link from "next/link";
 
 export default function Header() {
-  const { cartValue } = useCart();
   return (
-    <header className="flex w-full justify-between border-b-2 border-neutral-200 gap-10 px-4 py-8 bg-[#ffffff]">
-      <div className="flex items-center h-10 w-100">
-        <h1 className="lg:text-3xl xl:text-3xl md:text-xl font-bold text-[##002d18]">
-          <Image
-            src="/images/image.png"
-            alt="logo"
-            width={200}
-            height={20}
-          />
-        </h1>
-      </div>
-      <div className="flex items-center">
-        <ul className="flex gap-8 text-black font-normal lg:text-xl xl:text-xl md:text-sm sm:text-sm max-md:hidden max-sm:hidden">
-          <li>
-            <a href="#">PÀGINA INICIAL</a>
-          </li>
-          <span>|</span>
-          <li>
-            <a href="#">SOBRE</a>
-          </li>
-          <span>|</span>
-          <li>
-            <a href="#">CONTATOS</a>
-          </li>
-        </ul>
-      </div>
-      <div className="flex items-center gap-4 md:hidden max-sm:hidden">
-        <InputForm
-          type="text"
-          className="lg:w-110 xl:w-110 md:w-100"
-          placeholder="Encontre Seu Produto"
-          name="search"
-          id="search"
-        />
-      </div>
-      <div className="flex items-center text-2xl gap-4">
-        <div onClick={() => {}} className="flex items-center">
-          <CustomizedBadges cartValue={cartValue} />
-          <div className="relative z-1 border border-white right-3 rounded-full h-5 w-5 bg-neutral-900">
-            <span className="absolute font-bold text-xs top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white">
-              {cartValue}
-            </span>
+    <>
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b border-gray-200">
+        <div className="container mx-auto space-x-3 px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center">
+              <h1 className="text-2xl font-bold"><Link href="/">WebShopcase</Link></h1>
+            </div>
+
+            <nav className="hidden lg:flex justify-between items-center space-x-8">
+              <a href="/categories" className="text-sm font-medium text-gray-600 hover:text-black transition-colors">
+                Categorias
+              </a>
+              <a href="/products" className="text-sm font-medium text-gray-600 hover:text-black transition-colors">
+                Produtos
+              </a>
+              <a href="/Cart" className="text-sm font-medium text-gray-600 hover:text-black transition-colors">
+                Carrinho
+              </a>
+            </nav>
+
+            <div className="flex items-center space-x-4">
+              <Link href="/wishlist" className="hover:bg-gray-100">
+                <Heart className="h-5 w-5 text-gray-700" />
+              </Link>
+              <Link href="/Cart" className="hover:bg-gray-100">
+                <ShoppingCart className="h-5 w-5 text-gray-700" />
+              </Link>
+              <Link href="/login" className="hover:bg-gray-100">
+                <User className="h-5 w-5 text-gray-700" />
+              </Link>
+              <Link href="/search" className="hover:bg-gray-100">
+                <Search className="h-5 w-5 text-gray-700" />
+              </Link>
+            </div>
           </div>
         </div>
-        <div className="bg-gray-100 w-10 h-10 rounded-full flex items-center justify-center">
-          <User className="text-neutral-600" />
-        </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 }
