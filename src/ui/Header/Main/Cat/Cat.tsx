@@ -1,5 +1,6 @@
 "use client";
 
+import Card from "@/components/card/card";
 import Image from "next/image";
 import { useState } from "react";
 import Button from "@/components/button/Button";
@@ -22,7 +23,9 @@ export default function Cat() {
     <section className="container mx-auto bg-neutral-50 p-10 space-y-12">
       {/* Cabeçalho */}
       <div className="flex flex-col items-center gap-4 text-center">
-        <span className="text-3xl font-extrabold text-neutral-950">CATEGORIAS</span>
+        <span className="text-3xl font-extrabold text-neutral-950">
+          CATEGORIAS
+        </span>
         <p className="text-md font-light text-neutral-950 max-w-xl">
           Explore nossas categorias para encontrar o que você precisa.
         </p>
@@ -33,7 +36,7 @@ export default function Cat() {
         {products.map((product) => (
           <div
             key={product.id}
-            className={`relative flex-1 min-w-[250px] sm:min-w-[200px] max-w-sm ${product.h} transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer`}
+            className={`relative flex-1 min-w-[250px] sm:min-w-[200px] max-w-sm ${product.h} transform transition-all duration-300 hover:scale-105 hover:shadow-xl`}
           >
             <div className="relative w-full h-full rounded-xl overflow-hidden group">
               <Image

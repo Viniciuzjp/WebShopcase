@@ -341,7 +341,7 @@ export default function CartPage() {
                   </div>
                 )}
                 <div className="mt-3 text-xs text-gray-500">
-                  Tente "ShopWeb" Por 10% de desconto
+                  <div>Tente &quot;ShopWeb&quot; por 10% de desconto</div>
                 </div>
               </CardContent>
             </Card>
