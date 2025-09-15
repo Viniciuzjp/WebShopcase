@@ -1,4 +1,4 @@
-export default function ({children, className, separator, hreffirst, hrefsecond, hrefthird, linkfirst, linksecond, linkthird}: breadcrumbsProps) {
+export default function Breadcrumbs ({children, className, separator, hreffirst, hrefsecond, hrefthird, linkfirst, linksecond, linkthird}: breadcrumbsProps) {
     return (
         <div className={`${className} text-md font-light space-x-2`}>
             {children}

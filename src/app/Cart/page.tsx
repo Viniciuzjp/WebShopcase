@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { useCart } from "@/components/CartContext/CartContext"
-import  Button  from "@/components/button/Button"
-import  InputForm  from "@/components/Input/InputForm"
-import Card from "@/components/card/card"
-import CardContent from "@mui/material/CardContent"
-import CartProvider from "@/components/CartContext/CartContext"
-import Tag from "@/components/tag/tag"
+import { useState } from "react";
+import { useCart } from "@/components/CartContext/CartContext";
+import Button from "@/components/button/Button";
+import InputForm from "@/components/Input/InputForm";
+import Card from "@/components/card/card";
+import CardContent from "@mui/material/CardContent";
+import type { CartItem } from "@/components/CartContext/CartContext";
+import Tag from "@/components/tag/tag";
 
 import {
   Minus,
@@ -19,30 +19,35 @@ import {
   Truck,
   Shield,
   Gift,
-  MapPin,
   Phone,
   Mail,
-} from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
+} from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function CartPage() {
-  const { items, total, itemCount, updateQuantity, removeItem, clearCart } = useCart()
-  const [promoCode, setPromoCode] = useState("")
-  const [isPromoApplied, setIsPromoApplied] = useState(false)
-  const [discount, setDiscount] = useState(0)
-  const [shippingMethod, setShippingMethod] = useState("standard")
+  const { items, total, itemCount, updateQuantity, removeItem, clearCart } =
+    useCart();
+  const [promoCode, setPromoCode] = useState("");
+  const [isPromoApplied, setIsPromoApplied] = useState(false);
+  const [discount, setDiscount] = useState(0);
+  const [shippingMethod, setShippingMethod] = useState("standard");
 
-  const shippingCost = shippingMethod === "express" ? 15.99 : shippingMethod === "standard" ? 5.99 : 0
-  const tax = (total - discount) * 0.08
-  const finalTotal = total - discount + shippingCost + tax
+  const shippingCost =
+    shippingMethod === "express"
+      ? 15.99
+      : shippingMethod === "standard"
+      ? 5.99
+      : 0;
+  const tax = (total - discount) * 0.08;
+  const finalTotal = total - discount + shippingCost + tax;
 
   const applyPromoCode = () => {
     if (promoCode.toLowerCase() === "save10") {
-      setDiscount(total * 0.1)
-      setIsPromoApplied(true)
+      setDiscount(total * 0.1);
+      setIsPromoApplied(true);
     }
-  }
+  };
 
   if (items.length === 0) {
     return (
@@ -50,7 +55,10 @@ export default function CartPage() {
         <header className="border-b border-gray-100 sticky top-0 bg-white z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
-              <Link href="/" className="flex items-center space-x-2 text-black hover:text-gray-600 transition-colors">
+              <Link
+                href="/"
+                className="flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
+              >
                 <ArrowLeft className="h-5 w-5" />
                 <span className="font-medium">Continue Comprando</span>
               </Link>
@@ -66,16 +74,22 @@ export default function CartPage() {
               <ShoppingBag className="h-12 w-12 text-gray-400" />
             </div>
             <div className="space-y-2">
-              <h2 className="text-2xl font-semibold text-black">Carrinho Vazio</h2>
-              <p className="text-gray-600">Parece que seu carrinho está vazio</p>
+              <h2 className="text-2xl font-semibold text-black">
+                Carrinho Vazio
+              </h2>
+              <p className="text-gray-600">
+                Parece que seu carrinho está vazio
+              </p>
             </div>
             <Link href="/">
-              <Button className="bg-black text-white hover:bg-gray-800 px-8 py-3">Começe a Comprar</Button>
+              <Button className="bg-black text-white hover:bg-gray-800 px-8 py-3">
+                Começe a Comprar
+              </Button>
             </Link>
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -83,7 +97,10 @@ export default function CartPage() {
       <header className="border-b border-gray-200 sticky top-0 bg-white z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2 text-black hover:text-gray-600 transition-colors">
+            <Link
+              href="/"
+              className="flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
+            >
               <ArrowLeft className="h-5 w-5" />
               <span className="font-medium">Continue Comprando</span>
             </Link>
@@ -93,7 +110,11 @@ export default function CartPage() {
                 {itemCount} {itemCount === 1 ? "item" : "items"}
               </Tag>
             </div>
-            <Button variant="primary" onClick={clearCart} className="text-red-600 hover:text-red-700 hover:bg-red-50">
+            <Button
+              variant="primary"
+              onClick={clearCart}
+              className="text-red-600 hover:text-red-700 hover:bg-red-50"
+            >
               Limpar Carrinho
             </Button>
           </div>
@@ -134,7 +155,7 @@ export default function CartPage() {
                 <h2 className="text-lg font-semibold text-black">Your Items</h2>
               </div>
               <div className="divide-y divide-gray-100">
-                {items.map((item:any) => (
+                {items.map((item: CartItem) => (
                   <div key={item.id} className="p-6">
                     <div className="flex flex-col sm:flex-row gap-4">
                       <div className="flex-shrink-0">
@@ -152,27 +173,37 @@ export default function CartPage() {
                       <div className="flex-1 min-w-0">
                         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                           <div className="flex-1">
-                            <h3 className="text-lg font-medium text-black mb-1">{item.name}</h3>
+                            <h3 className="text-lg font-medium text-black mb-1">
+                              {item.name}
+                            </h3>
                             <div className="flex flex-wrap gap-2 text-sm text-gray-600 mb-2">
                               {item.color && <span>Cor: {item.color}</span>}
                               {item.size && <span>Tamanho: {item.size}</span>}
                             </div>
-                            <p className="text-lg font-semibold text-black">R${item.price.toFixed(2)}</p>
+                            <p className="text-lg font-semibold text-black">
+                              R${item.price.toFixed(2)}
+                            </p>
                           </div>
 
                           <div className="flex items-center space-x-3">
                             <div className="flex items-center border border-gray-200 rounded-lg">
                               <Button
                                 variant="primary"
-                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                onClick={() =>
+                                  updateQuantity(item.id, item.quantity - 1)
+                                }
                                 className="h-10 w-10 p-0 hover:bg-gray-100"
                               >
                                 <Minus className="h-4 w-4" />
                               </Button>
-                              <span className="w-12 text-center font-medium">{item.quantity}</span>
+                              <span className="w-12 text-center font-medium">
+                                {item.quantity}
+                              </span>
                               <Button
                                 variant="primary"
-                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                onClick={() =>
+                                  updateQuantity(item.id, item.quantity + 1)
+                                }
                                 className="h-10 w-10 p-0 hover:bg-gray-100"
                               >
                                 <Plus className="h-4 w-4" />
@@ -189,7 +220,9 @@ export default function CartPage() {
                         </div>
 
                         <div className="mt-4 flex justify-between items-center">
-                          <span className="text-sm text-gray-600">Subtotal:</span>
+                          <span className="text-sm text-gray-600">
+                            Subtotal:
+                          </span>
                           <span className="text-lg font-semibold text-black">
                             R${(item.price * item.quantity).toFixed(2)}
                           </span>
@@ -219,8 +252,12 @@ export default function CartPage() {
                         className="mr-3"
                       />
                       <div>
-                        <div className="font-medium text-black">Entrega Gratis</div>
-                        <div className="text-sm text-gray-600">5-7 Dias Úteis</div>
+                        <div className="font-medium text-black">
+                          Entrega Gratis
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          5-7 Dias Úteis
+                        </div>
                       </div>
                     </div>
                     <span className="font-medium text-green-600">Gratis</span>
@@ -236,8 +273,12 @@ export default function CartPage() {
                         className="mr-3"
                       />
                       <div>
-                        <div className="font-medium text-black">Envio Padrão</div>
-                        <div className="text-sm text-gray-600">3-5 Dias Úteis</div>
+                        <div className="font-medium text-black">
+                          Envio Padrão
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          3-5 Dias Úteis
+                        </div>
                       </div>
                     </div>
                     <span className="font-medium text-black">R$5.99</span>
@@ -253,8 +294,12 @@ export default function CartPage() {
                         className="mr-3"
                       />
                       <div>
-                        <div className="font-medium text-black">Envio Express</div>
-                        <div className="text-sm text-gray-600">1-2 Dias Úteis</div>
+                        <div className="font-medium text-black">
+                          Envio Express
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          1-2 Dias Úteis
+                        </div>
                       </div>
                     </div>
                     <span className="font-medium text-black">R$15.99</span>
@@ -275,7 +320,9 @@ export default function CartPage() {
                   <InputForm
                     placeholder="Insira o código promocional"
                     value={promoCode}
-                    onChange={(e:any) => setPromoCode(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setPromoCode(e.target.value)
+                    }
                     disabled={isPromoApplied}
                     className="flex-1"
                   />
@@ -293,13 +340,17 @@ export default function CartPage() {
                     Codigo promocional aplicado
                   </div>
                 )}
-                <div className="mt-3 text-xs text-gray-500">Tente "ShopWeb" Por 10% de desconto</div>
+                <div className="mt-3 text-xs text-gray-500">
+                  Tente "ShopWeb" Por 10% de desconto
+                </div>
               </CardContent>
             </Card>
 
             <Card>
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-black mb-4">Resumo do Pedido</h3>
+                <h3 className="text-lg font-semibold text-black mb-4">
+                  Resumo do Pedido
+                </h3>
                 <div className="space-y-3">
                   <div className="flex justify-between text-gray-600">
                     <span>Subtotal ({itemCount} items)</span>
@@ -313,7 +364,11 @@ export default function CartPage() {
                   )}
                   <div className="flex justify-between text-gray-600">
                     <span>Envio</span>
-                    <span>{shippingCost === 0 ? "Free" : `$${shippingCost.toFixed(2)}`}</span>
+                    <span>
+                      {shippingCost === 0
+                        ? "Free"
+                        : `$${shippingCost.toFixed(2)}`}
+                    </span>
                   </div>
                   <div className="flex justify-between text-gray-600">
                     <span>Tax</span>
@@ -345,7 +400,9 @@ export default function CartPage() {
 
             <Card>
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-black mb-4">Precisa de Ajuda?</h3>
+                <h3 className="text-lg font-semibold text-black mb-4">
+                  Precisa de Ajuda?
+                </h3>
                 <div className="space-y-3">
                   <div className="flex items-center text-sm text-gray-600">
                     <Phone className="h-4 w-4 mr-2" />
@@ -362,5 +419,5 @@ export default function CartPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

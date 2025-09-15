@@ -31,18 +31,16 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
 
       if (existingItem) {
         const updatedItems = state.items.map((item) =>
-          item.id === action.payload.id ? { ...item, quantity: item.quantity + (action.payload.quantity || 1) } : item,
+          item.id === action.payload.id ? { ...item, quantity: item.quantity + (action.payload.quantity || 1) } : item
         )
         const total = updatedItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
         const itemCount = updatedItems.reduce((sum, item) => sum + item.quantity, 0)
-
         return { items: updatedItems, total, itemCount }
       } else {
         const newItem = { ...action.payload, quantity: action.payload.quantity || 1 }
         const updatedItems = [...state.items, newItem]
         const total = updatedItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
         const itemCount = updatedItems.reduce((sum, item) => sum + item.quantity, 0)
-
         return { items: updatedItems, total, itemCount }
       }
     }
@@ -51,7 +49,6 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       const updatedItems = state.items.filter((item) => item.id !== action.payload)
       const total = updatedItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
       const itemCount = updatedItems.reduce((sum, item) => sum + item.quantity, 0)
-
       return { items: updatedItems, total, itemCount }
     }
 
@@ -59,13 +56,11 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       if (action.payload.quantity <= 0) {
         return cartReducer(state, { type: "REMOVE_ITEM", payload: action.payload.id })
       }
-
       const updatedItems = state.items.map((item) =>
-        item.id === action.payload.id ? { ...item, quantity: action.payload.quantity } : item,
+        item.id === action.payload.id ? { ...item, quantity: action.payload.quantity } : item
       )
       const total = updatedItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
       const itemCount = updatedItems.reduce((sum, item) => sum + item.quantity, 0)
-
       return { items: updatedItems, total, itemCount }
     }
 
@@ -78,7 +73,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
 }
 
 interface CartContextType extends CartState {
-  addItem: (item: Omit<CartItem, "quantity"> & { quantity?: number }) => void
+  addToCart: (item: Omit<CartItem, "quantity"> & { quantity?: number }) => void
   removeItem: (id: string) => void
   updateQuantity: (id: string, quantity: number) => void
   clearCart: () => void
@@ -88,46 +83,12 @@ const CartContext = createContext<CartContextType | undefined>(undefined)
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(cartReducer, {
-    items: [
-      {
-        id: "1",
-        name: "Fone de Ouvido Premium",
-        price: 299.99,
-        image: "/premium-wireless-headphones-black.jpg",
-        quantity: 1,
-        color: "Preto",
-      },
-      {
-        id: "2",
-        name: "Smartwatch Pro",
-        price: 449.99,
-        image: "/black-smart-watch-pro.jpg",
-        quantity: 2,
-        color: "Preto",
-        size: "42mm",
-      },
-      {
-        id: "3",
-        name: "Headset Razer Blackshark V2",
-        price: 89.99,
-        image: "/black-minimalist-backpack.jpg",
-        quantity: 1,
-        color: "Preto",
-      },
-      {
-        id: "4",
-        name: "Fone de Ouvido Bluetooth",
-        price: 179.99,
-        image: "/white-wireless-earbuds.jpg",
-        quantity: 1,
-        color: "Branco",
-      },
-    ],
-    total: 1399.95,
-    itemCount: 5,
+    items: [],
+    total: 0,
+    itemCount: 0,
   })
 
-  const addItem = (item: Omit<CartItem, "quantity"> & { quantity?: number }) => {
+  const addToCart = (item: Omit<CartItem, "quantity"> & { quantity?: number }) => {
     dispatch({ type: "ADD_ITEM", payload: item })
   }
 
@@ -147,7 +108,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     <CartContext.Provider
       value={{
         ...state,
-        addItem,
+        addToCart,
         removeItem,
         updateQuantity,
         clearCart,
@@ -160,9 +121,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
 export const useCart = () => {
   const context = useContext(CartContext)
-  if (context === undefined) {
-    throw new Error("useCart must be used within a CartProvider")
-  }
+  if (!context) throw new Error("useCart must be used within a CartProvider")
   return context
 }
 

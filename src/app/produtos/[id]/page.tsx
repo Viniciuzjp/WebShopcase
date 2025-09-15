@@ -101,12 +101,23 @@ export default function Page() {
 
           <div>
             <Button
-              onClick={addToCart}
-              className="flex items-center sm:gap-5 justify-center md:w-full sm:w-full lg:w-6/10 xl:w-5/10 lg:text-xl xl:text-xl h-20 text-3xl"
-            >
-              ADICIONAR AO CARRINHO
-              <ShoppingCart className="w-8 h-8" />
-            </Button>
+  onClick={() =>
+    addToCart({
+      id: data?.pid || "",
+      name: data?.productNameEn || "",
+      price: min,
+      image: data?.details.productImageSet[0] || "",
+      quantity: 1,
+      color: data?.details.variants[0]?.variantName || "",
+      size: data?.details.variants[0]?.variantName || "",
+    })
+  }
+  className="flex items-center sm:gap-5 justify-center md:w-full sm:w-full lg:w-6/10 xl:w-5/10 lg:text-xl xl:text-xl h-20 text-3xl"
+>
+  ADICIONAR AO CARRINHO
+  <ShoppingCart className="w-8 h-8" />
+</Button>
+
           </div>
 
           <span className="text-sm text-neutral-500 font-normal">

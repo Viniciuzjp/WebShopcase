@@ -2,7 +2,6 @@
 
 import { ProductProps } from "@/app/produtos/[id]/interface";
 import Card from "@/components/card/card";
-import CardContent from "@mui/material/CardContent";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Image from "next/image";

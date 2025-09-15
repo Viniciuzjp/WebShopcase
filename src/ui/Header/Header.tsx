@@ -1,10 +1,6 @@
 "use client";
 
-import { Heart, Menu, Search, ShoppingCart, User } from "lucide-react";
-import InputForm from "@/components/Input/InputForm";
-import { useCart } from "@/components/CartContext/CartContext";
-import Image from "next/image";
-import Button from "@/components/button/Button";
+import { Heart, Search, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
 
 export default function Header() {

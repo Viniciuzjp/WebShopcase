@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Button from "@/components/button/Button";
 import Tag from "@/components/tag/tag";
-import { Heart, Star, Zap } from "lucide-react";
+import { Heart, Star} from "lucide-react";
 import Link from "next/link";
 
 export default function Releases() {
