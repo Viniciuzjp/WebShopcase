@@ -71,7 +71,7 @@ export default function Products() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3004/api/produtos")
+      .get("https://webshopcase-api.onrender.com/api/produtos")
       .then((res) => res.data)
       .then((data) => {
         setCategoria(data);

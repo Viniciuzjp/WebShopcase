@@ -16,7 +16,7 @@ export default function Page() {
   console.log(data)
   useEffect(() => {
     axios
-      .get(`http://localhost:3004/api/produtos/${params.id}`)
+      .get(`https://webshopcase-api.onrender.com/api/produtos/${params.id}`)
       .then((res) => res.data)
       .then((data) => {
         setData(data)

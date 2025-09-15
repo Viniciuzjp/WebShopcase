@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 
-const PORT = 3004;
+const PORT = process.env.PORT || 3004;
 
 const CJ_EMAIL = process.env.CJ_EMAIL;
 const CJ_API_KEY = process.env.CJ_API_KEY;

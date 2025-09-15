@@ -13,7 +13,7 @@ import Link from "next/link";
 export default function Releases() {
   useEffect(() => {
     axios
-      .get("http://localhost:3004/api/produtos")
+      .get("https://webshopcase-api.onrender.com/api/produtos")
       .then((res) => setProducts(res.data));
   }, []);
 
