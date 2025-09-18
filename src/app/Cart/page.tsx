@@ -1,12 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useCart } from "@/components/CartContext/CartContext";
 import Button from "@/components/button/Button";
 import InputForm from "@/components/Input/InputForm";
 import Card from "@/components/card/card";
 import CardContent from "@mui/material/CardContent";
-import type { CartItem } from "@/components/CartContext/CartContext";
 import Tag from "@/components/tag/tag";
 
 import {
@@ -25,7 +23,19 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
+function useCart() {
+  return {
+    items: [],
+    total: 0,
+    itemCount: 0,
+    updateQuantity: () => {},
+    removeItem: () => {},
+    clearCart: () => {},
+  };
+}
+
 export default function CartPage() {
+
   const { items, total, itemCount, updateQuantity, removeItem, clearCart } =
     useCart();
   const [promoCode, setPromoCode] = useState("");
@@ -33,21 +43,6 @@ export default function CartPage() {
   const [discount, setDiscount] = useState(0);
   const [shippingMethod, setShippingMethod] = useState("standard");
 
-  const shippingCost =
-    shippingMethod === "express"
-      ? 15.99
-      : shippingMethod === "standard"
-      ? 5.99
-      : 0;
-  const tax = (total - discount) * 0.08;
-  const finalTotal = total - discount + shippingCost + tax;
-
-  const applyPromoCode = () => {
-    if (promoCode.toLowerCase() === "save10") {
-      setDiscount(total * 0.1);
-      setIsPromoApplied(true);
-    }
-  };
 
   if (items.length === 0) {
     return (
@@ -155,7 +150,7 @@ export default function CartPage() {
                 <h2 className="text-lg font-semibold text-black">Your Items</h2>
               </div>
               <div className="divide-y divide-gray-100">
-                {items.map((item: CartItem) => (
+                {items.map((item: any) => (
                   <div key={item.id} className="p-6">
                     <div className="flex flex-col sm:flex-row gap-4">
                       <div className="flex-shrink-0">
@@ -189,9 +184,7 @@ export default function CartPage() {
                             <div className="flex items-center border border-gray-200 rounded-lg">
                               <Button
                                 variant="primary"
-                                onClick={() =>
-                                  updateQuantity(item.id, item.quantity - 1)
-                                }
+                                
                                 className="h-10 w-10 p-0 hover:bg-gray-100"
                               >
                                 <Minus className="h-4 w-4" />
@@ -201,9 +194,7 @@ export default function CartPage() {
                               </span>
                               <Button
                                 variant="primary"
-                                onClick={() =>
-                                  updateQuantity(item.id, item.quantity + 1)
-                                }
+                                
                                 className="h-10 w-10 p-0 hover:bg-gray-100"
                               >
                                 <Plus className="h-4 w-4" />
@@ -211,7 +202,7 @@ export default function CartPage() {
                             </div>
                             <Button
                               variant="secondary"
-                              onClick={() => removeItem(item.id)}
+                              
                               className="text-red-600 hover:text-red-700 hover:bg-red-50 p-2"
                             >
                               <Trash2 className="h-4 w-4" />
@@ -327,7 +318,6 @@ export default function CartPage() {
                     className="flex-1"
                   />
                   <Button
-                    onClick={applyPromoCode}
                     disabled={isPromoApplied || !promoCode}
                     className="border-black text-black hover:bg-black hover:text-white bg-transparent"
                   >
@@ -365,18 +355,20 @@ export default function CartPage() {
                   <div className="flex justify-between text-gray-600">
                     <span>Envio</span>
                     <span>
-                      {shippingCost === 0
-                        ? "Free"
-                        : `$${shippingCost.toFixed(2)}`}
+                      {shippingMethod === "express"
+                        ? "R$15.99"
+                        : shippingMethod === "standard"
+                        ? "R$5.99"
+                        : "Gratis"}
                     </span>
                   </div>
                   <div className="flex justify-between text-gray-600">
                     <span>Tax</span>
-                    <span>R${tax.toFixed(2)}</span>
+                    <span>R$ Null</span>
                   </div>
                   <div className="flex justify-between text-lg font-semibold text-black">
                     <span>Total</span>
-                    <span>R${finalTotal.toFixed(2)}</span>
+                    <span>R$ Null</span>
                   </div>
                 </div>
 

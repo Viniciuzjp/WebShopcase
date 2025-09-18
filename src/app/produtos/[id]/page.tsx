@@ -6,7 +6,6 @@ import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import { ShoppingCart } from "lucide-react"
 import Tag from "@/components/tag/tag"
-import { useCart } from "@/components/CartContext/CartContext"
 import type { ProductProps } from "@/app/produtos/[id]/interface"
 
 export default function Page() {
@@ -51,10 +50,9 @@ export default function Page() {
 
   const { min, max } = parsePrice(data?.sellPrice || "0")
 
-  const { addToCart } = useCart()
   return (
     <main className="overflow-hidden">
-      <section className="flex gap-6 p-5 md:flex-col sm:flex-col lg:flex-row xl:flex-row overflow-hidden">
+      <section className="flex gap-6 p-5 max-md:flex-col max-sm:flex-col max-lg:flex-row xl:flex-row overflow-hidden">
         <div className="flex flex-wrap justify-center items-center md:w-full sm:w-full lg:w-1/2 xl:w-1/2 h-full ">
           <div className="w-1/2 h-1/2">
             <img
@@ -101,17 +99,6 @@ export default function Page() {
 
           <div>
             <Button
-  onClick={() =>
-    addToCart({
-      id: data?.pid || "",
-      name: data?.productNameEn || "",
-      price: min,
-      image: data?.details.productImageSet[0] || "",
-      quantity: 1,
-      color: data?.details.variants[0]?.variantName || "",
-      size: data?.details.variants[0]?.variantName || "",
-    })
-  }
   className="flex items-center sm:gap-5 justify-center md:w-full sm:w-full lg:w-6/10 xl:w-5/10 lg:text-xl xl:text-xl h-20 text-3xl"
 >
   ADICIONAR AO CARRINHO
