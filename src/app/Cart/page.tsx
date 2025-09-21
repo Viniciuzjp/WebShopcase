@@ -15,45 +15,30 @@ import {
   ArrowLeft,
   CreditCard,
   Truck,
-  Shield,
   Gift,
-  Phone,
-  Mail,
 } from "lucide-react";
+
 import Link from "next/link";
 import Image from "next/image";
-
-function useCart() {
-  return {
-    items: [],
-    total: 0,
-    itemCount: 0,
-    updateQuantity: () => {},
-    removeItem: () => {},
-    clearCart: () => {},
-  };
-}
+import { useCart } from "@/CartContext/Context";
 
 export default function CartPage() {
-
-  const { items, total, itemCount, updateQuantity, removeItem, clearCart } =
-    useCart();
+  const { cart, updateQuantity, removeItem, clearCart } = useCart();
   const [promoCode, setPromoCode] = useState("");
   const [isPromoApplied, setIsPromoApplied] = useState(false);
   const [discount, setDiscount] = useState(0);
   const [shippingMethod, setShippingMethod] = useState("standard");
 
+  const itemCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-  if (items.length === 0) {
+  if (cart.length === 0) {
     return (
       <div className="min-h-screen bg-white">
         <header className="border-b border-gray-100 sticky top-0 bg-white z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
-              <Link
-                href="/"
-                className="flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
-              >
+              <Link href="/" className="flex items-center space-x-2 text-black hover:text-gray-600 transition-colors">
                 <ArrowLeft className="h-5 w-5" />
                 <span className="font-medium">Continue Comprando</span>
               </Link>
@@ -69,12 +54,8 @@ export default function CartPage() {
               <ShoppingBag className="h-12 w-12 text-gray-400" />
             </div>
             <div className="space-y-2">
-              <h2 className="text-2xl font-semibold text-black">
-                Carrinho Vazio
-              </h2>
-              <p className="text-gray-600">
-                Parece que seu carrinho está vazio
-              </p>
+              <h2 className="text-2xl font-semibold text-black">Carrinho Vazio</h2>
+              <p className="text-gray-600">Parece que seu carrinho está vazio</p>
             </div>
             <Link href="/">
               <Button className="bg-black text-white hover:bg-gray-800 px-8 py-3">
@@ -92,10 +73,7 @@ export default function CartPage() {
       <header className="border-b border-gray-200 sticky top-0 bg-white z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link
-              href="/"
-              className="flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
-            >
+            <Link href="/" className="flex items-center space-x-2 text-black hover:text-gray-600 transition-colors">
               <ArrowLeft className="h-5 w-5" />
               <span className="font-medium">Continue Comprando</span>
             </Link>
@@ -119,112 +97,69 @@ export default function CartPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="flex-1 space-y-6">
-            <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center text-sm font-medium">
-                    1
-                  </div>
-                  <span className="font-medium text-black">Carrinho</span>
-                </div>
-                <div className="flex items-center space-x-2 text-gray-400">
-                  <div className="w-8 h-8 border-2 border-gray-200 rounded-full flex items-center justify-center text-sm">
-                    2
-                  </div>
-                  <span>Conclusão</span>
-                </div>
-                <div className="flex items-center space-x-2 text-gray-400">
-                  <div className="w-8 h-8 border-2 border-gray-200 rounded-full flex items-center justify-center text-sm">
-                    3
-                  </div>
-                  <span>Pagamento</span>
-                </div>
-              </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div className="bg-black h-2 rounded-full w-1/3"></div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg shadow-sm">
-              <div className="p-6 border-b border-gray-100">
-                <h2 className="text-lg font-semibold text-black">Your Items</h2>
-              </div>
-              <div className="divide-y divide-gray-100">
-                {items.map((item: any) => (
-                  <div key={item.id} className="p-6">
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <div className="flex-shrink-0">
-                        <div className="w-24 h-24 bg-gray-100 rounded-lg overflow-hidden">
-                          <Image
-                            src={item.image || "/placeholder.svg"}
-                            alt={item.name}
-                            width={96}
-                            height={96}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="flex-1 min-w-0">
-                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                          <div className="flex-1">
-                            <h3 className="text-lg font-medium text-black mb-1">
-                              {item.name}
-                            </h3>
-                            <div className="flex flex-wrap gap-2 text-sm text-gray-600 mb-2">
-                              {item.color && <span>Cor: {item.color}</span>}
-                              {item.size && <span>Tamanho: {item.size}</span>}
-                            </div>
-                            <p className="text-lg font-semibold text-black">
-                              R${item.price.toFixed(2)}
-                            </p>
-                          </div>
-
-                          <div className="flex items-center space-x-3">
-                            <div className="flex items-center border border-gray-200 rounded-lg">
-                              <Button
-                                variant="primary"
-                                
-                                className="h-10 w-10 p-0 hover:bg-gray-100"
-                              >
-                                <Minus className="h-4 w-4" />
-                              </Button>
-                              <span className="w-12 text-center font-medium">
-                                {item.quantity}
-                              </span>
-                              <Button
-                                variant="primary"
-                                
-                                className="h-10 w-10 p-0 hover:bg-gray-100"
-                              >
-                                <Plus className="h-4 w-4" />
-                              </Button>
-                            </div>
-                            <Button
-                              variant="secondary"
-                              
-                              className="text-red-600 hover:text-red-700 hover:bg-red-50 p-2"
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        </div>
-
-                        <div className="mt-4 flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
-                            Subtotal:
-                          </span>
-                          <span className="text-lg font-semibold text-black">
-                            R${(item.price * item.quantity).toFixed(2)}
-                          </span>
-                        </div>
-                      </div>
+            <div className="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
+              {cart.map((item) => (
+                <div key={item.id} className="p-6 flex flex-col sm:flex-row gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-24 h-24 bg-gray-100 rounded-lg overflow-hidden">
+                      <Image
+                        src={item.image || "/placeholder.svg"}
+                        alt={item.title}
+                        width={96}
+                        height={96}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
 
+                  <div className="flex-1 min-w-0 flex flex-col justify-between">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                      <div>
+                        <h3 className="text-lg font-medium text-black mb-1">{item.title}</h3>
+                        <p className="text-lg font-semibold text-black">R${item.price.toFixed(2)}</p>
+                      </div>
+
+                      <div className="flex items-center space-x-3">
+                        <div className="flex items-center border border-gray-200 rounded-lg">
+                          <Button
+                            variant="primary"
+                            onClick={() => updateQuantity(item.id, -1)}
+                            className="h-10 w-10 p-0 hover:bg-gray-100"
+                          >
+                            <Minus className="h-4 w-4" />
+                          </Button>
+                          <span className="w-12 text-center font-medium">{item.quantity}</span>
+                          <Button
+                            variant="primary"
+                            onClick={() => updateQuantity(item.id, 1)}
+                            className="h-10 w-10 p-0 hover:bg-gray-100"
+                          >
+                            <Plus className="h-4 w-4" />
+                          </Button>
+                        </div>
+                        <Button
+                          variant="secondary"
+                          onClick={() => removeItem(item.id)}
+                          className="text-red-600 hover:text-red-700 hover:bg-red-50 p-2"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Subtotal:</span>
+                      <span className="text-lg font-semibold text-black">
+                        R${(item.price * item.quantity).toFixed(2)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="lg:w-96 space-y-6">
             <Card>
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold text-black mb-4 flex items-center">
@@ -232,115 +167,65 @@ export default function CartPage() {
                   Opções de Envio
                 </h3>
                 <div className="space-y-3">
-                  <label className="flex items-center justify-between p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        name="shipping"
-                        value="free"
-                        checked={shippingMethod === "free"}
-                        onChange={(e) => setShippingMethod(e.target.value)}
-                        className="mr-3"
-                      />
-                      <div>
-                        <div className="font-medium text-black">
-                          Entrega Gratis
-                        </div>
-                        <div className="text-sm text-gray-600">
-                          5-7 Dias Úteis
-                        </div>
-                      </div>
-                    </div>
-                    <span className="font-medium text-green-600">Gratis</span>
-                  </label>
-                  <label className="flex items-center justify-between p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        name="shipping"
-                        value="standard"
-                        checked={shippingMethod === "standard"}
-                        onChange={(e) => setShippingMethod(e.target.value)}
-                        className="mr-3"
-                      />
-                      <div>
-                        <div className="font-medium text-black">
-                          Envio Padrão
-                        </div>
-                        <div className="text-sm text-gray-600">
-                          3-5 Dias Úteis
+                  {["free", "standard", "express"].map((method) => (
+                    <label key={method} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          name="shipping"
+                          value={method}
+                          checked={shippingMethod === method}
+                          onChange={(e) => setShippingMethod(e.target.value)}
+                          className="mr-3"
+                        />
+                        <div>
+                          <div className="font-medium text-black">
+                            {method === "free" ? "Entrega Gratis" : method === "standard" ? "Envio Padrão" : "Envio Express"}
+                          </div>
+                          <div className="text-sm text-gray-600">
+                            {method === "free" ? "5-7 Dias Úteis" : method === "standard" ? "3-5 Dias Úteis" : "1-2 Dias Úteis"}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <span className="font-medium text-black">R$5.99</span>
-                  </label>
-                  <label className="flex items-center justify-between p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        name="shipping"
-                        value="express"
-                        checked={shippingMethod === "express"}
-                        onChange={(e) => setShippingMethod(e.target.value)}
-                        className="mr-3"
-                      />
-                      <div>
-                        <div className="font-medium text-black">
-                          Envio Express
-                        </div>
-                        <div className="text-sm text-gray-600">
-                          1-2 Dias Úteis
-                        </div>
-                      </div>
-                    </div>
-                    <span className="font-medium text-black">R$15.99</span>
-                  </label>
+                      <span className="font-medium text-black">
+                        {method === "free" ? "Gratis" : method === "standard" ? "R$5.99" : "R$15.99"}
+                      </span>
+                    </label>
+                  ))}
                 </div>
               </CardContent>
             </Card>
-          </div>
 
-          <div className="lg:w-96 space-y-6">
             <Card>
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold text-black mb-4 flex items-center">
                   <Gift className="h-5 w-5 mr-2" />
-                  Codigo Promocional
+                  Código Promocional
                 </h3>
-                <div className="flex gap-2">
+                <div className="flex space-x-3 items-center justify-center">
                   <InputForm
-                    placeholder="Insira o código promocional"
+                    placeholder="Insira o código promocional"
                     value={promoCode}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      setPromoCode(e.target.value)
-                    }
+                    onChange={(e) => setPromoCode(e.target.value)}
                     disabled={isPromoApplied}
                     className="flex-1"
                   />
-                  <Button
-                    disabled={isPromoApplied || !promoCode}
-                    className="border-black text-black hover:bg-black hover:text-white bg-transparent"
-                  >
+                  <Button disabled={isPromoApplied || !promoCode} className="w-32 hover:text-white bg-transparent">
                     Aplicar
                   </Button>
                 </div>
                 {isPromoApplied && (
                   <div className="mt-2 text-sm text-green-600 flex items-center">
                     <Gift className="h-4 w-4 mr-1" />
-                    Codigo promocional aplicado
+                    Código promocional aplicado
                   </div>
                 )}
-                <div className="mt-3 text-xs text-gray-500">
-                  <div>Tente &quot;ShopWeb&quot; por 10% de desconto</div>
-                </div>
               </CardContent>
             </Card>
 
             <Card>
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-black mb-4">
-                  Resumo do Pedido
-                </h3>
+                <h3 className="text-lg font-semibold text-black mb-4">Resumo do Pedido</h3>
                 <div className="space-y-3">
                   <div className="flex justify-between text-gray-600">
                     <span>Subtotal ({itemCount} items)</span>
@@ -354,57 +239,24 @@ export default function CartPage() {
                   )}
                   <div className="flex justify-between text-gray-600">
                     <span>Envio</span>
-                    <span>
-                      {shippingMethod === "express"
-                        ? "R$15.99"
-                        : shippingMethod === "standard"
-                        ? "R$5.99"
-                        : "Gratis"}
-                    </span>
+                    <span>{shippingMethod === "express" ? "R$15.99" : shippingMethod === "standard" ? "R$5.99" : "Gratis"}</span>
                   </div>
                   <div className="flex justify-between text-gray-600">
                     <span>Tax</span>
-                    <span>R$ Null</span>
+                    <span>R$0.00</span>
                   </div>
                   <div className="flex justify-between text-lg font-semibold text-black">
                     <span>Total</span>
-                    <span>R$ Null</span>
+                    <span>R${(total + (shippingMethod === "express" ? 15.99 : shippingMethod === "standard" ? 5.99 : 0) - discount).toFixed(2)}</span>
                   </div>
                 </div>
 
                 <Button className="w-full mt-6 bg-black text-white hover:bg-gray-800 h-12 text-lg font-medium">
+                  <div className="flex items-center justify-center">
                   <CreditCard className="h-5 w-5 mr-2" />
-                  Proceder com a compra
+                  <span>Finalizar Compra</span>
+                  </div>
                 </Button>
-
-                <div className="mt-6 space-y-3">
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Shield className="h-4 w-4 mr-2 text-green-600" />
-                    SSL Pagamento Seguro
-                  </div>
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Truck className="h-4 w-4 mr-2 text-blue-600" />
-                    Envio Rápido
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-black mb-4">
-                  Precisa de Ajuda?
-                </h3>
-                <div className="space-y-3">
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Phone className="h-4 w-4 mr-2" />
-                    <span>Nos contate: (123) 456-7890</span>
-                  </div>
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Mail className="h-4 w-4 mr-2" />
-                    <span>Email: WebShopcase34@gmail.com</span>
-                  </div>
-                </div>
               </CardContent>
             </Card>
           </div>
