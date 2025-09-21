@@ -1,3 +1,37 @@
+interface Image {
+  src: string;
+  altText: string;
+  width: number;
+  height: number;
+}
+
+interface Variant {
+  id: string;
+  title: string;
+  price: {
+    amount: string;
+    currencyCode: string;
+  };
+  availableForSale: boolean;
+}
+
+interface Product {
+  id: string;
+  handle: string;
+  title: string;
+  description: string;
+  images: {
+    edges: { node: Image }[];
+  };
+  variants: {
+    edges: { node: Variant }[];
+  };
+}
+
+interface ProductEdge {
+  node: Product;
+}
+
 export async function getProducts(first: number = 50) {
   try {
     const response = await fetch(
@@ -63,10 +97,10 @@ export async function getProducts(first: number = 50) {
       return [];
     }
 
-    return data.data.products.edges.map((p: any) => ({
+    return data.data.products.edges.map((p: ProductEdge) => ({
       ...p.node,
-      images: p.node.images?.edges?.map((i: any) => i.node) || [],
-      variants: p.node.variants?.edges?.map((v: any) => v.node) || [],
+      images: p.node.images?.edges?.map((i) => i.node) || [],
+      variants: p.node.variants?.edges?.map((v) => v.node) || [],
     }));
   } catch (err) {
     console.error("Erro ao buscar produtos da Shopify:", err);
