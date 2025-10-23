@@ -1,207 +1,141 @@
 "use client";
 
-import Button from "@/components/button/Button";
-import axios from "axios";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ShoppingCart } from "lucide-react";
+import Button from "@/components/button/Button";
 import Tag from "@/components/tag/tag";
-import type { ProductProps } from "@/app/produtos/[id]/interface";
-import { Product, useCart } from "@/CartContext/Context";
+import { ShoppingCart } from "lucide-react";
+import { useCart, Product as CartProduct } from "@/CartContext/Context";
+import type { Products } from "@/ui/shopifyinterface/interface";
+import Rating from '@mui/material/Rating';
 
-export default function Page() {
-  const params = useParams();
+export default function ProductPage() {
 
+  const SHOPIFY_STORE_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN!;
+  const { id } = useParams();
   const { AddToCart } = useCart();
 
-function handleAddToCart() {
-  if (!data) return;
+  const [product, setProduct] = useState<Products | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const product: Product = {
-    id: data.details.variants[0]?.vid || data.pid,
-    title: data.productNameEn,                   // <- deve ser title, não name
-    price: Number(data.details.variants[0]?.variantSellPrice || data.sellPrice),
-    image: data.details.productImageSet[0] || data.productImage,
-    quantity: 1,
-    available: data.details.variants[0]?.inventoryNum !== 0,
+  useEffect(() => {
+    if (!id) {
+      setError("ID do produto não fornecido");
+      setLoading(false);
+      return;
+    }
+
+    async function fetchProduct() {
+      try {
+        const response = await fetch(`/api/products/${id}`);
+        if (!response.ok) {
+          const text = await response.text();
+          console.error("Erro API:", text);
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const data: Products = await response.json();
+        setProduct(data);
+      } catch (err: any) {
+        console.error(err);
+        setError(err.message || "Erro ao buscar produto");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProduct();
+  }, [id]);
+
+  const handleAddToCart = () => {
+    if (!product || !product.variants.length) return;
+
+    const item: CartProduct = {
+      id: product.variants[0].id,
+      title: product.title,
+      price: Number(product.variants[0].price.amount),
+      image: product.images[0]?.src || "",
+      quantity: 1,
+      available: product.variants[0].availableForSale,
+    };
+
+    AddToCart(item);
+    alert(`${item.title} adicionado ao carrinho!`);
   };
 
-  AddToCart(product);
-  alert(`${product.title} adicionado ao carrinho!`);
-}
+const handleBuy = () => {
+  if (!product) return;
 
+  const variantIdNumeric = product.variants[0].id.split("/").pop();
 
-  const [data, setData] = useState<ProductProps | null>(null);
-  console.log(data);
-  useEffect(() => {
-    axios
-      .get(`https://webshopcase-api.onrender.com/api/produtos/${params.id}`)
-      .then((res) => res.data)
-      .then((data) => {
-        setData(data);
-      });
-  }, [params.id]);
-
-  function convertToBRL(usdPrice: number) {
-    const exchangeRate = 5; // 1 USD = 5 BRL, troque pela cotação real se quiser
-    return (usdPrice * exchangeRate).toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    });
+  if (!variantIdNumeric) {
+    alert("ID do produto inválido.");
+    return;
   }
 
-  function parsePrice(price: string) {
-    if (!price) return { min: 0, max: 0 };
-    const [min, max] = price
-      .split("--")
-      .map((v) => Number.parseFloat(v.trim()));
-    return { min, max: max || min };
-  }
-
-  function handleStock() {
-    if (data && data.listingCount > 0 && data.listingCount < 10)
-      return "secondary";
-    if (data?.listingCount === 0) return "tertiary";
-    return "primary";
-  }
-
-  function handleStockText() {
-    if (data && data.listingCount > 0 && data.listingCount < 10)
-      return "ESGOTANDO";
-    if (data?.listingCount === 0) return "ESGOTADO";
-    return "EM ESTOQUE";
-  }
-
-  const { min, max } = parsePrice(data?.sellPrice || "0");
+  const checkoutUrl = `https://${SHOPIFY_STORE_DOMAIN}/cart/${variantIdNumeric}:1`;
+  window.location.href = checkoutUrl;
+};
+  if (loading) return <div>Carregando...</div>;
+  if (error) return <div>{error}</div>;
+  if (!product) return <div>Produto não encontrado</div>;
 
   return (
     <main className="overflow-hidden">
-      <section className="flex gap-6 p-5 max-md:flex-col max-sm:flex-col max-lg:flex-row xl:flex-row overflow-hidden">
-        <div className="flex flex-wrap justify-center items-center md:w-full sm:w-full lg:w-1/2 xl:w-1/2 h-full ">
-          <div className="w-1/2 h-1/2">
-            <img
-              src={data?.details.productImageSet[0]}
-              className="w-full h-full object-cover"
-              alt={data?.productNameEn}
-            />
-          </div>
-          <div className="w-1/2 h-1/2">
-            <img
-              src={data?.details.productImageSet[1]}
-              className="w-full h-full object-cover"
-              alt={data?.productNameEn}
-            />
-          </div>
-          <div className="w-1/2 h-1/2">
-            <img
-              src={data?.details.productImageSet[2]}
-              className="w-full h-full object-cover"
-              alt={data?.productNameEn}
-            />
-          </div>
-          <div className="w-1/2 h-1/2">
-            <img
-              src={data?.details.productImageSet[3]}
-              className="w-full h-full object-cover"
-              alt={data?.productNameEn}
-            />
-          </div>
+      <section className="flex gap-6 p-5 max-md:flex-col xl:flex-row">
+        <div className="flex flex-wrap justify-center items-center md:w-full lg:w-1/2 h-full">
+          {product.images.slice(0, 4).map((img, index) => (
+            <div key={index} className="w-1/2 h-1/2 p-1">
+              <img
+                src={img.src}
+                className="w-full h-full object-cover rounded"
+                alt={img.altText || product.title}
+              />
+            </div>
+          ))}
         </div>
 
-        <div className="flex md:w-full sm:w-full lg:w-1/2 xl:w-1/2 flex-col pt-5 gap-5">
-          <span className="text-3xl font-normal">{data?.productNameEn}</span>
-
-          <span className="text-4xl font-semibold">
-            {min === max
-              ? convertToBRL(min)
-              : `${convertToBRL(min)} - ${convertToBRL(max)}`}
+        <div className="flex md:w-full lg:w-1/2 flex-col pt-5 gap-10">
+          <span className="text-3xl font-extralight">{product.title}</span>
+          <div className="flex gap-3 items-center">
+          <span className="text-3xl font-semibold items-center">
+            R${product.variants[0].price.amount}
           </span>
+          <Tag variant="tertiary">
+              10% offer
+          </Tag>
+          </div>
+          <Rating name="half-rating-read" defaultValue={4} precision={0.5} readOnly/>
 
-          <div className="flex gap-2">
-            <Tag variant={handleStock()}>{handleStockText()}</Tag>
-            <Tag variant="quaternary">Entrega Gratis</Tag>
-            <span className="text-md font-semibold text-neutral-500">
-              {data?.productWeight} Disponíveis
-            </span>
+          <div className="flex gap-2 items-center">
+            <Tag variant="primary">
+              {product.variants[0].availableForSale ? "Disponível" : "Indisponível"}
+            </Tag>
+            <Tag variant="quaternary">Entrega Grátis</Tag>
           </div>
 
-          <div>
-            <Button onClick={handleAddToCart} className="flex items-center sm:gap-5 justify-center md:w-full sm:w-full lg:w-6/10 xl:w-5/10 lg:text-xl xl:text-xl h-20 text-3xl">
-              ADICIONAR AO CARRINHO
-              <ShoppingCart className="w-8 h-8" />
-            </Button>
+          <div className="flex flex-col gap-3">
+          <Button
+            onClick={handleAddToCart}
+            className="flex items-center justify-center gap-2 md:w-full h-14 text-xl"
+          >
+            ADICIONAR AO CARRINHO
+            <ShoppingCart className="w-8 h-8" />
+          </Button>
+
+          <Button
+            onClick={handleBuy}
+            className="flex items-center justify-center gap-2 md:w-full h-14 text-xl bg-green-600 text-white rounded-lg"
+          >
+            COMPRAR
+            <ShoppingCart className="w-8 h-8" />
+          </Button>
           </div>
 
           <span className="text-sm text-neutral-500 font-normal">
-            O prazo pode levar de 1 a 2 semanas para ser entregue ao seu
-            endereço após a compra, lembrando que este prazo pode variar de
-            acordo com a localidade.
+            O prazo pode levar de 1 a 2 semanas para entrega, podendo variar de acordo com a localidade.
           </span>
-
-          <div className="flex flex-col gap-6 p-6">
-            <h2 className="font-bold text-2xl text-gray-900 border-b border-gray-200 pb-3">
-              Informações do produto
-            </h2>
-
-            <div className="overflow-hidden border border-gray-200">
-              <table className="w-full">
-                <tbody className="divide-y divide-gray-100">
-                  <tr className="hover:bg-gray-50 transition-colors duration-150">
-                    <th className="text-left py-4 px-6 font-medium text-gray-700 bg-gray-50 w-1/3">
-                      Peso
-                    </th>
-                    <td className="py-4 px-6 text-gray-900 font-medium">
-                      {data?.productWeight}
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-gray-50 transition-colors duration-150">
-                    <th className="text-left py-4 px-6 font-medium text-gray-700 bg-gray-50">
-                      Material
-                    </th>
-                    <td className="py-4 px-6 text-gray-900 font-medium">
-                      {data?.details.materialNameEnSet}
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-gray-50 transition-colors duration-150">
-                    <th className="text-left py-4 px-6 font-medium text-gray-700 bg-gray-50">
-                      Descrição
-                    </th>
-                    <td className="py-4 px-6 text-gray-900 font-medium">
-                      {data?.details.variants[0].variantNameEn}
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-gray-50 transition-colors duration-150">
-                    <th className="text-left py-4 px-6 font-medium text-gray-700 bg-gray-50">
-                      Altura
-                    </th>
-                    <td className="py-4 px-6 text-gray-900 font-medium">
-                      {data?.details.variants[0].variantHeight} cm
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-gray-50 transition-colors duration-150">
-                    <th className="text-left py-4 px-6 font-medium text-gray-700 bg-gray-50">
-                      Largura
-                    </th>
-                    <td className="py-4 px-6 text-gray-900 font-medium">
-                      {data?.details.variants[0].variantWidth} cm
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="flex flex-col">
-        <div className="flex w-full justify-center items-center flex-col gap-6 p-6">
-          <span className="font-bold text-2xl text-gray-900 border-b border-gray-200 pb-3">
-            Categoria
-          </span>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: data?.details.description || "",
-            }}
-          />
         </div>
       </section>
     </main>

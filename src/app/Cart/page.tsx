@@ -167,7 +167,7 @@ export default function CartPage() {
                   Opções de Envio
                 </h3>
                 <div className="space-y-3">
-                  {["free", "standard", "express"].map((method) => (
+                  {["free"].map((method) => (
                     <label key={method} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
                       <div className="flex items-center">
                         <input

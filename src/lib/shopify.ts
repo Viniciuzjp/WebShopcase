@@ -35,12 +35,11 @@ interface ProductEdge {
 export async function getProducts(first: number = 50) {
   try {
     const response = await fetch(
-      `https://${process.env.SHOPIFY_STORE_DOMAIN}/api/2024-07/graphql.json`,
+      `https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN}/api/2024-07/graphql.json`,
       {
         method: "POST",
         headers: {
-          "X-Shopify-Storefront-Access-Token":
-            process.env.SHOPIFY_STOREFRONT_TOKEN!,
+          "X-Shopify-Storefront-Access-Token": process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN!,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -69,10 +68,9 @@ export async function getProducts(first: number = 50) {
                         id
                         title
                         price {
-                        amount
-                        currencyCode
+                          amount
+                          currencyCode
                         }
-
                         availableForSale
                       }
                     }
@@ -87,13 +85,9 @@ export async function getProducts(first: number = 50) {
     );
 
     const data = await response.json();
-    console.log("Produtos da Shopify:", data);
 
     if (!data?.data?.products) {
-      console.error(
-        "Shopify não retornou produtos:",
-        JSON.stringify(data, null, 2)
-      );
+      console.error("Shopify não retornou produtos:", JSON.stringify(data, null, 2));
       return [];
     }
 
@@ -106,4 +100,11 @@ export async function getProducts(first: number = 50) {
     console.error("Erro ao buscar produtos da Shopify:", err);
     return [];
   }
+}
+
+export function createCheckoutUrl(
+  lineItems: { variantId: string; quantity: number }[]
+) {
+  const cartItems = lineItems.map(item => `${item.variantId}:${item.quantity}`).join(',');
+  return `https://${process.env.SHOPIFY_STORE_DOMAIN!}/cart/${cartItems}`;
 }

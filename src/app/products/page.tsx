@@ -1,64 +1,54 @@
 "use client";
-
 import Button from "@/components/button/Button";
 import InputForm from "@/components/Input/InputForm";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import axios from "axios";
-import type { ProductProps } from "@/app/produtos/[id]/interface";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
-import { Check, CheckCheck } from "lucide-react";
+import type { Products } from "@/ui/shopifyinterface/interface";
+import { Check } from "lucide-react";
 
 function ProductCard({
   produto,
-  parsePrice,
-  formatBRL,
+
 }: {
-  produto: ProductProps;
-  parsePrice: (price: string) => { min: number; max: number };
-  formatBRL: (price: number) => string;
+  produto: Products;
 }) {
-  const { min, max } = parsePrice(produto.sellPrice);
 
   return (
-    <Link href={`/produtos/${produto.pid}`}>
-      <div key={produto.pid} className="flex flex-col w-full p-2">
+    <Link href={`/produtos/${encodeURIComponent(produto.id)}`}>
+      <div key={produto.id} className="flex flex-col w-full p-2">
         <div className="flex bg-neutral-100 justify-center items-center h-7/10 relative">
           <Image
-            src={produto.productImage.split(",")[0] || "/placeholder.svg"}
-            alt={produto.productNameEn}
+            src={produto.images[0].src.split(",")[0] || "/placeholder.svg"}
+            alt={produto.title}
             width={400}
             height={400}
             className="w-full h-full object-contain"
           />
         </div>
         <div className="flex flex-col gap-2 h-3/10 text-lg text-neutral-700">
-          <span className="font-normal mt-3">{produto.productNameEn}</span>
+          <span className="font-normal mt-3">{produto.title}</span>
           <div className="flex justify-between">
             <Stack spacing={1}>
               <Rating
                 name="half-rating-read"
                 size="small"
-                defaultValue={produto.saleStatus}
+                defaultValue={produto.variants[0].availableForSale ? 5 : 0}
                 precision={0.5}
                 readOnly
               />
             </Stack>
-            <span>{produto.saleStatus}</span>
+            <span>{produto.variants[0].availableForSale ? "Disponível" : "Indisponível"}</span>
           </div>
           <div className="flex justify-between">
             <span className="font-semilibold text-neutral-900">
-              {min === max
-                ? formatBRL(min)
-                : `${formatBRL(min)} - ${formatBRL(max)}`}
+              {produto.variants[0].price.amount}
             </span>
           </div>
-          <span className="text-sm font-light text-neutral-600">
-            {produto.categoryName}
-          </span>
         </div>
       </div>
     </Link>
@@ -66,48 +56,48 @@ function ProductCard({
 }
 
 export default function Products() {
-  const [categoria, setCategoria] = useState<ProductProps[]>([]);
-  const [search, setSearch] = useState<ProductProps[]>([]);
+  const [produtos, setProdutos] = useState<Products[]>([]);
+  const [categoria, setCategoria] = useState<Products[]>([]);
+  const [search, setSearch] = useState<Products[]>([]);
 
-  useEffect(() => {
-    axios
-      .get("https://webshopcase-api.onrender.com/api/produtos")
-      .then((res) => res.data)
-      .then((data) => {
+useEffect(() => {
+  fetch("/api/products")
+    .then((res) => res.json())
+    .then((data) => {
+      if (Array.isArray(data)) {
+        setProdutos(data);
         setCategoria(data);
         setSearch(data);
-      });
-  }, []);
+      } else {
+        console.error("API retornou algo diferente de um array:", data);
+        setProdutos([]);
+        setCategoria([]);
+        setSearch([]);
+      }
+    })
+    .catch((err) => console.error(err));
+}, []);
 
-  function parsePrice(price: string) {
-    const [min, max] = price
-      .split("--")
-      .map((v) => Number.parseFloat(v.trim()));
-    return { min, max: max || min };
-  }
 
-  function formatBRL(price: number) {
-    const exchangeRate = 5;
-    return (price * exchangeRate).toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    });
-  }
+  const parsePrice = (price: string) => {
+    const [min, max] = price.split("-");
+    return { min: Number(min), max: Number(max) };
+  };
 
   const handleFilterMax = () => {
     const sorted = [...categoria].sort(
-      (a, b) => parsePrice(b.sellPrice).max - parsePrice(a.sellPrice).max
+      (a, b) => parsePrice(b.variants[0].price.amount).max - parsePrice(a.variants[0].price.amount).max
     );
     setCategoria(sorted);
   };
 
   const handleFilterMin = () => {
     const sorted = [...categoria].sort(
-      (a, b) => parsePrice(a.sellPrice).min - parsePrice(b.sellPrice).min
+      (a, b) => parsePrice(a.variants[0].price.amount).min - parsePrice(b.variants[0].price.amount).min
     );
     setCategoria(sorted);
   };
-
+console.log(categoria)
   const handleFilterAll = () => setCategoria(search);
 
   const handleShowModal = () => {
@@ -118,40 +108,11 @@ export default function Products() {
     products?.classList.toggle("xl:grid-cols-5");
   };
 
-  const links = [
-    {
-      href: "/smartphones",
-      text: "Celulares e Smartphones",
-    },
-    {
-      href: "/capas-celulares",
-      text: "Capas para Celular",
-    },
-    {
-      href: "/power-banks",
-      text: "Power Banks",
-    },
-    {
-      href: "/fones-bluetooth",
-      text: "Fones de Ouvido",
-    },
-    {
-      href: "/smartwatches",
-      text: "Smartwatches",
-    },
-    {
-      href: "/notebooks",
-      text: "Notebooks",
-    },
-    {
-      href: "/tablets",
-      text: "Tablets",
-    },
-    {
-      href: "/teclados-mouses",
-      text: "Teclados e Mouses",
-    },
-  ];
+  const [filter, setFilter] = useState("")
+
+  const handleSearch = (e:any) => {
+      setFilter(e.target.value)
+  }
 
   return (
     <main className="overflow-hidden xl:px-15 lg:px-15">
@@ -163,15 +124,6 @@ export default function Products() {
         >
           FILTRAR
         </Button>
-        {links.map((link) => (
-          <Link
-            href={link.href}
-            key={link.href}
-            className="px-5 text-neutral-600 text-[13px] justify-center font-light flex items-center"
-          >
-            {link.text}
-          </Link>
-        ))}
       </div>
       <div className="ml-5">
         <Breadcrumbs
@@ -193,6 +145,7 @@ export default function Products() {
               className="w-full h-12"
               type="text"
               placeholder="Buscar..."
+              onChange={handleSearch}
               name="search"
               id="search"
             />
@@ -251,12 +204,12 @@ export default function Products() {
           id="products"
           className="grid grid-cols-1 max-sm:grid-cols-2 max-md:grid-cols-2 sm:p-10 lg:grid-cols-2 xl:grid-cols-3 w-full gap-4"
         >
-          {categoria.map((produto) => (
+          {categoria.filter((product) => 
+          product.title.toLowerCase().includes(filter.toLowerCase())).map((produto) => (
             <ProductCard
-              key={produto.pid}
+              key={produto.id}
               produto={produto}
-              parsePrice={parsePrice}
-              formatBRL={formatBRL}
+
             />
           ))}
         </section>
