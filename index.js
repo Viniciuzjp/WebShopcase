@@ -1,9 +1,10 @@
 import express from "express";
 import cors from "cors";
-import produtos from "./produtos.js";
-import UserSchema from "./register.js";
 import mongoose from "mongoose";
 import register from "./register.js";
+import passport from "passport";
+import LocalStrategy from "passport-local"
+import session from "express-session"
 const app = express();
 
 mongoose
@@ -13,6 +14,39 @@ mongoose
 
 app.use(cors());
 app.use(express.json());
+
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+
+passport.use(new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password'
+  }, async (email, password, done) => {
+    try {
+      const user = await register.findOne({ email: email });
+      if (!user) return done(null, false);
+      if (user.password != password) return done(null, false);
+      return done(null, user);
+    } catch (err) {
+      return done(err);
+    }
+  }));
+passport.serializeUser((user, done) => {
+    done(null, user.id)
+})
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await register.findById(id)
+    done(null, user)
+  } catch (err) {
+    done(err)
+  }
+})
 
 app.get("/", (req, res) => {
   res.send("HELLO WORLD");
@@ -42,5 +76,25 @@ app.post("/register", (req, res) => {
     }
   });
 });
+
+app.post('/login', (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) { return next(err); }
+    if (!user) { return res.redirect('/login'); }
+    req.logIn(user, (err) => {
+      if (err) { return next(err); }
+      req.session.user = user;
+      return res.json(user);
+    });
+  })(req, res, next);
+});
+
+app.get('/login', (req, res) => {
+    if (req.isAuthenticated()) {
+      res.json(req.session.user);
+    } else {
+      res.json('Not authenticated');
+    }
+  });
 
 app.listen(3003, () => console.log("Servidor rodando na porta 3003"));

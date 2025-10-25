@@ -12,8 +12,25 @@ export default function Login() {
         email: "",
         password: ""
     })
-    const handleSetUser = (e:any) => {
+    const handleSetUser = (e: any) => {
         setUser({...user, [e.target.name]: e.target.value})
+    }
+
+     const handleSendUser = async () => {
+        try{
+            const response = await fetch('http://localhost:3003/login', {
+                method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user)
+            })
+            const data = await response.json()
+            console.log(data)
+        }
+        catch(err) {
+            console.log(err)
+        }
     }
     return (
         <>
@@ -48,7 +65,7 @@ export default function Login() {
               className="h-10 w-full"
             />
           </div>
-          <Button variant="primary" className="w-full">
+          <Button onClick={handleSendUser} variant="primary" className="w-full">
             Login
           </Button>
           <Link href="/register">
