@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Header from "@/ui/Header/Header";
-import "./globals.css";
+import "./globals.scss";
 import Footer from "@/ui/Footer/Footer";
 import { CartProvider } from "@/CartContext/Context";
 

@@ -1,10 +1,10 @@
 "use client";
 
-import Button from "@/components/button/Button";
-import Card from "@/components/card/card";
+import {Button} from "@av-digital/components";
+import '@av-digital/components/styles'
 import Input from "@mui/material/Input";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import {useState } from "react";
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -42,11 +42,11 @@ const Register = () => {
   return (
     <>
       <div className="h-screen w-screen flex justify-center items-center">
-        <div className="h-auto w-[500px] max-md:w-[500px] shadow-2xl p-10 rounded-md gap-3 flex flex-col justify-center items-center">
+        <div className="h-auto w-[50%] max-md:w-full shadow-2xl p-10 rounded-md gap-3 flex flex-col justify-center items-center">
           <div className="flex justify-center items-center text-2xl font-bold text-neutral-800">
             <h1>Registrar</h1>
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full">
             <label className="text-gray-500 mb-1" htmlFor="email">
               Nome
             </label>
@@ -56,10 +56,10 @@ const Register = () => {
               name="name"
               onChange={handleSetUser}
               placeholder="Digite seu nome"
-              className="h-10 w-100"
+              className="h-10"
             />
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full">
             <label className="text-gray-500 mb-1" htmlFor="password">
               E-mail
             </label>
@@ -69,10 +69,10 @@ const Register = () => {
               name="email"
               onChange={handleSetUser}
               placeholder="informe seu E-mail"
-              className="h-10 w-100"
+              className="h-10"
             />
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full">
             <label className="text-gray-500 mb-1" htmlFor="password">
               Senha
             </label>
@@ -82,10 +82,10 @@ const Register = () => {
               name="password"
               onChange={handleSetUser}
               placeholder="Insira sua senha"
-              className="h-10 w-100"
+              className="h-10"
             />
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full">
             <label className="text-gray-500 mb-1" htmlFor="password">
               Confirmar senha
             </label>
@@ -95,7 +95,7 @@ const Register = () => {
               name="password2"
               onChange={handleSetUser}
               placeholder="Confirme sua senha"
-              className="h-10 w-100"
+              className="h-10"
             />
           </div>
           <Button onClick={handleSubmitUser} className="w-full">
