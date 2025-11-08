@@ -29,6 +29,34 @@ export default function CartPage() {
   const [discount, setDiscount] = useState(0);
   const [shippingMethod, setShippingMethod] = useState("standard");
 
+const handleCheckout = async () => {
+  try {
+    const lineItems = cart.map((item) => ({
+      id: item.id,
+      quantity: item.quantity,
+    }));
+
+    const res = await fetch("/api/checkout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ lineItems }),
+    });
+
+    const data = await res.json();
+    if (data.checkoutUrl) {
+      window.location.href = data.checkoutUrl;
+    } else {
+      console.error("Erro ao gerar checkout:", data);
+      alert("Erro ao criar checkout.");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Erro de conexão com o servidor.");
+  }
+};
+
+
+
   const itemCount = cart.reduce((acc, item) => acc + item.quantity, 0);
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
@@ -38,7 +66,10 @@ export default function CartPage() {
         <header className="border-b border-gray-100 sticky top-0 bg-white z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
-              <Link href="/" className="flex items-center space-x-2 text-black hover:text-gray-600 transition-colors">
+              <Link
+                href="/"
+                className="flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
+              >
                 <ArrowLeft className="h-5 w-5" />
                 <span className="font-medium">Continue Comprando</span>
               </Link>
@@ -54,8 +85,12 @@ export default function CartPage() {
               <ShoppingBag className="h-12 w-12 text-gray-400" />
             </div>
             <div className="space-y-2">
-              <h2 className="text-2xl font-semibold text-black">Carrinho Vazio</h2>
-              <p className="text-gray-600">Parece que seu carrinho está vazio</p>
+              <h2 className="text-2xl font-semibold text-black">
+                Carrinho Vazio
+              </h2>
+              <p className="text-gray-600">
+                Parece que seu carrinho está vazio
+              </p>
             </div>
             <Link href="/">
               <Button className="bg-black text-white hover:bg-gray-800 px-8 py-3">
@@ -73,7 +108,10 @@ export default function CartPage() {
       <header className="border-b border-gray-200 sticky top-0 bg-white z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2 text-black hover:text-gray-600 transition-colors">
+            <Link
+              href="/"
+              className="flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
+            >
               <ArrowLeft className="h-5 w-5" />
               <span className="font-medium">Continue Comprando</span>
             </Link>
@@ -99,7 +137,10 @@ export default function CartPage() {
           <div className="flex-1 space-y-6">
             <div className="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
               {cart.map((item) => (
-                <div key={item.id} className="p-6 flex flex-col sm:flex-row gap-4">
+                <div
+                  key={item.id}
+                  className="p-6 flex flex-col sm:flex-row gap-4"
+                >
                   <div className="flex-shrink-0">
                     <div className="w-24 h-24 bg-gray-100 rounded-lg overflow-hidden">
                       <Image
@@ -115,8 +156,12 @@ export default function CartPage() {
                   <div className="flex-1 min-w-0 flex flex-col justify-between">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                       <div>
-                        <h3 className="text-lg font-medium text-black mb-1">{item.title}</h3>
-                        <p className="text-lg font-semibold text-black">R${item.price.toFixed(2)}</p>
+                        <h3 className="text-lg font-medium text-black mb-1">
+                          {item.title}
+                        </h3>
+                        <p className="text-lg font-semibold text-black">
+                          R${item.price.toFixed(2)}
+                        </p>
                       </div>
 
                       <div className="flex items-center space-x-3">
@@ -128,7 +173,9 @@ export default function CartPage() {
                           >
                             <Minus className="h-4 w-4" />
                           </Button>
-                          <span className="w-12 text-center font-medium">{item.quantity}</span>
+                          <span className="w-12 text-center font-medium">
+                            {item.quantity}
+                          </span>
                           <Button
                             variant="primary"
                             onClick={() => updateQuantity(item.id, 1)}
@@ -168,7 +215,10 @@ export default function CartPage() {
                 </h3>
                 <div className="space-y-3">
                   {["free"].map((method) => (
-                    <label key={method} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <label
+                      key={method}
+                      className="flex items-center justify-between p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                    >
                       <div className="flex items-center">
                         <input
                           type="radio"
@@ -180,15 +230,27 @@ export default function CartPage() {
                         />
                         <div>
                           <div className="font-medium text-black">
-                            {method === "free" ? "Entrega Gratis" : method === "standard" ? "Envio Padrão" : "Envio Express"}
+                            {method === "free"
+                              ? "Entrega Gratis"
+                              : method === "standard"
+                              ? "Envio Padrão"
+                              : "Envio Express"}
                           </div>
                           <div className="text-sm text-gray-600">
-                            {method === "free" ? "5-7 Dias Úteis" : method === "standard" ? "3-5 Dias Úteis" : "1-2 Dias Úteis"}
+                            {method === "free"
+                              ? "5-7 Dias Úteis"
+                              : method === "standard"
+                              ? "3-5 Dias Úteis"
+                              : "1-2 Dias Úteis"}
                           </div>
                         </div>
                       </div>
                       <span className="font-medium text-black">
-                        {method === "free" ? "Gratis" : method === "standard" ? "R$5.99" : "R$15.99"}
+                        {method === "free"
+                          ? "Gratis"
+                          : method === "standard"
+                          ? "R$5.99"
+                          : "R$15.99"}
                       </span>
                     </label>
                   ))}
@@ -210,7 +272,10 @@ export default function CartPage() {
                     disabled={isPromoApplied}
                     className="flex-1"
                   />
-                  <Button disabled={isPromoApplied || !promoCode} className="w-32 hover:text-white bg-transparent">
+                  <Button
+                    disabled={isPromoApplied || !promoCode}
+                    className="w-32 hover:text-white bg-transparent"
+                  >
                     Aplicar
                   </Button>
                 </div>
@@ -225,7 +290,9 @@ export default function CartPage() {
 
             <Card>
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-black mb-4">Resumo do Pedido</h3>
+                <h3 className="text-lg font-semibold text-black mb-4">
+                  Resumo do Pedido
+                </h3>
                 <div className="space-y-3">
                   <div className="flex justify-between text-gray-600">
                     <span>Subtotal ({itemCount} items)</span>
@@ -239,7 +306,13 @@ export default function CartPage() {
                   )}
                   <div className="flex justify-between text-gray-600">
                     <span>Envio</span>
-                    <span>{shippingMethod === "express" ? "R$15.99" : shippingMethod === "standard" ? "R$5.99" : "Gratis"}</span>
+                    <span>
+                      {shippingMethod === "express"
+                        ? "R$15.99"
+                        : shippingMethod === "standard"
+                        ? "R$5.99"
+                        : "Gratis"}
+                    </span>
                   </div>
                   <div className="flex justify-between text-gray-600">
                     <span>Tax</span>
@@ -247,14 +320,28 @@ export default function CartPage() {
                   </div>
                   <div className="flex justify-between text-lg font-semibold text-black">
                     <span>Total</span>
-                    <span>R${(total + (shippingMethod === "express" ? 15.99 : shippingMethod === "standard" ? 5.99 : 0) - discount).toFixed(2)}</span>
+                    <span>
+                      R$
+                      {(
+                        total +
+                        (shippingMethod === "express"
+                          ? 15.99
+                          : shippingMethod === "standard"
+                          ? 5.99
+                          : 0) -
+                        discount
+                      ).toFixed(2)}
+                    </span>
                   </div>
                 </div>
 
-                <Button className="w-full mt-6 bg-black text-white hover:bg-gray-800 h-12 text-lg font-medium">
+                <Button
+                  className="w-full mt-6 bg-black text-white hover:bg-gray-800 h-12 text-lg font-medium"
+                  onClick={handleCheckout}
+                >
                   <div className="flex items-center justify-center">
-                  <CreditCard className="h-5 w-5 mr-2" />
-                  <span>Finalizar Compra</span>
+                    <CreditCard className="h-5 w-5 mr-2" />
+                    <span>Finalizar Compra</span>
                   </div>
                 </Button>
               </CardContent>

@@ -12,7 +12,7 @@ export default function Login() {
         email: "",
         password: ""
     })
-    const handleSetUser = (e: any) => {
+    const handleSetUser = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUser({...user, [e.target.name]: e.target.value})
     }
 

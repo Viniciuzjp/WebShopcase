@@ -1,21 +1,8 @@
 import {
-  Star,
-  ShoppingCart,
-  Heart,
-  ArrowRight,
-  TrendingUp,
   Truck,
   Shield,
   RefreshCw,
   Clock,
-  Award,
-  Users,
-  Zap,
-  Eye,
-  ThumbsUp,
-  Play,
-  ChevronLeft,
-  ChevronRight,
 } from "lucide-react";
 
 export default function Info() {

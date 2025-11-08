@@ -9,6 +9,8 @@ import { useCart, Product as CartProduct } from "@/CartContext/Context";
 import type { Products } from "@/ui/shopifyinterface/interface";
 import Rating from '@mui/material/Rating';
 
+
+
 export default function ProductPage() {
 
   const SHOPIFY_STORE_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN!;
@@ -37,9 +39,9 @@ export default function ProductPage() {
 
         const data: Products = await response.json();
         setProduct(data);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error(err);
-        setError(err.message || "Erro ao buscar produto");
+        setError("Erro ao buscar produto");
       } finally {
         setLoading(false);
       }
@@ -64,19 +66,7 @@ export default function ProductPage() {
     alert(`${item.title} adicionado ao carrinho!`);
   };
 
-const handleBuy = () => {
-  if (!product) return;
 
-  const variantIdNumeric = product.variants[0].id.split("/").pop();
-
-  if (!variantIdNumeric) {
-    alert("ID do produto inválido.");
-    return;
-  }
-
-  const checkoutUrl = `https://${SHOPIFY_STORE_DOMAIN}/cart/${variantIdNumeric}:1`;
-  window.location.href = checkoutUrl;
-};
   if (loading) return <div>Carregando...</div>;
   if (error) return <div>{error}</div>;
   if (!product) return <div>Produto não encontrado</div>;
@@ -125,7 +115,6 @@ const handleBuy = () => {
           </Button>
 
           <Button
-            onClick={handleBuy}
             className="flex items-center justify-center gap-2 md:w-full h-14 text-xl bg-green-600 text-white rounded-lg"
           >
             COMPRAR
@@ -136,8 +125,23 @@ const handleBuy = () => {
           <span className="text-sm text-neutral-500 font-normal">
             O prazo pode levar de 1 a 2 semanas para entrega, podendo variar de acordo com a localidade.
           </span>
+
+          <div className="w-full flex gap-3">
+            {product.images.map((img, index) => (
+            <div key={index} className="w-1/2 h-1/2 p-1">
+              <img
+                src={img.src}
+                className="w-full h-full object-cover rounded"
+                alt={img.altText || product.title}
+              />
+            </div>
+          ))}
+          </div>
         </div>
       </section>
+      <div className="w-full border">
+         
+        </div>
     </main>
   );
 }

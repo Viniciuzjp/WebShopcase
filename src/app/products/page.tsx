@@ -3,11 +3,11 @@ import Button from "@/components/button/Button";
 import InputForm from "@/components/Input/InputForm";
 import Link from "next/link";
 import Image from "next/image";
-import { use, useEffect, useState } from "react";
+import {
+  
+  useEffect, useState } from "react";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
-import axios from "axios";
-import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import type { Products } from "@/ui/shopifyinterface/interface";
 import { Check } from "lucide-react";
 
@@ -110,7 +110,7 @@ console.log(categoria)
 
   const [filter, setFilter] = useState("")
 
-  const handleSearch = (e:any) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
       setFilter(e.target.value)
   }
 
@@ -124,17 +124,6 @@ console.log(categoria)
         >
           FILTRAR
         </Button>
-      </div>
-      <div className="ml-5">
-        <Breadcrumbs
-          linkfirst="Home"
-          linksecond="Produtos"
-          linkthird="Power-Banks"
-          hreffirst="/"
-          hrefsecond="/Produtos"
-          hrefthird="/Power-Banks"
-          separator="›"
-        />
       </div>
       <div className="flex max-md:flex-col md:flex-col lg:flex-col xl:flex-row gap-4">
         <section id="modal" className="flex flex-col px-5 xl:w-3/11 gap-10">

@@ -1,6 +1,4 @@
 "use client";
-
-import Card from "@/components/card/card";
 import Image from "next/image";
 import { useState } from "react";
 import Button from "@/components/button/Button";

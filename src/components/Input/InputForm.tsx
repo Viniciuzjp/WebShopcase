@@ -1,4 +1,4 @@
-import { Search } from "lucide-react";
+
 import InputProps from "./interface";
 
 export default function InputForm({name, id, type, placeholder, className, onChange}: InputProps) {

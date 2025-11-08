@@ -1,15 +1,11 @@
 
-import { ProductProps } from "@/app/produtos/[id]/interface";
 import Card from "@/components/card/card";
-import axios from "axios";
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Button from "@/components/button/Button";
 import Tag from "@/components/tag/tag";
 import { Heart, Star} from "lucide-react";
 import Link from "next/link";
 import { Products } from "@/ui/shopifyinterface/interface";
-import { get } from "http";
 import { getProducts } from "@/lib/shopify";
 
 export default async function Releases() {
@@ -25,9 +21,8 @@ export default async function Releases() {
             Produtos em Lançamento que Podem te Interessar
           </span>
         </div>
-        <Card>
-          <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-4">
-            {datashopify.slice(6, 12).map((produtos) => (
+          <div className="grid sm:grid-cols-1 lg:grid-cols-4 gap-2">
+            {datashopify.slice(4, 18).map((produtos) => (
               <Card key={produtos.id} className="group cursor-pointer overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 bg-white">
                 <Link href={`/produtos/${encodeURIComponent(produtos.id)}`}>
                 <div className="relative aspect-square overflow-hidden">
@@ -50,7 +45,7 @@ export default async function Releases() {
                   </Button>
                 </div>
 
-                <div className="p-4 space-y-3">
+                <div className="p-1 space-y-1">
                   <h4 className="font-medium text-black text-balance line-clamp-2">
                     {produtos.title}
                   </h4>
@@ -81,7 +76,6 @@ export default async function Releases() {
               </Card>
             ))}
           </div>
-        </Card>
       </section>
     </>
   );

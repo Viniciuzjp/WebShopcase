@@ -1,8 +1,5 @@
 
-import { ProductProps } from "@/app/produtos/[id]/interface";
 import Card from "@/components/card/card";
-import axios from "axios";
-import { use, useEffect, useState } from "react";
 import Image from "next/image";
 import Button from "@/components/button/Button";
 import Tag from "@/components/tag/tag";
