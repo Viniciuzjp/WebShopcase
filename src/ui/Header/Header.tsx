@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart, Search, ShoppingCart, User, UserPlus } from "lucide-react";
+import { Heart, ShoppingCart, User, UserPlus } from "lucide-react";
 import Link from "next/link";
 
 export default function Header() {
@@ -10,7 +10,7 @@ export default function Header() {
         <div className="container mx-auto space-x-3 px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold"><Link href="/">WebShopcase</Link></h1>
+              <h1 className="text-2xl font-bold"><Link href="/">Hygg</Link></h1>
             </div>
 
             <nav className="hidden lg:flex justify-between items-center space-x-8">
@@ -31,9 +31,6 @@ export default function Header() {
               </Link>
               <Link href="/register" className="">
                 <UserPlus className="h-5 w-5 text-gray-700" />
-              </Link>
-              <Link href="/search" className="">
-                <Search className="h-5 w-5 text-gray-700" />
               </Link>
             </div>
           </div>

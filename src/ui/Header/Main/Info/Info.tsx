@@ -8,9 +8,8 @@ import {
 export default function Info() {
   return (
     <>
-      <section className="container mx-auto ">
-        <div className="lg:flex lg:items-center justify-between
-         p-10 w-full space-y-8 space-x-5">
+      <section className="container mx-auto py-16 lg:py-15 px-4 sm:px-6 lg:px-8">
+        <div className="lg:flex lg:items-center mx-auto justify-between max-w-7xl">
         <div className="flex items-center gap-4">
           <Truck className="w-10 h-10" />
           <div>
