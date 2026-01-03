@@ -6,7 +6,7 @@ export default function Hero() {
     <>
         <section className="w-full">
               <Image
-                src="/images/enontre2.png"
+                src="/images/bannerHero.png"
                 width={1530}
                 height={300}
                 alt="image"
