@@ -58,7 +58,7 @@ export default function Cat() {
               Seleção Especial
             </p>
             <h2 className="text-4xl font-light text-white">
-              Categorias em Destaque
+              Categorias em Destaque.
             </h2>
           </div>
 
