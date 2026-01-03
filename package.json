@@ -29,7 +29,7 @@
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.539.0",
     "mongoose": "^8.19.2",
-    "next": "15.4.6",
+    "next": "^16.1.1",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "react": "19.1.0",
