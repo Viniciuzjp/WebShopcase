@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Header from "@/ui/Header/Header";
-import "./globals.scss";
+import "./globals.css";
 import Footer from "@/ui/Footer/Footer";
 
 import Script from "next/script";
