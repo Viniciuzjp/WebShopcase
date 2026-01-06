@@ -70,12 +70,12 @@ export default function CartProduct() {
                   onClick={() => handleDeleteProduct(p.id)}
                   className="ml-3 w-8 h-8 flex items-center justify-center rounded bg-destructive/10 hover:bg-destructive/20 transition-colors"
                 >
-                  <Trash className="w-4 h-4 text-destructive" />
+                  <Trash className="w-4 h-4" />
                 </Button>
               </div>
             </div>
 
-            <div className="flex justify-between items-center pt-4 border-t border-border">
+            <div className="flex justify-between items-center pt-4 border-border">
               <p className="text-sm text-muted-foreground">
                 Subtotal ({p.quantity} {p.quantity === 1 ? "item" : "itens"}):
               </p>

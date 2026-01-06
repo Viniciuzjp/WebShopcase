@@ -9,7 +9,7 @@ export default function Info() {
   return (
     <>
       <section className="container mx-auto py-16 lg:py-15 px-4 sm:px-6 lg:px-8">
-        <div className="lg:flex lg:items-center mx-auto justify-between max-w-7xl">
+        <div className="lg:flex lg:items-center mx-auto justify-between max-w-7xl flex max-md:flex-col max-md:items-center gap-5">
         <div className="flex items-center gap-4">
           <Truck className="w-10 h-10" />
           <div>

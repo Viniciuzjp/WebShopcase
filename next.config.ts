@@ -2,28 +2,26 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+
+  turbopack: {},
+
   images: {
     domains: [
-      'oss-cf.cjdropshipping.com',
-      'cf.cjdropshipping.com',
-      'cbu01.alicdn.com',
-      'cdn.shopify.com',
-      'embed.figma.com'
+      "oss-cf.cjdropshipping.com",
+      "cf.cjdropshipping.com",
+      "cbu01.alicdn.com",
+      "cdn.shopify.com",
+      "embed.figma.com",
     ],
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "*.cdn.shopify.com",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-        port: "",
-        pathname: "/**",
-      },
-    ],
+  },
+
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      issuer: /\.[jt]sx?$/,
+      use: ["@svgr/webpack"],
+    });
+    return config;
   },
 };
 

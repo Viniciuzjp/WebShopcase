@@ -6,10 +6,10 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 const images = [
-  { src: "/images/premium-wireless-headphones-black.jpg", alt: "Headsets" },
-  { src: "/images/black-premium-keyboard.jpg", alt: "Teclados" },
-  { src: "/images/wireless-charging-pad-modern.jpg", alt: "PowerBanks" },
-  { src: "/images/white-wireless-mouse.jpg", alt: "Mouse" },
+  { src: "/images", alt: "Street Wear" },
+  { src: "/images", alt: "Angels" },
+  { src: "/images", alt: "Anime" },
+  { src: "/images", alt: "Todos" },
 ]
 
 const CARD_WIDTH = 280

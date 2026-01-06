@@ -7,12 +7,12 @@ export default function Footer() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="space-y-4">
-              <h4 className="text-lg font-bold text-black">Shopcase</h4>
+              <h4 className="text-lg font-bold text-black">Hygg</h4>
               <p className="text-sm text-gray-600 text-pretty">
-                Apresentendo o Shopcase, uma plataforma de e-commerce que
+                Apresentendo o Hygg, uma plataforma de e-commerce que
                 oferece uma experiência de compra online excepcional. Com uma
                 ampla variedade de produtos, uma navegação intuitiva e uma
-                experiência de compra rápida e fácil, o Shopcase torna a compra
+                experiência de compra rápida e fácil, o Hygg torna a compra
                 online uma experiência agradável e conveniente.
               </p>
             </div>
@@ -123,7 +123,7 @@ export default function Footer() {
 
           <div className="border-t border-gray-300 mt-12 pt-8 text-center">
             <p className="text-sm text-gray-600">
-              © {new Date().getFullYear()} WebShopcase. todos os direitos são unicamente e exclusivamente reservados por WebShopcase Inc. Todos os direitos de imagem e marca registrada pertencem aos seus respectivos donos. 
+              © {new Date().getFullYear()} Hygg. todos os direitos são unicamente e exclusivamente reservados por WebHygg Inc. Todos os direitos de imagem e marca registrada pertencem aos seus respectivos donos. 
             </p>
           </div>
         </div>
