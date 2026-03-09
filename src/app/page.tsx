@@ -1,10 +1,10 @@
 
-import Cat from "@/ui/Header/Main/Cat/Cat"
-import Hero from "@/ui/Header/Main/Hero/Hero"
-import Info from "@/ui/Header/Main/Info/Info"
-import Offer from "@/ui/Header/Main/Offer/Offers"
-import Releases from "@/ui/Header/Main/Release/Release"
-import Send from "@/ui/Header/Main/Send/Send"
+import Cat from "@/ui/Main/Cat/Cat"
+import Hero from "@/ui/Main/Hero/Hero"
+import Info from "@/ui/Main/Info/Info"
+import Offer from "@/ui/Main/Offer/Offers"
+import Releases from "@/ui/Main/Release/Release"
+import Send from "@/ui/Main/Send/Send"
 
 
 export default function Home () {

@@ -19,8 +19,9 @@ export async function GET(
             query getProduct($id: ID!) {
               product(id: $id) {
                 id
+                handle
                 title
-                description
+                descriptionHtml
                 images(first: 5) {
                   edges { node { src altText width height } }
                 }

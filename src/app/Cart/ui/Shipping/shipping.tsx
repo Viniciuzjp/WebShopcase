@@ -27,7 +27,7 @@ export default function Shipping() {
                   <span>5-7 Dias Úteis</span>
                 </div>
               </div>
-              <span>R$ -----</span>
+              <span>R$ ----- </span>
             </Button>
           </div>
         </Card>

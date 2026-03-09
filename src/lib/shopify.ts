@@ -1,6 +1,6 @@
 interface Image {
   src: string;
-  altText: string;
+  altText: string | null;
   width: number;
   height: number;
 }
@@ -15,31 +15,39 @@ interface Variant {
   availableForSale: boolean;
 }
 
-interface Product {
+export interface Product {
   id: string;
   handle: string;
   title: string;
-  description: string;
-  images: {
-    edges: { node: Image }[];
-  };
-  variants: {
-    edges: { node: Variant }[];
-  };
+  descriptionHtml: string;
+  images: Image[];
+  variants: Variant[];
 }
 
 interface ProductEdge {
-  node: Product;
+  node: {
+    id: string;
+    handle: string;
+    title: string;
+    descriptionHtml: string;
+    images: {
+      edges: { node: Image }[];
+    };
+    variants: {
+      edges: { node: Variant }[];
+    };
+  };
 }
 
-export async function getProducts(first: number = 50) {
+export async function getProducts(first: number = 50): Promise<Product[]> {
   try {
     const response = await fetch(
       `https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN}/api/2024-07/graphql.json`,
       {
         method: "POST",
         headers: {
-          "X-Shopify-Storefront-Access-Token": process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN!,
+          "X-Shopify-Storefront-Access-Token":
+            process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN!,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -51,7 +59,7 @@ export async function getProducts(first: number = 50) {
                   id
                   handle
                   title
-                  description
+                  descriptionHtml
                   images(first: 5) {
                     edges {
                       node {
@@ -79,32 +87,32 @@ export async function getProducts(first: number = 50) {
               }
             }
           }
-        `,
+          `,
         }),
       }
     );
 
-    const data = await response.json();
+    const json = await response.json();
 
-    if (!data?.data?.products) {
-      console.error("Shopify não retornou produtos:", JSON.stringify(data, null, 2));
+    if (!json?.data?.products?.edges) {
+      console.error("Shopify não retornou produtos:", json);
       return [];
     }
 
-    return data.data.products.edges.map((p: ProductEdge) => ({
-      ...p.node,
-      images: p.node.images?.edges?.map((i) => i.node) || [],
-      variants: p.node.variants?.edges?.map((v) => v.node) || [],
-    }));
-  } catch (err) {
-    console.error("Erro ao buscar produtos da Shopify:", err);
+    const products: Product[] = json.data.products.edges.map(
+      ({ node }: ProductEdge) => ({
+        id: node.id,
+        handle: node.handle,
+        title: node.title,
+        descriptionHtml: node.descriptionHtml || "",
+        images: node.images.edges.map((img) => img.node),
+        variants: node.variants.edges.map((v) => v.node),
+      })
+    );
+
+    return products;
+  } catch (error) {
+    console.error("Erro ao buscar produtos:", error);
     return [];
   }
-}
-
-export function createCheckoutUrl(
-  lineItems: { variantId: string; quantity: number }[]
-) {
-  const cartItems = lineItems.map(item => `${item.variantId}:${item.quantity}`).join(',');
-  return `https://${process.env.SHOPIFY_STORE_DOMAIN!}/cart/${cartItems}`;
 }

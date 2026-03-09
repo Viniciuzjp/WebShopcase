@@ -2,6 +2,6 @@ import CardProps from "./interface";
 
 export default function Card({children, className}: CardProps) {
     return (
-        <div className={`${className} bg-white shadow-sm p-5`}>{children}</div>
+        <div className={`${className} w-full bg-white shadow-sm p-2`}>{children}</div>
     );
 }

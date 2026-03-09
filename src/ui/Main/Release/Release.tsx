@@ -34,7 +34,7 @@ export default async function Releases() {
             Fique de olho e observe de perto um catálogo diverso de novidades
           </p>
         </div>
-          <div className="grid max-md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 gap-5">
+          <div className="grid max-md:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
             {datashopify.slice(4, 18).map((produtos) => (
               <div key={produtos.id} className="group cursor-pointer overflow-hidden hover:shadow-lg transition-all duration-300 bg-white">
                 <Link href={`/produtos/${encodeURIComponent(produtos.id)}`}>

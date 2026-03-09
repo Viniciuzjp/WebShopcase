@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart, ShoppingCart, User, UserPlus } from "lucide-react";
+import { Airplay, AirVent, Heart, ShoppingCart, User, UserPlus, Wallet } from "lucide-react";
 import Link from "next/link";
 
 export default function Header() {
@@ -19,20 +19,20 @@ export default function Header() {
               </Link>
             </nav>
 
-            <div className="flex items-center space-x-4">
+            <nav className="flex items-center space-x-4">
               <Link href="/wishlist" className="hidden">
                 <Heart className="h-5 w-5 text-gray-700" />
               </Link>
               <Link href="/Cart" className="">
                 <ShoppingCart className="h-5 w-5 text-gray-700" />
               </Link>
-              <Link href="/login" className="">
+              <a href="https://shopify.com/78258995418/account/profile" className="">
                 <User className="h-5 w-5 text-gray-700" />
-              </Link>
-              <Link href="/register" className="">
-                <UserPlus className="h-5 w-5 text-gray-700" />
-              </Link>
-            </div>
+              </a>
+              <a href="https://shopify.com/78258995418/account/orders" className="">
+                <Wallet className="h-5 w-5 text-gray-700" />
+              </a>
+            </nav>
           </div>
         </div>
       </header>

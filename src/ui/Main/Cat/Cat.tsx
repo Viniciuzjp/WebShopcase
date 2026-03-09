@@ -6,9 +6,9 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 const images = [
-  { src: "/images", alt: "Street Wear" },
+  { src: "/images", alt: "Street" },
   { src: "/images", alt: "Angels" },
-  { src: "/images", alt: "Anime" },
+  { src: "/images", alt: "Outros" },
   { src: "/images", alt: "Todos" },
 ]
 

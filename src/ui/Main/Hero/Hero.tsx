@@ -5,7 +5,7 @@ export default function Hero() {
       <Image
         src={`/images/Bannerwebp.webp`} 
         alt={`Hero streetwear`}
-        width={1530}
+        width={2000}
         height={100}
         className='block max-md:hidden'
       />

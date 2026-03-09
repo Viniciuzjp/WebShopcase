@@ -1,6 +1,6 @@
 interface ImageType {
   src: string;
-  altText: string;
+  altText: string | null;
   width: number;
   height: number;
 }
@@ -14,11 +14,12 @@ interface Variant {
   };
   availableForSale: boolean;
 }
+
 type Products = {
   id: string;
   handle: string;
   title: string;
-  description: string;
+  descriptionHtml: string;
   images: ImageType[];
   variants: Variant[];
 };

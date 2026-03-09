@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   
-  useEffect, useState } from "react";
+useEffect, useState } from "react";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import type { Products } from "@/ui/shopifyinterface/interface";

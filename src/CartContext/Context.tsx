@@ -3,10 +3,10 @@
 import { useContext, createContext, useState, type PropsWithChildren, useEffect } from "react"
 
 interface ImageType {
-  src: string
-  altText: string
-  width: number
-  height: number
+  src: string;
+  altText: string | null;
+  width: number;
+  height: number;
 }
 
 interface CartItem {
