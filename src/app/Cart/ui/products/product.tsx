@@ -1,6 +1,6 @@
 "use client"
 
-import { useCart } from "@/CartContext/Context"
+import { useCart } from "@/app/Cart/ui/CartContext/Context"
 import Button from "@/components/button/Button"
 import Card from "@/components/card/card"
 import { Trash } from "lucide-react"
@@ -76,10 +76,10 @@ export default function CartProduct() {
             </div>
 
             <div className="flex justify-between items-center pt-4 border-border">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-md font-light">
                 Subtotal ({p.quantity} {p.quantity === 1 ? "item" : "itens"}):
               </p>
-              <span className="text-xl font-semibold">R${calculateSubtotal(p.price, p.quantity)}</span>
+              <h1 className="text-2xl font-extralight">R$ {calculateSubtotal(p.price, p.quantity)}</h1>
             </div>
           </Card>
         ))}

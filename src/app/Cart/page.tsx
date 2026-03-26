@@ -1,5 +1,4 @@
 'use client'
-import Code from "./ui/Code/code"
 import Conclude from "./ui/Conclude/conclude"
 import Product from "./ui/products/product"
 import Shipping from "./ui/Shipping/shipping"
@@ -12,7 +11,6 @@ return (
         </div>
         <div className="xl:flex-col xl:w-1/2">
         <Shipping/>
-        <Code/>
         <Conclude/>
         </div>
     </main>

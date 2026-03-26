@@ -4,13 +4,12 @@ import "./globals.css";
 import Footer from "@/ui/Footer/Footer";
 import { Inter } from "next/font/google";
 
-
 const inter = Inter({
   subsets: ["latin"],
 });
 
 import Script from "next/script";
-import { CartProvider } from "@/CartContext/Context";
+import { CartProvider } from "@/app/Cart/ui/CartContext/Context";
 
 export const metadata: Metadata = {
   title: "Shopcase",

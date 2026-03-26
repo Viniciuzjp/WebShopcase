@@ -4,69 +4,65 @@ import {
   RefreshCw,
   Clock,
 } from "lucide-react";
+import { Text } from "@/components/text/Text";
+import { Stack } from "@/design-system/layout/Stack";
+import { Container } from "@/design-system/layout/Container";
+import { Section } from "@/design-system/layout/Section";
 
 export default function Info() {
   return (
     <>
-      <section className="container mx-auto py-16 lg:py-15 px-4 sm:px-6 lg:px-8">
-        <div className="lg:flex lg:items-center mx-auto justify-between max-w-7xl flex max-md:flex-col max-md:items-center gap-5">
-        <div className="flex items-center gap-4">
+      <Container >
+        <Section>
+        <Stack align="center">
           <Truck className="w-10 h-10" />
           <div>
-            <span className="text-md font-normal text-neutral-950">
+            <Text variant="body">
               Envio para todo o Brasil
-            </span>
-            <span>
-              <p className="text-md font-light text-neutral-950">
+            </Text>
+              <Text variant="bodySm">
                 Em Compras Acima de R$ 299
-              </p>
-            </span>
+              </Text>
           </div>
-        </div>
+        </Stack>
 
-        <div className="flex items-center gap-4">
+        <Stack align="center">
           <Shield className="w-10 h-10" />
           <div>
-            <span className="text-md font-normal text-neutral-950">
+            <Text variant="body">
               Pagamento Seguro
-            </span>
-            <span>
-              <p className="text-md font-light text-neutral-950">
+            </Text>
+              <Text variant="bodySm">
                 100% Seguro e Protegido
-              </p>
-            </span>
+              </Text>
           </div>
-        </div>
+        </Stack>
 
-        <div className="flex items-center gap-4">
+        <Stack align="center">
           <RefreshCw className="w-10 h-10" />
           <div>
-            <span className="text-md font-normal text-neutral-950">
+            <Text variant="body">
               Trocas e Devoluções
-            </span>
-            <span>
-              <p className="text-md font-light text-neutral-950">
+            </Text>
+              <Text variant="bodySm">
                 30 dias para trocas e devoluções
-              </p>
-            </span>
+              </Text>
           </div>
-        </div>
+        </Stack>
 
-        <div className="flex items-center gap-4">
+        <Stack align="center">
           <Clock className="w-10 h-10" />
           <div>
-            <span className="text-md font-normal text-neutral-950">
+            <Text variant="body">
               Atendimento ao Cliente
-            </span>
-            <span>
-              <p className="text-md font-light text-neutral-950">
+            </Text>
+              <Text variant="bodySm">
                 Atendimento 24h
-              </p>
-            </span>
+              </Text>
           </div>
-        </div>
-        </div>
-      </section>
+        </Stack>
+        </Section>
+      </Container>
     </>
   );
 }

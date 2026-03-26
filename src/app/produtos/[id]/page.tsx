@@ -2,15 +2,12 @@
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
-import { useCart } from "@/CartContext/Context";
+import { useCart } from "@/app/Cart/ui/CartContext/Context";
 import Button from "@/components/button/Button";
 import { Products } from "@/ui/shopifyinterface/interface";
-import Card from "@/components/card/card";
-import { getProducts } from "@/lib/shopify";
-import Link from "next/link";
 import Suggestions from "@/components/suggestions/suggestions";
+import { Text } from "@/components/text/Text";
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -67,7 +64,7 @@ export default function ProductPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <p className="text-xl">Carregando...</p>
+        <Text variant="h1">Carregando...</Text>
       </div>
     );
   }
@@ -75,7 +72,7 @@ export default function ProductPage() {
   if (error) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <p className="text-xl text-destructive">{error}</p>
+        <Text variant="h2">{error}</Text>
       </div>
     );
   }
@@ -83,7 +80,7 @@ export default function ProductPage() {
   if (!product) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <p className="text-xl">Produto não encontrado</p>
+        <Text variant="h1">Textroduto não encontrado</Text>
       </div>
     );
   }
@@ -108,7 +105,7 @@ export default function ProductPage() {
           </div>
           <div className="w-full">
             <Image
-              src={currentImage}
+              src={currentImage.src}
               alt={product.images[0].altText || "IMG"}
               height={product.images[0].height}
               width={product.images[0].width}
@@ -116,16 +113,18 @@ export default function ProductPage() {
           </div>
         </section>
         <section className="flex lg:p-8 gap-10 flex-col lg:w-7/10 w-full py-5">
-          <span className="text-3xl font-bold">{product.title}</span>
+          <Text variant="h1">{product.title}</Text>
           <hr className="text-neutral-300" />
-          <span className="text-3xl font-extralight">
+          <Text variant="h1" >
             R$ {product.variants[0].price.amount}
-          </span>
+          </Text>
 
           <Button onClick={handleAddToCart}>Adicionar Ao Carrinho</Button>
 
           <div className="flex flex-col gap-2">
-            <h1 className="text-5xl text-neutral-800 font-extrabold">ESPECIFICAÇÕES</h1>
+            <Text variant="h2">
+              ESPECIFICAÇÕES
+            </Text>
             <div
               className="text-sm font-medium text-neutral-700 space-y-4"
               dangerouslySetInnerHTML={{
@@ -135,12 +134,10 @@ export default function ProductPage() {
           </div>
         </section>
       </section>
-      <section className="flex flex-col gap-3">
-        <span className="text-3xl font-bold">Você pode gostar</span>
-        <div className="flex overflow-hidden gap-5 justify-center items-center">
+        <Text variant="h2">Você pode gostar</Text>
+        <div className="gap-5 justify-center items-center">
           <Suggestions />
         </div>
-      </section>
     </main>
   );
 }

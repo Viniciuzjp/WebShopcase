@@ -1,4 +1,4 @@
-import { useCart } from "@/CartContext/Context";
+import { useCart } from "@/app/Cart/ui/CartContext/Context";
 import Button from "@/components/button/Button";
 import Card from "@/components/card/card";
 import { Truck } from "lucide-react";
@@ -12,7 +12,7 @@ export default function Shipping() {
         <Card className="flex flex-col gap-3">
           <div className="flex w-full gap-5">
             <Truck />
-            <span className="text-lg">Opções de Envio</span>
+            <h2 className="text-lg">Opções de Envio</h2>
           </div>
 
           <div className="flex w-full">
@@ -23,8 +23,8 @@ export default function Shipping() {
               <div className="flex gap-3">
                 <input type="radio" />
                 <div className="flex items-start flex-col">
-                  <span className="font-semibold">Entrega</span>
-                  <span>5-7 Dias Úteis</span>
+                  <h2 className="font-semibold">Entrega</h2>
+                  <p>5-7 Dias Úteis</p>
                 </div>
               </div>
               <span>R$ ----- </span>

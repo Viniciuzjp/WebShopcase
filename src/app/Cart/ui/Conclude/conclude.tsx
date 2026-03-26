@@ -1,6 +1,6 @@
 "use client";
 
-import { useCart } from "@/CartContext/Context";
+import { useCart } from "@/app/Cart/ui/CartContext/Context";
 import Button from "@/components/button/Button";
 export default function CartProduct() {
   const { cart, total } = useCart();
@@ -48,7 +48,7 @@ export default function CartProduct() {
         <div className="flex flex-col gap-4 p-6 bg-muted/50 rounded-lg">
           <div className="flex justify-between items-center">
             <p className="text-lg font-medium">Total do Carrinho:</p>
-            <span className="text-2xl font-bold">R${total.toFixed(2)}</span>
+            <h1 className="text-2xl font-bold">R${total.toFixed(2)}</h1>
           </div>
           <Button onClick={HandleCheckout}>Finalizar Compra</Button>
         </div>

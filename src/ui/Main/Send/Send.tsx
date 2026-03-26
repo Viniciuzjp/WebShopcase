@@ -7,12 +7,12 @@ export default function Send () {
         <main className="bg-neutral-950">
             <section className="container mx-auto p-10 space-y-12">
                 <div className="flex flex-col justify-center items-center gap-4">
-                    <span className="text-3xl font-bold text-white">
+                    <h1 className="text-3xl font-bold text-white">
                         Permaneça Atualizado
-                    </span>
-                    <span className="text-md font-light text-white">
+                    </h1>
+                    <p className="text-md font-light text-white">
                         Inscreva-se para receber as novidades e promoções exclusivas, alem de receber descontos exclusivos.
-                    </span>
+                    </p>
                     <div className="flex gap-2">
                     <InputForm className="w-full text-white" />
                     <Button className="w-3/10" type="button">Enviar</Button>
