@@ -4,15 +4,14 @@ import { getProducts } from "@/lib/shopify";
 import type { Products } from "@/ui/shopifyinterface/interface";
 import { Text } from "@/components/text/Text";
 import { ProductGrid } from "@/design-system/layout/Productgrid";
-import { Container } from "@/design-system/layout/Container";
-import { Section } from "@/design-system/layout/Section";
+import { Container, Section } from '@av-digital/components';
 import ProductCard from "@/design-system/layout/ProductCard";
 
 export default async function OffersSection() {
   const datashopify: Products[] = await getProducts(50);
 
   return (
-    <Container>
+    <Container size="xl">
       <Section>
         <div className="mb-12 lg:mb-16">
           <div className="flex items-start justify-between gap-4 mb-4">

@@ -1,4 +1,4 @@
-import Card from "@/components/card/card";
+import { Card } from "@av-digital/components";
 import { Products } from "@/ui/shopifyinterface/interface";
 import Link from "next/link";
 import Image from "next/image";
@@ -26,7 +26,7 @@ export default function ProductCard({ product }: Props) {
           />
         </div>
 
-        <Stack align="center" spacing="md">
+        <Stack align="start" spacing="lg">
           <Text variant="productTitle" classname="line-clamp-3">{product.title}</Text>
 
           <Stack>

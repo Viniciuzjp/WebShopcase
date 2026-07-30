@@ -2,6 +2,7 @@
 
 import { useCart } from "@/app/Cart/ui/CartContext/Context";
 import Button from "@/components/button/Button";
+
 export default function CartProduct() {
   const { cart, total } = useCart();
 
@@ -20,6 +21,7 @@ export default function CartProduct() {
         quantity: cart[0].quantity,
       },
     ];
+
     try {
       const response = await fetch("/api/checkout", {
         method: "POST",
@@ -28,31 +30,38 @@ export default function CartProduct() {
         },
         body: JSON.stringify({ lineItems }),
       });
+
+      // 1. Se a requisição falhar (ex: 400, 404, 500), interrompe o fluxo antes do .json()
       if (!response.ok) {
-        console.log("erro na requisição");
+        const errorText = await response.text();
+        console.error("Erro no servidor:", response.status, errorText);
+        alert(`Erro ao iniciar checkout (${response.status}). Verifique o console da API.`);
+        return; // Parar aqui!
       }
+
+      // 2. Agora é seguro ler o JSON
       const data = await response.json();
-      window.location.href = data.checkoutUrl;[
+      console.log("Sucesso:", data);
 
-
-        
-      ]
-      console.log(data);
+      if (data.checkoutUrl) {
+        window.location.href = data.checkoutUrl;
+      } else {
+        console.error("checkoutUrl não retornado pela API", data);
+      }
     } catch (err) {
-      console.error(err);
+      console.error("Erro na requisição:", err);
     }
   }
+
   return (
-    <>
-      <section className="flex flex-col gap-5 w-full">
-        <div className="flex flex-col gap-4 p-6 bg-muted/50 rounded-lg">
-          <div className="flex justify-between items-center">
-            <p className="text-lg font-medium">Total do Carrinho:</p>
-            <h1 className="text-2xl font-bold">R${total.toFixed(2)}</h1>
-          </div>
-          <Button onClick={HandleCheckout}>Finalizar Compra</Button>
+    <section className="flex flex-col gap-5 w-full">
+      <div className="flex flex-col gap-4 p-6 bg-muted/50 rounded-lg">
+        <div className="flex justify-between items-center">
+          <p className="text-lg font-medium">Total do Carrinho:</p>
+          <h1 className="text-2xl font-bold">R${total.toFixed(2)}</h1>
         </div>
-      </section>
-    </>
+        <Button onClick={HandleCheckout}>Finalizar Compra</Button>
+      </div>
+    </section>
   );
 }

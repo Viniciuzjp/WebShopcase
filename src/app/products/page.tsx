@@ -1,6 +1,6 @@
 "use client";
 import Button from "@/components/button/Button";
-import InputForm from "@/components/Input/InputForm";
+import Input from "@mui/material/Input";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -13,6 +13,7 @@ import { ProductGrid } from "@/design-system/layout/Productgrid";
 import { Container } from "@/design-system/layout/Container";
 import { getProducts } from "@/lib/shopify";
 import { Skeleton } from "@/design-system/layout/Skeleton";
+import { Section } from "@av-digital/components";
 
 export default function Products() {
   const [produtos, setProdutos] = useState<Products[]>([]);
@@ -36,8 +37,16 @@ export default function Products() {
   }, []);
 
   const parsePrice = (price: string) => {
-    const [min, max] = price.split("-");
-    return { min: Number(min), max: Number(max) };
+    if (price.includes("-")) {
+      const [min, max] = price.split("-");
+      return { min: Number(min), max: Number(max) };
+    }
+    const value = Number(price);
+    return { min: value, max: value };
+  };
+
+  const handleFilterAll = () => {
+    setCategoria(search);
   };
 
   const handleFilterMax = () => {
@@ -57,8 +66,6 @@ export default function Products() {
     );
     setCategoria(sorted);
   };
-  console.log(categoria);
-  const handleFilterAll = () => setCategoria(search);
 
   const handleShowModal = () => {
     const modal = document.getElementById("modal");
@@ -76,7 +83,7 @@ export default function Products() {
 
   return (
     <Container>
-      <div className="flex w-[90%] flex-col justify-between max-md:flex-col md:flex-col lg:flex-col xl:flex-row">
+      <Section>
         <Button
           variant="primary"
           className="xl:w-1/10 m-5 top-5 left-1"
@@ -84,80 +91,80 @@ export default function Products() {
         >
           FILTRAR
         </Button>
-      </div>
-      <div className="flex max-md:flex-col md:flex-col lg:flex-col xl:flex-row gap-4">
-        <section id="modal" className="flex flex-col px-5 xl:w-3/11 gap-10">
-          <div className="flex mt-15 flex-col gap-5">
-            <Text variant="h1">FILTROS</Text>
-            <ul className="flex flex-col gap-5">
-              <InputForm
-                className="w-full h-12"
-                type="text"
-                placeholder="Buscar..."
-                onChange={handleSearch}
-                name="search"
-                id="search"
-              />
-              {["MOSTRAR TODOS", "MAIOR PREÇO", "MENOR PREÇO"].map(
-                (label, index) => {
-                  const onClick =
-                    index === 0
-                      ? handleFilterAll
-                      : index === 1
-                        ? handleFilterMax
-                        : handleFilterMin;
-                  return (
-                    <Stack key={index}>
-                      <div className="flex items-center gap-3 cursor-pointer">
-                        <div>
-                          <input
-                            type="radio"
-                            name="options"
-                            onClick={onClick}
-                            id={label}
-                            className="peer hidden"
-                          />
-                          <Check className="relative hidden peer-checked:flex peer-checked:left-8.5 peer-checked:h-4" />
-                        </div>
-                        <label
-                          htmlFor={label}
-                          className="font-semibold text-gray-700 cursor-pointer"
-                        >
-                          {label}
-                        </label>
-                        <Text variant="label">({categoria.length})</Text>
-                      </div>
-                    </Stack>
-                  );
-                },
-              )}
-            </ul>
-          </div>
-        </section>
 
-        <ProductGrid id="products">
-          {loading ? (
-            <>
-              {Array.from({ length: 10 }).map((_, i) => (
-                <div key={i} className="flex flex-col gap-3">
-                  <Skeleton className="w-full h-60 rounded-xl" />
-                  <Skeleton className="h-4 w-3/4" />
-                  <Skeleton className="h-4 w-1/2" />
-                  <Skeleton className="h-10 w-full rounded-lg" />
-                </div>
-              ))}
-            </>
-          ) : (
-            categoria
-              .filter((product) =>
-                product.title.toLowerCase().includes(filter.toLowerCase()),
-              )
-              .map((produto) => (
-                <ProductCard key={produto.id} product={produto} />
-              ))
-          )}
-        </ProductGrid>
-      </div>
+        <div className="flex flex-col gap-4">
+          <section id="modal" className="flex gap-10">
+            <div className="flex w-full mt-15 flex-col  gap-5">
+              <Text variant="h1">FILTROS</Text>
+              <ul className="flex max-lg:flex-col gap-5">
+                <Input
+                  className="w-5/10 max-lg:w-full h-12"
+                  type="text"
+                  placeholder="Buscar..."
+                  onChange={handleSearch}
+                  name="search"
+                  id="search"
+                />
+                {["MOSTRAR TODOS", "MAIOR PREÇO", "MENOR PREÇO"].map(
+                  (label, index) => {
+                    const onClick =
+                      index === 0
+                        ? handleFilterAll
+                        : index === 1
+                          ? handleFilterMax
+                          : handleFilterMin;
+                    return (
+                      <Stack key={index}>
+                        <div className="flex items-center gap-3 cursor-pointer">
+                          <div>
+                            <input
+                              type="radio"
+                              name="options"
+                              onClick={onClick}
+                              id={label}
+                              className="peer hidden"
+                            />
+                          </div>
+                          <label
+                            htmlFor={label}
+                            className="font-semibold text-gray-700 cursor-pointer"
+                          >
+                            {label}
+                          </label>
+                          <Text variant="label">({categoria.length})</Text>
+                        </div>
+                      </Stack>
+                    );
+                  },
+                )}
+              </ul>
+            </div>
+          </section>
+
+          <ProductGrid id="products">
+            {loading ? (
+              <>
+                {Array.from({ length: 10 }).map((_, i) => (
+                  <div key={i} className="flex flex-col gap-3">
+                    <Skeleton className="w-full h-60 rounded-xl" />
+                    <Skeleton className="h-4 w-3/4" />
+                    <Skeleton className="h-4 w-1/2" />
+                    <Skeleton className="h-10 w-full rounded-lg" />
+                  </div>
+                ))}
+              </>
+            ) : (
+              categoria
+                .filter((product) =>
+                  product.title.toLowerCase().includes(filter.toLowerCase()),
+                )
+                .map((produto) => (
+                  <ProductCard key={produto.id} product={produto} />
+                ))
+            )}
+          </ProductGrid>
+        </div>
+      </Section>
     </Container>
   );
 }

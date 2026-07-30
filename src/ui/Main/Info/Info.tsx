@@ -6,8 +6,7 @@ import {
 } from "lucide-react";
 import { Text } from "@/components/text/Text";
 import { Stack } from "@/design-system/layout/Stack";
-import { Container } from "@/design-system/layout/Container";
-import { Section } from "@/design-system/layout/Section";
+import { Container, Section } from '@av-digital/components';
 
 export default function Info() {
   return (

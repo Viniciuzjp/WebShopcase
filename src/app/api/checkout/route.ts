@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+
 export async function POST(req: Request) {
   try {
     const { lineItems } = await req.json();
@@ -11,8 +12,24 @@ export async function POST(req: Request) {
     const token = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
 
     if (!domain || !token) {
-      return NextResponse.json({ error: "Domínio ou token ausente" }, { status: 500 });
+      console.error("Erro: SHOPIFY_STORE_DOMAIN ou SHOPIFY_STOREFRONT_ACCESS_TOKEN não configurados no .env");
+      return NextResponse.json(
+        { error: "Domínio ou token ausente nas variáveis de ambiente" },
+        { status: 500 }
+      );
     }
+
+
+    const formattedLines = lineItems.map((item: { quantity: number; id: string }) => {
+      const merchandiseId = item.id.startsWith("gid://shopify/ProductVariant/")
+        ? item.id
+        : `gid://shopify/ProductVariant/${item.id}`;
+
+      return {
+        quantity: item.quantity,
+        merchandiseId,
+      };
+    });
 
     const response = await fetch(`https://${domain}/api/2025-01/graphql.json`, {
       method: "POST",
@@ -28,14 +45,15 @@ export async function POST(req: Request) {
                 id
                 checkoutUrl
               }
+              userErrors {
+                field
+                message
+              }
             }
           }
         `,
         variables: {
-          lines: lineItems.map((item: {quantity: number, id: string}) => ({
-            quantity: item.quantity,
-            merchandiseId: item.id,
-          })),
+          lines: formattedLines,
         },
       }),
     });
@@ -43,12 +61,34 @@ export async function POST(req: Request) {
     const data = await response.json();
     console.log("Shopify Cart Response:", JSON.stringify(data, null, 2));
 
-    const checkoutUrl = data.data?.cartCreate?.cart?.checkoutUrl;
-    
-    if (!checkoutUrl) {
-      return NextResponse.json({ error: "Não foi possível gerar checkout", details: data }, { status: 500 });
+    if (data.errors) {
+      console.error("Erros do GraphQL da Shopify:", data.errors);
+      return NextResponse.json({ error: data.errors }, { status: 400 });
     }
+
+
+    const userErrors = data.data?.cartCreate?.userErrors;
+    if (userErrors && userErrors.length > 0) {
+      console.error("Erros de validação da Shopify:", userErrors);
+      return NextResponse.json({ error: userErrors }, { status: 400 });
+    }
+
+    const checkoutUrl = data.data?.cartCreate?.cart?.checkoutUrl;
+
+    if (!checkoutUrl) {
+      return NextResponse.json(
+        { error: "Não foi possível gerar a URL de checkout." },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({ checkoutUrl });
+
   } catch (err) {
-    console.error("Erro Cart Checkout:", err);
+    console.error("Erro no manipulador do Cart Checkout:", err);
+    return NextResponse.json(
+      { error: "Erro interno no servidor de checkout" },
+      { status: 500 }
+    );
   }
 }

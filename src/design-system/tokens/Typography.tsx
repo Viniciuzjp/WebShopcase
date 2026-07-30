@@ -1,7 +1,7 @@
 export const Typography = {
   // Produto
-  productTitle: "text-lg font-medium leading-snug text-neutral-800",
-  productPrice: "text-xl font-medium leading-none tabular-nums",
+  productTitle: "text-md leading-snug text-neutral-800",
+  productPrice: "text-lg font-normal leading-none tabular-nums",
 
   // Headings
   h1: "text-4xl font-bold leading-tight",

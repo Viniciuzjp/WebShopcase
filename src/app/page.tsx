@@ -7,6 +7,7 @@ import Releases from "@/ui/Main/Release/Release";
 import Send from "@/ui/Main/Send/Send";
 import { Suspense } from "react";
 
+
 export default function Home() {
   return (
     <>
