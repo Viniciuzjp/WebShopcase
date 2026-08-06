@@ -1,5 +1,7 @@
+import { Typography } from "@/design-system/tokens/Typography"
+
 export type TextProps = {
-    variant?: 'h1' | 'h2' | 'body' | 'productTitle' | 'productPrice' | 'bodySm' | 'label' | 'caption' | 'badge' | 'button'
+    variant?: keyof typeof Typography
     children?: React.ReactNode
     classname?: string 
 }

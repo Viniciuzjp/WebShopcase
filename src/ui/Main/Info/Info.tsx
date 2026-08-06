@@ -1,67 +1,141 @@
 import {
+  ShieldCheck,
   Truck,
-  Shield,
-  RefreshCw,
-  Clock,
+  Headset,
+  BadgeCheck,
 } from "lucide-react";
-import { Text } from "@/components/text/Text";
+
+import { Container } from "@/design-system/layout/Container";
+import { Section } from "@/design-system/layout/Section";
 import { Stack } from "@/design-system/layout/Stack";
-import { Container, Section } from '@av-digital/components';
+import { Text } from "@/components/text/Text";
 
-export default function Info() {
+export default function StoreBenefits() {
   return (
-    <>
-      <Container >
-        <Section>
-        <Stack align="center">
-          <Truck className="w-10 h-10" />
-          <div>
-            <Text variant="body">
-              Envio para todo o Brasil
-            </Text>
-              <Text variant="bodySm">
-                Em Compras Acima de R$ 299
-              </Text>
-          </div>
-        </Stack>
+    <Section className="border-y border-neutral-200 bg-white">
+      <Container>
 
-        <Stack align="center">
-          <Shield className="w-10 h-10" />
-          <div>
-            <Text variant="body">
-              Pagamento Seguro
-            </Text>
-              <Text variant="bodySm">
-                100% Seguro e Protegido
-              </Text>
-          </div>
-        </Stack>
+        <div className="grid gap-10 py-16 md:grid-cols-2 xl:grid-cols-4">
 
-        <Stack align="center">
-          <RefreshCw className="w-10 h-10" />
-          <div>
-            <Text variant="body">
-              Trocas e Devoluções
-            </Text>
-              <Text variant="bodySm">
-                30 dias para trocas e devoluções
-              </Text>
-          </div>
-        </Stack>
+          <Stack
+            spacing="md"
+            align="start"
+            className="group transition-colors"
+          >
+            <div className="rounded-full border border-neutral-200 p-3 transition-colors group-hover:border-black">
+              <ShieldCheck
+                size={22}
+                className="text-neutral-800"
+              />
+            </div>
 
-        <Stack align="center">
-          <Clock className="w-10 h-10" />
-          <div>
-            <Text variant="body">
-              Atendimento ao Cliente
-            </Text>
-              <Text variant="bodySm">
-                Atendimento 24h
+            <Stack spacing="xs">
+
+              <Text variant="h3">
+                Compra Segura
               </Text>
-          </div>
-        </Stack>
-        </Section>
+
+              <Text
+                variant="body"
+                classname="leading-7 text-neutral-600"
+              >
+                Seus dados são protegidos por plataformas de pagamento
+                confiáveis para garantir uma compra tranquila.
+              </Text>
+
+            </Stack>
+          </Stack>
+
+          <Stack
+            spacing="md"
+            align="start"
+            className="group"
+          >
+            <div className="rounded-full border border-neutral-200 p-3 transition-colors group-hover:border-black">
+              <Truck
+                size={22}
+                className="text-neutral-800"
+              />
+            </div>
+
+            <Stack spacing="xs">
+
+              <Text variant="h3">
+                Entrega Nacional
+              </Text>
+
+              <Text
+                variant="body"
+                classname="leading-7 text-neutral-600"
+              >
+                Enviamos para todo o Brasil com rastreamento para acompanhar
+                cada etapa do seu pedido.
+              </Text>
+
+            </Stack>
+          </Stack>
+
+          <Stack
+            spacing="md"
+            align="start"
+            className="group"
+          >
+            <div className="rounded-full border border-neutral-200 p-3 transition-colors group-hover:border-black">
+              <BadgeCheck
+                size={22}
+                className="text-neutral-800"
+              />
+            </div>
+
+            <Stack spacing="xs">
+
+              <Text variant="h3">
+                Qualidade Garantida
+              </Text>
+
+              <Text
+                variant="body"
+                classname="leading-7 text-neutral-600"
+              >
+                Selecionamos cuidadosamente cada produto para oferecer
+                qualidade, conforto e excelente acabamento.
+              </Text>
+
+            </Stack>
+          </Stack>
+
+          <Stack
+            spacing="md"
+            align="start"
+            className="group"
+          >
+            <div className="rounded-full border border-neutral-200 p-3 transition-colors group-hover:border-black">
+              <Headset
+                size={22}
+                className="text-neutral-800"
+              />
+            </div>
+
+            <Stack spacing="xs">
+
+              <Text variant="h3">
+                Atendimento Especializado
+              </Text>
+
+              <Text
+                variant="body"
+                classname="leading-7 text-neutral-600"
+              >
+                Nossa equipe está pronta para ajudar antes, durante e após
+                sua compra sempre que necessário.
+              </Text>
+
+            </Stack>
+          </Stack>
+
+        </div>
+
       </Container>
-    </>
+    </Section>
   );
 }

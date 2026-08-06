@@ -11,30 +11,37 @@ type Props = {
 
 export default function ProductCard({ product }: Props) {
   return (
-    <Card>
+    <Card className="group overflow-hidden bg-white border border-neutral-200 transition-colors hover:border-neutral-400">
       <Link
         href={`/produtos/${encodeURIComponent(product.id)}`}
-        className="group space-y-2"
+        className="flex flex-col h-full"
       >
-        <div className="relative w-full overflow-hidden bg-neutral-50 aspect-square">
+        <div className="relative aspect-[4/5] overflow-hidden bg-neutral-100">
           <Image
             src={product.images[0].src || "/placeholder.svg"}
             alt={product.images[0].altText || product.title}
-            width={400}
-            height={400}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            fill
+            sizes="(max-width:768px) 50vw, (max-width:1280px) 33vw, 25vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
         </div>
 
-        <Stack align="start" spacing="lg">
-          <Text variant="productTitle" classname="line-clamp-3">{product.title}</Text>
+        <Stack spacing="xs" align="start" className="px-4 py-5">
+          <Text
+            variant="productTitle"
+            classname="line-clamp-2 text-[15px] font-normal leading-snug text-neutral-800"
+          >
+            {product.title}
+          </Text>
 
-          <Stack>
-            <Text variant="productPrice">R$ {product.variants[0].price.amount}</Text>
-          </Stack>
+          <Text
+            variant="productPrice"
+            classname="text-lg font-semibold tracking-tight text-neutral-900"
+          >
+            R$ {product.variants[0].price.amount}
+          </Text>
         </Stack>
       </Link>
     </Card>
-
   );
 }

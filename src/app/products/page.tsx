@@ -1,169 +1,193 @@
 "use client";
+
+import { useEffect, useMemo, useState } from "react";
+
 import Button from "@/components/button/Button";
-import Input from "@mui/material/Input";
-import Link from "next/link";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import type { Products } from "@/ui/shopifyinterface/interface";
-import { Check } from "lucide-react";
-import { Text } from "@/components/text/Text";
-import ProductCard from "@/design-system/layout/ProductCard";
-import { Stack } from "@/design-system/layout/Stack";
-import { ProductGrid } from "@/design-system/layout/Productgrid";
+import InputForm from "@/components/Input/InputForm";
+
 import { Container } from "@/design-system/layout/Container";
-import { getProducts } from "@/lib/shopify";
+import { ProductGrid } from "@/design-system/layout/Productgrid";
+import ProductCard from "@/design-system/layout/ProductCard";
 import { Skeleton } from "@/design-system/layout/Skeleton";
+import { Stack } from "@/design-system/layout/Stack";
+
+import { Text } from "@/components/text/Text";
 import { Section } from "@av-digital/components";
 
+import { getProducts } from "@/lib/shopify";
+import type { Products } from "@/ui/shopifyinterface/interface";
+
+type SortOption = "featured" | "price-asc" | "price-desc";
+
 export default function Products() {
-  const [produtos, setProdutos] = useState<Products[]>([]);
-  const [categoria, setCategoria] = useState<Products[]>([]);
-  const [search, setSearch] = useState<Products[]>([]);
+  const [products, setProducts] = useState<Products[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const [search, setSearch] = useState("");
+  const [sort, setSort] = useState<SortOption>("featured");
+
+  const [filtersOpen, setFiltersOpen] = useState(false);
+
   useEffect(() => {
-    async function fetchData() {
+    async function fetchProducts() {
       try {
-        const dataShopify: Products[] = await getProducts(50);
-        setProdutos(dataShopify);
-        setCategoria(dataShopify);
-        setSearch(dataShopify);
-      } catch (err) {
-        console.log(err);
+        const data = await getProducts(50);
+        setProducts(data);
+      } catch (error) {
+        console.error(error);
       } finally {
         setLoading(false);
       }
     }
-    fetchData();
+
+    fetchProducts();
   }, []);
 
-  const parsePrice = (price: string) => {
-    if (price.includes("-")) {
-      const [min, max] = price.split("-");
-      return { min: Number(min), max: Number(max) };
+  const filteredProducts = useMemo(() => {
+    let list = [...products];
+
+    if (search.trim()) {
+      list = list.filter((product) =>
+        product.title.toLowerCase().includes(search.toLowerCase()),
+      );
     }
-    const value = Number(price);
-    return { min: value, max: value };
-  };
 
-  const handleFilterAll = () => {
-    setCategoria(search);
-  };
+    switch (sort) {
+      case "price-asc":
+        list.sort(
+          (a, b) =>
+            Number(a.variants[0].price.amount) -
+            Number(b.variants[0].price.amount),
+        );
+        break;
 
-  const handleFilterMax = () => {
-    const sorted = [...categoria].sort(
-      (a, b) =>
-        parsePrice(b.variants[0].price.amount).max -
-        parsePrice(a.variants[0].price.amount).max,
-    );
-    setCategoria(sorted);
-  };
+      case "price-desc":
+        list.sort(
+          (a, b) =>
+            Number(b.variants[0].price.amount) -
+            Number(a.variants[0].price.amount),
+        );
+        break;
+    }
 
-  const handleFilterMin = () => {
-    const sorted = [...categoria].sort(
-      (a, b) =>
-        parsePrice(a.variants[0].price.amount).min -
-        parsePrice(b.variants[0].price.amount).min,
-    );
-    setCategoria(sorted);
-  };
-
-  const handleShowModal = () => {
-    const modal = document.getElementById("modal");
-    const products = document.getElementById("products");
-
-    modal?.classList.toggle("hidden");
-    products?.classList.toggle("xl:grid-cols-5");
-  };
-
-  const [filter, setFilter] = useState("");
-
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFilter(e.target.value);
-  };
+    return list;
+  }, [products, search, sort]);
 
   return (
     <Container>
       <Section>
-        <Button
-          variant="primary"
-          className="xl:w-1/10 m-5 top-5 left-1"
-          onClick={handleShowModal}
-        >
-          FILTRAR
-        </Button>
+        <Stack spacing="xl">
+          {/* HEADER */}
 
-        <div className="flex flex-col gap-4">
-          <section id="modal" className="flex gap-10">
-            <div className="flex w-full mt-15 flex-col  gap-5">
-              <Text variant="h1">FILTROS</Text>
-              <ul className="flex max-lg:flex-col gap-5">
-                <Input
-                  className="w-5/10 max-lg:w-full h-12"
-                  type="text"
-                  placeholder="Buscar..."
-                  onChange={handleSearch}
-                  name="search"
-                  id="search"
-                />
-                {["MOSTRAR TODOS", "MAIOR PREÇO", "MENOR PREÇO"].map(
-                  (label, index) => {
-                    const onClick =
-                      index === 0
-                        ? handleFilterAll
-                        : index === 1
-                          ? handleFilterMax
-                          : handleFilterMin;
-                    return (
-                      <Stack key={index}>
-                        <div className="flex items-center gap-3 cursor-pointer">
-                          <div>
-                            <input
-                              type="radio"
-                              name="options"
-                              onClick={onClick}
-                              id={label}
-                              className="peer hidden"
-                            />
-                          </div>
-                          <label
-                            htmlFor={label}
-                            className="font-semibold text-gray-700 cursor-pointer"
-                          >
-                            {label}
-                          </label>
-                          <Text variant="label">({categoria.length})</Text>
-                        </div>
-                      </Stack>
-                    );
-                  },
-                )}
-              </ul>
-            </div>
-          </section>
+          <div className="flex items-end justify-between border-b border-neutral-200 pb-6">
+            <Stack spacing="xs">
+              <Text variant="h1">Produtos</Text>
 
-          <ProductGrid id="products">
-            {loading ? (
-              <>
-                {Array.from({ length: 10 }).map((_, i) => (
-                  <div key={i} className="flex flex-col gap-3">
-                    <Skeleton className="w-full h-60 rounded-xl" />
-                    <Skeleton className="h-4 w-3/4" />
-                    <Skeleton className="h-4 w-1/2" />
-                    <Skeleton className="h-10 w-full rounded-lg" />
-                  </div>
-                ))}
-              </>
-            ) : (
-              categoria
-                .filter((product) =>
-                  product.title.toLowerCase().includes(filter.toLowerCase()),
-                )
-                .map((produto) => (
-                  <ProductCard key={produto.id} product={produto} />
-                ))
-            )}
-          </ProductGrid>
-        </div>
+              <Text variant="body" classname="text-neutral-500">
+                {filteredProducts.length} produtos
+              </Text>
+            </Stack>
+
+            <Button
+              className="xl:hidden"
+              onClick={() => setFiltersOpen(!filtersOpen)}
+            >
+              Filtros
+            </Button>
+          </div>
+
+          {/* CONTENT */}
+
+          <div className="grid grid-cols-1 xl:grid-cols-[280px_1fr] gap-12">
+            {/* SIDEBAR */}
+
+            <aside
+              className={`
+                ${filtersOpen ? "block" : "hidden"}
+                xl:block
+              `}
+            >
+              <Stack spacing="lg" className="sticky top-28">
+                <Text variant="h3">Filtros</Text>
+
+                <Stack spacing="xs">
+                  <Text variant="label">Buscar</Text>
+
+                  <InputForm
+                    type="text"
+                    placeholder="Nome do produto"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
+                </Stack>
+
+                <hr className="border-neutral-200" />
+
+                <Stack spacing="sm">
+                  <Text variant="label">Ordenar</Text>
+
+                  <label className="flex items-center gap-3 cursor-pointer">
+                    <input
+                      type="radio"
+                      checked={sort === "featured"}
+                      onChange={() => setSort("featured")}
+                    />
+
+                    <Text variant="body">Relevância</Text>
+                  </label>
+
+                  <label className="flex items-center gap-3 cursor-pointer">
+                    <input
+                      type="radio"
+                      checked={sort === "price-asc"}
+                      onChange={() => setSort("price-asc")}
+                    />
+
+                    <Text variant="body">Menor preço</Text>
+                  </label>
+
+                  <label className="flex items-center gap-3 cursor-pointer">
+                    <input
+                      type="radio"
+                      checked={sort === "price-desc"}
+                      onChange={() => setSort("price-desc")}
+                    />
+
+                    <Text variant="body">Maior preço</Text>
+                  </label>
+                </Stack>
+
+                <Button
+                  variant="secondary"
+                  onClick={() => {
+                    setSearch("");
+                    setSort("featured");
+                  }}
+                >
+                  Limpar filtros
+                </Button>
+              </Stack>
+            </aside>
+
+            {/* GRID */}
+
+            <ProductGrid className="gap-x-8 gap-y-14">
+              {loading
+                ? Array.from({ length: 8 }).map((_, index) => (
+                    <Stack key={index} spacing="sm">
+                      <Skeleton className="aspect-[4/5]" />
+
+                      <Skeleton className="h-5 w-3/4" />
+
+                      <Skeleton className="h-5 w-24" />
+                    </Stack>
+                  ))
+                : filteredProducts.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+            </ProductGrid>
+          </div>
+        </Stack>
       </Section>
     </Container>
   );

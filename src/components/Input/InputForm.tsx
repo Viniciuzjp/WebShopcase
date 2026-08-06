@@ -1,10 +1,41 @@
-
 import InputProps from "./interface";
 
-export default function InputForm({name, id, type, placeholder, className, onChange}: InputProps) {
-    return (
-        <div className="relative">
-            <input className={`${className}  border-b text-black pl-3 pr-2 py-3 placeholder:text-gray-600 placeholder:text-md placeholder:font:normal outline-none border-neutral-400`} type={type} placeholder={placeholder} onChange={onChange} name={name} id={id} />
-        </div>
-    );
+export default function InputForm({
+  name,
+  id,
+  type = "text",
+  placeholder,
+  className = "",
+  onChange,
+}: InputProps) {
+  return (
+    <div className="w-full">
+      <input
+        id={id}
+        name={name}
+        type={type}
+        placeholder={placeholder}
+        onChange={onChange}
+        className={`
+          w-full
+          border-b
+          border-neutral-400
+          bg-transparent
+          px-0
+          py-3
+          text-base
+          font-normal
+          text-neutral-900
+          placeholder:text-neutral-500
+          outline-none
+          transition-colors
+          duration-200
+          focus:border-black
+          disabled:cursor-not-allowed
+          disabled:opacity-50
+          ${className}
+        `}
+      />
+    </div>
+  );
 }

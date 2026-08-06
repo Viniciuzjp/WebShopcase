@@ -1,40 +1,43 @@
 "use client";
 
-import { Airplay, AirVent, Heart, ShoppingCart, User, UserPlus, Wallet } from "lucide-react";
+import { Flex } from "@av-digital/components";
+import { Text } from "@/components/text/Text";
+import { Heart, ShoppingCart, User, Wallet } from "lucide-react";
 import Link from "next/link";
 
 export default function Header() {
   return (
     <>
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b border-gray-200">
-        <div className="container mx-auto space-x-3 px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold"><Link href="/">Hygg</Link></h1>
-            </div>
+      <header className="sticky top-0 w-full z-10 px-5 py-4 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b border-gray-200">
+        <Flex align="center" justify="between">
+          <Text variant="h2">
+            <Link href="/">Hygg</Link>
+          </Text>
 
-            <nav className="hidden lg:flex justify-between items-center space-x-8">
-              <Link href="/products" className="text-sm font-medium text-gray-600 hover:text-black transition-colors">
-                Produtos
-              </Link>
-            </nav>
+          <Flex justify="between" align="center" gap="sm">
+            <Link
+              href="/products"
+              className="text-sm font-medium text-gray-600 hover:text-black transition-colors"
+            >
+              Produtos
+            </Link>
+          </Flex>
 
-            <nav className="flex items-center space-x-4">
-              <Link href="/wishlist" className="hidden">
-                <Heart className="h-5 w-5 text-gray-700" />
-              </Link>
-              <Link href="/Cart" className="">
-                <ShoppingCart className="h-5 w-5 text-gray-700" />
-              </Link>
-              <a href="https://shopify.com/78258995418/account/profile" className="">
-                <User className="h-5 w-5 text-gray-700" />
-              </a>
-              <a href="https://shopify.com/78258995418/account/orders" className="">
-                <Wallet className="h-5 w-5 text-gray-700" />
-              </a>
-            </nav>
-          </div>
-        </div>
+          <Flex justify="center" align="center" gap="sm">
+            <Link href="/wishlist" className="hidden">
+              <Heart className="h-5 w-5 text-gray-700" />
+            </Link>
+            <Link href="/Cart">
+              <ShoppingCart className="h-5 w-5 text-gray-700" />
+            </Link>
+            <a href="https://shopify.com/78258995418/account/profile">
+              <User className="h-5 w-5 text-gray-700" />
+            </a>
+            <a href="https://shopify.com/78258995418/account/orders">
+              <Wallet className="h-5 w-5 text-gray-700" />
+            </a>
+          </Flex>
+        </Flex>
       </header>
     </>
   );

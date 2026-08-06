@@ -1,24 +1,26 @@
 import Link from "next/link";
+import { Text } from "@/components/text/Text";
+import { Container, Grid, Stack } from "@av-digital/components";
 
 export default function Footer() {
-    return (
-        <>
-        <footer className="bg-gray-100 py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <h4 className="text-lg font-bold text-black">Hygg</h4>
-              <p className="text-sm text-gray-600 text-pretty">
-                Apresentendo o Hygg, uma plataforma de e-commerce que
-                oferece uma experiência de compra online excepcional. Com uma
-                ampla variedade de produtos, uma navegação intuitiva e uma
-                experiência de compra rápida e fácil, o Hygg torna a compra
-                online uma experiência agradável e conveniente.
-              </p>
-            </div>
+  return (
+    <>
+      <footer className="bg-gray-100 py-16">
+        <Container size="xl">
+          <Grid classname="grid-cols-1 md:grid-cols-4" gap="sm">
+            <Stack>
+              <Text variant="h2">Hygg</Text>
+              <Text variant="bodySm">
+                Apresentendo o Hygg, uma plataforma de e-commerce que oferece
+                uma experiência de compra online excepcional. Com uma ampla
+                variedade de produtos, uma navegação intuitiva e uma experiência
+                de compra rápida e fácil, o Hygg torna a compra online uma
+                experiência agradável e conveniente.
+              </Text>
+            </Stack>
 
-            <div className="space-y-4">
-              <h5 className="font-medium text-black">Shop</h5>
+            <Stack>
+              <Text variant="h2">Shop</Text>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li>
                   <Link
@@ -53,10 +55,10 @@ export default function Footer() {
                   </Link>
                 </li>
               </ul>
-            </div>
+            </Stack>
 
-            <div className="space-y-4">
-              <h5 className="font-medium text-black">Suporte</h5>
+            <Stack>
+              <Text variant="h2">Suporte</Text>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li>
                   <Link
@@ -83,15 +85,18 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/faq" className="hover:text-black transition-colors">
+                  <Link
+                    href="/faq"
+                    className="hover:text-black transition-colors"
+                  >
                     FAQ
                   </Link>
                 </li>
               </ul>
-            </div>
+            </Stack>
 
-            <div className="space-y-4">
-              <h5 className="font-medium text-black">Compania</h5>
+            <Stack>
+              <Text variant="h2">Compania</Text>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li>
                   <Link
@@ -118,16 +123,19 @@ export default function Footer() {
                   </Link>
                 </li>
               </ul>
-            </div>
-          </div>
+            </Stack>
+          </Grid>
 
           <div className="border-t border-gray-300 mt-12 pt-8 text-center">
-            <p className="text-sm text-gray-600">
-              © {new Date().getFullYear()} Hygg. todos os direitos são unicamente e exclusivamente reservados por WebHygg Inc. Todos os direitos de imagem e marca registrada pertencem aos seus respectivos donos. 
-            </p>
+            <Text variant="bodySm">
+              © {new Date().getFullYear()} Hygg. todos os direitos são
+              unicamente e exclusivamente reservados por WebHygg Inc. Todos os
+              direitos de imagem e marca registrada pertencem aos seus
+              respectivos donos.
+            </Text>
           </div>
-        </div>
+        </Container>
       </footer>
-        </>
-    )
+    </>
+  );
 }

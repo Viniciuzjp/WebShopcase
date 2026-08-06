@@ -1,14 +1,14 @@
 import { Container } from "@/design-system/layout/Container";
-import { ProductGrid } from "@/design-system/layout/Productgrid";
 import { Section } from "@/design-system/layout/Section";
 import { Skeleton } from "@/design-system/layout/Skeleton";
 import { Stack } from "@/design-system/layout/Stack";
+import { Grid } from "@av-digital/components";
 
 export default function ProductsSkeleton() {
   return (
     <Container>
       <Section>
-        <ProductGrid>
+        <Grid>
           {Array.from({ length: 8 }).map((_, i) => (
             <div key={i} className="flex flex-col gap-3">
               <Skeleton className="w-full h-60 rounded-xl animate-pulse" />
@@ -19,7 +19,7 @@ export default function ProductsSkeleton() {
               </Stack>
             </div>
           ))}
-        </ProductGrid>
+        </Grid>
       </Section>
     </Container>
   );
