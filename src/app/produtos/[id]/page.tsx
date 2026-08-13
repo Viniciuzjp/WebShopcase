@@ -8,7 +8,6 @@ import Button from "@/components/button/Button";
 import { Products } from "@/ui/shopifyinterface/interface";
 import Suggestions from "@/components/suggestions/suggestions";
 import { Text } from "@/components/text/Text";
-import { Skeleton } from "@/design-system/layout/Skeleton";
 import { Container, Flex, Grid, Section, Stack } from "@av-digital/components";
 import { PorductSkelleton } from "../Skelleton/Skelleton";
 
@@ -30,15 +29,14 @@ export default function ProductPage() {
     async function fetchProduct() {
       try {
         const response = await fetch(`/api/products/${id}`);
+
         if (!response.ok) {
-          const text = await response.text();
-          console.error("Erro API:", text);
           throw new Error(`HTTP ${response.status}`);
         }
 
         const data: Products = await response.json();
         setProduct(data);
-      } catch (err: unknown) {
+      } catch (err) {
         console.error(err);
         setError("Erro ao buscar produto");
       } finally {
@@ -52,20 +50,22 @@ export default function ProductPage() {
   const handleAddToCart = () => {
     if (!product) return;
 
-    const item = {
+    const variant = product.variants[0];
+
+    if (!variant) return;
+
+    AddItem({
       id: product.id,
-      variantId: product.variants[0]?.id,
+      variantId: variant.id,
       title: product.title,
       image: product.images[0],
-      price: product.variants[0].price.amount,
-    };
-
-    AddItem(item);
+      price: variant.price.amount,
+    });
   };
 
   if (error) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex min-h-screen items-center justify-center px-4">
         <Text variant="h2">{error}</Text>
       </div>
     );
@@ -76,54 +76,79 @@ export default function ProductPage() {
   return (
     <>
       {loading ? (
-       <PorductSkelleton/>
+        <PorductSkelleton />
       ) : (
         <Container size="xl">
           <Section>
-            <Grid classname="lg:grid-cols-2">
-              <div className="lg:sticky lg:top-24 self-start">
-                <Flex align="start" justify="center">
-                  <Stack classname="w-1/6">
+            <Grid classname="min-w-0 lg:grid-cols-2">
+              <div className="min-w-0 w-full lg:sticky lg:top-24 lg:self-start">
+                <Flex
+                  align="start"
+                  justify="center"
+                  className="w-full min-w-0 gap-4 lg:px-6"
+                >
+                  <Stack classname="w-16 shrink-0 gap-3">
                     {product?.images.map((img, index) => (
-                      <Image
+                      <button
                         key={img.src}
-                        src={img.src}
-                        alt={img.altText || "IMG"}
-                        height={img.height}
-                        width={img.width}
-                        className="hover:border"
+                        type="button"
                         onClick={() => setCurrentImageIndex(index)}
-                      ></Image>
+                        className={`relative aspect-square w-16 shrink-0 overflow-hidden rounded-md border ${
+                          currentImageIndex === index
+                            ? "border-neutral-900"
+                            : "border-transparent hover:border-neutral-300"
+                        }`}
+                      >
+                        <Image
+                          src={img.src}
+                          alt={img.altText || "Imagem do produto"}
+                          fill
+                          sizes="64px"
+                          className="object-cover"
+                        />
+                      </button>
                     ))}
                   </Stack>
-                  <Flex align="center" justify="center" className="w-8/11">
+
+                  <Flex
+                    align="center"
+                    justify="center"
+                    className="min-w-0 flex-1 overflow-hidden"
+                  >
                     {currentImage && (
                       <Image
                         src={currentImage.src}
-                        alt={product.images[0].altText || "IMG"}
-                        height={product.images[0].height}
-                        width={product.images[0].width}
-                      ></Image>
+                        alt={currentImage.altText || "Imagem do produto"}
+                        width={700}
+                        height={700}
+                        sizes="(max-width: 1024px) calc(100vw - 5rem), 60vw"
+                        className="block h-auto w-full max-w-full object-contain"
+                      />
                     )}
                   </Flex>
                 </Flex>
               </div>
 
-              <Stack gap="lg">
+              <Stack classname="min-w-0 w-full" gap="lg">
                 <Text variant="h1">{product?.title}</Text>
+
                 <hr />
+
                 <Text variant="h2">R$ {product?.variants[0].price.amount}</Text>
+
                 <Button onClick={handleAddToCart}>ADICIONAR AO CARRINHO</Button>
 
                 <Text variant="h2">ESPECIFICAÇÕES</Text>
+
                 <article
-                  className="product-description"
+                  className="product-description max-w-full overflow-hidden"
                   dangerouslySetInnerHTML={{
                     __html: product?.descriptionHtml || "",
                   }}
                 />
               </Stack>
             </Grid>
+
             <Flex className="mt-15">
               <Text variant="h2">Você pode gostar</Text>
               <Suggestions />
@@ -133,6 +158,4 @@ export default function ProductPage() {
       )}
     </>
   );
-}
-{
 }

@@ -77,9 +77,8 @@ export default function Products() {
     <Container>
       <Section>
         <Stack spacing="xl">
-          {/* HEADER */}
 
-          <div className="flex items-end justify-between border-b border-neutral-200 pb-6">
+          <div className="flex w-full items-end justify-between border-b border-neutral-200 pb-6">
             <Stack spacing="xs">
               <Text variant="h1">Produtos</Text>
 
@@ -96,10 +95,7 @@ export default function Products() {
             </Button>
           </div>
 
-          {/* CONTENT */}
-
           <div className="grid grid-cols-1 xl:grid-cols-[280px_1fr] gap-12">
-            {/* SIDEBAR */}
 
             <aside
               className={`
@@ -168,8 +164,6 @@ export default function Products() {
                 </Button>
               </Stack>
             </aside>
-
-            {/* GRID */}
 
             <ProductGrid className="gap-x-8 gap-y-14">
               {loading

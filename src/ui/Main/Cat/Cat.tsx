@@ -10,10 +10,10 @@ import { Section } from "@/design-system/layout/Section";
 import { Button, Flex, Stack } from "@av-digital/components";
 
 const images = [
-  { src: "/images/CatStreet.webp", alt: "Street" },
-  { src: "/images/CatAngel.webp", alt: "Angels" },
-  { src: "/images/CatOthers.jpg", alt: "Outros" },
-  { src: "/images/CatAll.webp", alt: "Todos" },
+  { src: "/images/Cars.png", alt: "Automotivo" },
+  { src: "/images/Pilots.png", alt: "Pilotos" },
+  { src: "/images/Films.png", alt: "Filmes" },
+  { src: "/images/Others.png", alt: "Outros" },
 ];
 
 const CARD_WIDTH = 280;
