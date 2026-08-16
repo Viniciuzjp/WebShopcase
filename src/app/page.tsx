@@ -11,18 +11,20 @@ import { Container } from "@av-digital/components";
 export default function Home() {
   return (
     <>
-      <main className="min-h-screen bg-neutral-50">
+      <main className="min-h-screen">
         <Hero />
         <Container size="xl">
           <Info />
-          <Suspense fallback={<ProductsSkeleton />}>
-            <Offer />
-          </Suspense>
-          <Cat />
-          <Suspense fallback={<ProductsSkeleton />}>
-            <Releases />
-          </Suspense>
         </Container>
+        <Suspense fallback={<ProductsSkeleton />}>
+          <Offer />
+        </Suspense>
+        <Container size="xl">
+          <Cat />
+        </Container>
+        <Suspense fallback={<ProductsSkeleton />}>
+          <Releases />
+        </Suspense>
         <Send />
       </main>
     </>

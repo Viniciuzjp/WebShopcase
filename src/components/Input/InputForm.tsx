@@ -7,6 +7,7 @@ export default function InputForm({
   placeholder,
   className = "",
   onChange,
+  ...rest
 }: InputProps) {
   return (
     <div className="w-full">
@@ -16,6 +17,7 @@ export default function InputForm({
         type={type}
         placeholder={placeholder}
         onChange={onChange}
+        {...rest}
         className={`
           w-full
           border-b

@@ -7,10 +7,10 @@ export default function Footer() {
     <>
       <footer className="bg-gray-100 py-16">
         <Container size="xl">
-          <Grid classname="grid-cols-1 md:grid-cols-4" gap="sm">
+          <Grid classname="grid-cols-1 md:grid-cols-4" gap="lg">
             <Stack>
               <Text variant="h2">Hygg</Text>
-              <Text variant="bodySm">
+              <Text variant="bodySm" classname="text-gray-600">
                 Apresentendo o Hygg, uma plataforma de e-commerce que oferece
                 uma experiência de compra online excepcional. Com uma ampla
                 variedade de produtos, uma navegação intuitiva e uma experiência

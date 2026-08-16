@@ -10,10 +10,10 @@ import { Section } from "@/design-system/layout/Section";
 import { Button, Flex, Stack } from "@av-digital/components";
 
 const images = [
-  { src: "/images/Cars.png", alt: "Automotivo" },
-  { src: "/images/Pilots.png", alt: "Pilotos" },
-  { src: "/images/Films.png", alt: "Filmes" },
-  { src: "/images/Others.png", alt: "Outros" },
+  { src: "/images/Cars.png", alt: "Automotivo", href: "/products" },
+  { src: "/images/Pilots.png", alt: "Pilotos", href: "/products" },
+  { src: "/images/Films.png", alt: "Filmes", href: "/products" },
+  { src: "/images/Others.png", alt: "Outros", href: "/products" },
 ];
 
 const CARD_WIDTH = 280;
@@ -98,6 +98,7 @@ export default function Cat() {
             >
               {duplicated.map((item, i) => (
                 <div key={i} className="min-w-[280px] px-4">
+                  <Link href={item.href}>
                   <div className="relative aspect-square rounded-full overflow-hidden">
                     <Image
                       src={item.src}
@@ -110,6 +111,7 @@ export default function Cat() {
                       {item.alt}
                     </div>
                   </div>
+                  </Link>
                 </div>
               ))}
             </div>

@@ -15,6 +15,7 @@ interface CartItem {
   title: string
   image: ImageType
   price: string
+  currencyCode: string
   quantity: number
 }
 

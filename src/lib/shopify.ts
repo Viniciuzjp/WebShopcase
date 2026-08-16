@@ -42,7 +42,7 @@ interface ProductEdge {
 export async function getProducts(first: number = 50): Promise<Product[]> {
   try {
     const response = await fetch(
-      `https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN}/api/2024-07/graphql.json`,
+      `https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN}/api/2026-04/graphql.json`,
       {
         method: "POST",
         headers: {

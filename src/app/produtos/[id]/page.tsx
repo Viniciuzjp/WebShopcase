@@ -10,6 +10,7 @@ import Suggestions from "@/components/suggestions/suggestions";
 import { Text } from "@/components/text/Text";
 import { Container, Flex, Grid, Section, Stack } from "@av-digital/components";
 import { PorductSkelleton } from "../Skelleton/Skelleton";
+import { formatPrice } from "@/lib/currency";
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -47,12 +48,10 @@ export default function ProductPage() {
     fetchProduct();
   }, [id]);
 
+  const variant = product?.variants[0];
+
   const handleAddToCart = () => {
-    if (!product) return;
-
-    const variant = product.variants[0];
-
-    if (!variant) return;
+    if (!product || !variant || !variant.availableForSale) return;
 
     AddItem({
       id: product.id,
@@ -60,6 +59,7 @@ export default function ProductPage() {
       title: product.title,
       image: product.images[0],
       price: variant.price.amount,
+      currencyCode: variant.price.currencyCode,
     });
   };
 
@@ -134,9 +134,20 @@ export default function ProductPage() {
 
                 <hr />
 
-                <Text variant="h2">R$ {product?.variants[0].price.amount}</Text>
+                <Text variant="h2">
+                  {variant
+                    ? formatPrice(variant.price.amount, variant.price.currencyCode)
+                    : "Indisponível"}
+                </Text>
 
-                <Button onClick={handleAddToCart}>ADICIONAR AO CARRINHO</Button>
+                <Button
+                  onClick={handleAddToCart}
+                  disabled={!variant || !variant.availableForSale}
+                >
+                  {variant && !variant.availableForSale
+                    ? "ESGOTADO"
+                    : "ADICIONAR AO CARRINHO"}
+                </Button>
 
                 <Text variant="h2">ESPECIFICAÇÕES</Text>
 

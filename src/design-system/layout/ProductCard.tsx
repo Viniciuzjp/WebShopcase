@@ -4,12 +4,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { Text } from "@/components/text/Text";
 import { Stack } from "./Stack";
+import { formatPrice } from "@/lib/currency";
 
 type Props = {
   product: Products;
 };
 
 export default function ProductCard({ product }: Props) {
+  const image = product.images[0];
+  const variant = product.variants[0];
+
   return (
     <Card className="group overflow-hidden bg-white border border-neutral-200 transition-colors hover:border-neutral-400">
       <Link
@@ -18,8 +22,8 @@ export default function ProductCard({ product }: Props) {
       >
         <div className="relative aspect-[4/5] overflow-hidden bg-neutral-100">
           <Image
-            src={product.images[0].src || "/placeholder.svg"}
-            alt={product.images[0].altText || product.title}
+            src={image?.src || "/placeholder.svg"}
+            alt={image?.altText || product.title}
             fill
             sizes="(max-width:768px) 50vw, (max-width:1280px) 33vw, 25vw"
             className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
@@ -38,7 +42,9 @@ export default function ProductCard({ product }: Props) {
             variant="productPrice"
             classname="text-lg font-semibold tracking-tight text-neutral-900"
           >
-            R$ {product.variants[0].price.amount}
+            {variant
+              ? formatPrice(variant.price.amount, variant.price.currencyCode)
+              : "Indisponível"}
           </Text>
         </Stack>
       </Link>

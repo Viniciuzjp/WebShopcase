@@ -1,9 +1,52 @@
+"use client";
+
+import { useState } from "react";
 import Button from "@/components/button/Button";
 import InputForm from "@/components/Input/InputForm";
 import { Container, Section, Stack } from "@av-digital/components";
 import { Text } from "@/components/text/Text";
 
+type Status = "idle" | "loading" | "success" | "error";
+
 export default function Send() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<Status>("idle");
+  const [message, setMessage] = useState<string | null>(null);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("loading");
+    setMessage(null);
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setStatus("error");
+        setMessage(data.error || "Não foi possível concluir a inscrição.");
+        return;
+      }
+
+      setStatus("success");
+      setMessage(
+        data.alreadySubscribed
+          ? "Esse e-mail já está cadastrado."
+          : "Inscrição confirmada! Fique de olho na sua caixa de entrada."
+      );
+      setEmail("");
+    } catch (err) {
+      console.error("Erro ao cadastrar na newsletter:", err);
+      setStatus("error");
+      setMessage("Não foi possível concluir a inscrição. Tente novamente.");
+    }
+  }
+
   return (
     <Section classname="bg-neutral-950 border-t border-neutral-800">
       <Container classname="py-20">
@@ -33,20 +76,37 @@ export default function Send() {
             novidades da coleção.
           </Text>
 
-          <form className="flex w-full flex-col gap-3 sm:flex-row">
+          <form
+            onSubmit={handleSubmit}
+            className="flex w-full flex-col gap-3 sm:flex-row"
+          >
             <InputForm
               type="email"
               placeholder="Seu melhor e-mail"
               className="flex-1"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              disabled={status === "loading"}
             />
 
             <Button
               type="submit"
               className="sm:w-auto px-8 whitespace-nowrap"
+              disabled={status === "loading"}
             >
-              Inscrever-se
+              {status === "loading" ? "Enviando..." : "Inscrever-se"}
             </Button>
           </form>
+
+          {message && (
+            <Text
+              variant="bodySm"
+              classname={status === "error" ? "text-red-400" : "text-neutral-300"}
+            >
+              {message}
+            </Text>
+          )}
 
           <Text
             variant="label"

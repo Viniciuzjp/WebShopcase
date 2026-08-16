@@ -2,25 +2,24 @@
 
 import { useCart } from "@/app/Cart/ui/CartContext/Context";
 import Button from "@/components/button/Button";
+import { Text } from "@/components/text/Text";
+import { Flex } from "@av-digital/components";
+import { formatPrice } from "@/lib/currency";
 
 export default function CartProduct() {
   const { cart, total } = useCart();
 
   if (cart.length === 0) {
     return (
-      <section className="flex flex-col items-center justify-center gap-5 w-full p-10">
-        <p className="text-xl text-muted-foreground">Seu carrinho está vazio</p>
-      </section>
+      <></>
     );
   }
 
   async function HandleCheckout() {
-    const lineItems = [
-      {
-        id: cart[0].variantId,
-        quantity: cart[0].quantity,
-      },
-    ];
+    const lineItems = cart.map((item) => ({
+      id: item.variantId,
+      quantity: item.quantity,
+    }));
 
     try {
       const response = await fetch("/api/checkout", {
@@ -31,15 +30,13 @@ export default function CartProduct() {
         body: JSON.stringify({ lineItems }),
       });
 
-      // 1. Se a requisição falhar (ex: 400, 404, 500), interrompe o fluxo antes do .json()
       if (!response.ok) {
         const errorText = await response.text();
         console.error("Erro no servidor:", response.status, errorText);
         alert(`Erro ao iniciar checkout (${response.status}). Verifique o console da API.`);
-        return; // Parar aqui!
+        return;
       }
 
-      // 2. Agora é seguro ler o JSON
       const data = await response.json();
       console.log("Sucesso:", data);
 
@@ -54,14 +51,14 @@ export default function CartProduct() {
   }
 
   return (
-    <section className="flex flex-col gap-5 w-full">
-      <div className="flex flex-col gap-4 p-6 bg-muted/50 rounded-lg">
-        <div className="flex justify-between items-center">
-          <p className="text-lg font-medium">Total do Carrinho:</p>
-          <h1 className="text-2xl font-bold">R${total.toFixed(2)}</h1>
-        </div>
-        <Button onClick={HandleCheckout}>Finalizar Compra</Button>
-      </div>
-    </section>
+    <Flex direction="column" className="w-full mt-10">
+        <Flex justify="between" className="w-full">
+          <Text variant="h3">Total do Carrinho:</Text>
+          <Text variant="productPrice">
+            {formatPrice(total, cart[0]?.currencyCode || "BRL")}
+          </Text>
+        </Flex>
+        <Button onClick={HandleCheckout} className="w-full"><Text variant="bodyLg">Finalizar Compra</Text></Button>
+    </Flex>
   );
 }

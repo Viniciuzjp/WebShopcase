@@ -33,6 +33,12 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# scraper cache / credentials (not used by the Next.js app)
+token.json
+details.json
+products.json
+produtos.json
+
 # vercel
 .vercel
 

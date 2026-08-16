@@ -9,25 +9,25 @@ import "swiper/css/navigation";
 
 const slides = [
   {
-    desktop: "/images/Hero5.png",
-    mobile: "/images/HeroMB.png",
-    title: "",
+    desktop: "/images/Hero5.webp",
+    mobile: "/images/HeroMB.webp",
+    title: "Seleção especial",
   },
   {
-    desktop: "/images/Hero3.png",
-    mobile: "/images/HeroMB2.png",
-    title: "",
+    desktop: "/images/Hero5.webp",
+    mobile: "/images/HeroMB.webp",
+    title: "Ver coleção",
   },
   {
-    desktop: "/images/Hero4.png",
-    mobile: "/images/HeroMB2.png",
-    title: "",
+    desktop: "/images/Hero5.webp",
+    mobile: "/images/HeroMB.webp",
+    title: "Aproveitar",
   },
 ];
 
 export default function Hero() {
   return (
-    <section className="w-full overflow-hidden">
+    <section className="relative left-1/2 w-screen -translate-x-1/2">
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         autoplay={{
@@ -41,26 +41,22 @@ export default function Hero() {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-            {/* Desktop */}
-            <img
-              src={slide.desktop}
-              alt={slide.title}
-              className="hidden md:block w-full h-auto"
-              fetchPriority={index === 0 ? "high" : "auto"}
-              loading={index === 0 ? "eager" : "lazy"}
-              decoding="async"
-            />
+            <picture>
+              <source
+                media="(max-width: 767px)"
+                srcSet={slide.mobile}
+              />
 
-            {/* Mobile */}
-            <img
-              src={slide.mobile}
-              alt={slide.title}
-              className="block md:hidden w-full h-auto"
-              fetchPriority={index === 0 ? "high" : "auto"}
-              loading={index === 0 ? "eager" : "lazy"}
-              decoding="async"
-            />
-          </SwiperSlide >
+              <img
+                src={slide.desktop}
+                alt={slide.title}
+                className="block h-auto w-full"
+                loading={index === 0 ? "eager" : "lazy"}
+                fetchPriority={index === 0 ? "high" : "auto"}
+                decoding="async"
+              />
+            </picture>
+          </SwiperSlide>
         ))}
       </Swiper>
     </section>
