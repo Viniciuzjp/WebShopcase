@@ -16,7 +16,7 @@ const images = [
   { src: "/images/Others.png", alt: "Outros", href: "/products" },
 ];
 
-const CARD_WIDTH = 280;
+const CARD_WIDTH = 230;
 
 export default function Cat() {
   const [mounted, setMounted] = useState(false);
@@ -59,7 +59,7 @@ export default function Cat() {
         <Flex justify="between">
           <Stack>
             <Text variant="bodyLg">Seleção Especial</Text>
-            <Text variant="h2">Lançamentos em Destaque</Text>
+            <Text variant="h2">Cetegorias</Text>
             <Text variant="bodyLg">
               Fique de olho e observe de perto um catálogo diverso de novidades
             </Text>
