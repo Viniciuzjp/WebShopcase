@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+https://web-shopcase-p6b6-git-main-viniciuzjps-projects.vercel.app?_vercel_share=bU8DuVAerAwDTGYgUB12ZMYzP7hk8o6O
+
 First, run the development server:
 
 ```bash
