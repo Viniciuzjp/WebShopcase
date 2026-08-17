@@ -5,6 +5,9 @@ import Button from "@/components/button/Button";
 import { Text } from "@/components/text/Text";
 import { Flex } from "@av-digital/components";
 import { formatPrice } from "@/lib/currency";
+import { TriangleAlert } from "lucide-react";
+
+const STORE_PASSWORD = process.env.NEXT_PUBLIC_STORE_PASSWORD;
 
 export default function CartProduct() {
   const { cart, total } = useCart();
@@ -59,6 +62,26 @@ export default function CartProduct() {
           </Text>
         </Flex>
         <Button onClick={HandleCheckout} className="w-full"><Text variant="bodyLg">Finalizar Compra</Text></Button>
+
+        {STORE_PASSWORD && (
+          <Flex
+            direction="column"
+            gap="xs"
+            className="w-full rounded-md border border-amber-300 bg-amber-50 p-4 mt-4"
+          >
+            <Flex align="center" gap="sm">
+              <TriangleAlert size={18} className="shrink-0 text-amber-700" />
+              <Text variant="label" classname="text-amber-800">
+                Loja em desenvolvimento — senha: {STORE_PASSWORD}
+              </Text>
+            </Flex>
+            <Text variant="bodySm" classname="text-amber-700">
+              Ao digitar a senha você será levado para a home da loja. Volte
+              a esta página e clique em &quot;Finalizar Compra&quot; de
+              novo — o checkout funciona normalmente a partir daqui.
+            </Text>
+          </Flex>
+        )}
     </Flex>
   );
 }

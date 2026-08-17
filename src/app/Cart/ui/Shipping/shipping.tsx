@@ -3,7 +3,7 @@ import Button from "@/components/button/Button";
 import Card from "@/components/card/card";
 import { Truck } from "lucide-react";
 import { Text } from "@/components/text/Text";
-import { Flex, Stack } from "@av-digital/components";
+import { Flex } from "@av-digital/components";
 
 export default function Shipping() {
   const { cart } = useCart();
@@ -11,29 +11,32 @@ export default function Shipping() {
     return <></>;
   }
   return (
-    <>
-      <Card className="flex flex-col gap-3 max-lg:mt-5">
-        <Flex>
-          <Truck />
-          <Text variant="h3">Opções de Envio</Text>
-        </Flex>
+    <Card className="flex flex-col gap-3 max-xl:mt-5">
+      <Flex align="center" gap="sm">
+        <Truck size={20} className="shrink-0" />
+        <Text variant="h3">Opções de Envio</Text>
+      </Flex>
 
-        <Flex>
-          <Button
-            className="flex justify-between items-center w-full hover:bg-neutral-50 h-15 rounded-md"
-            variant="secondary"
-          >
-            <Flex>
-              <input type="radio" />
-              <Flex direction="column" align="start" gap="xs">
-                <Text variant="body">Entrega</Text>
-                <Text variant="label">5-7 Dias Úteis</Text>
-              </Flex>
-            </Flex>
-            <Text variant="body">Calculado no checkout</Text>
-          </Button>
+      <Button
+        className="flex min-h-15 w-full flex-wrap items-center justify-between gap-2 rounded-md px-4 py-3 text-left hover:bg-neutral-50"
+        variant="secondary"
+      >
+        <Flex align="center" gap="sm">
+          <input
+            type="radio"
+            name="shipping"
+            defaultChecked
+            className="shrink-0 accent-black"
+          />
+          <Flex direction="column" align="start" gap="xs">
+            <Text variant="body">Entrega</Text>
+            <Text variant="label">5-7 Dias Úteis</Text>
+          </Flex>
         </Flex>
-      </Card>
-    </>
+        <Text variant="body" classname="whitespace-nowrap text-neutral-500">
+          Calculado no checkout
+        </Text>
+      </Button>
+    </Card>
   );
 }
